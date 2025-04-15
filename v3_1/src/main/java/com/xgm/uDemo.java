@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
-public class myDemo2 {
+public class uDemo {
     public static void main(String[] args) throws IOException {
         //1、加载配置文件
         String resource = "mybatis-config.xml";

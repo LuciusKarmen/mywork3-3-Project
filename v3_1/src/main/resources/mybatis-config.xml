@@ -8,7 +8,7 @@
             <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/mywork?useSSL=false&amp;serverTimezone=UTC&amp;allowPublicKeyRetrieval=true"/>
                 <property name="username" value="xuguangming"/>
                 <property name="password" value="13952803647x"/>
             </dataSource>
@@ -16,6 +16,7 @@
     </environments>
 <!--   代理加载 -->
     <mappers>
-        <mapper resource="UserMapper.xml"/>
+        <mapper resource="com/xgm/mapper/UserMapper.xml"/>
+        <mapper resource="com/xgm/mapper/TipMapper.xml"/>
     </mappers>
 </configuration>
