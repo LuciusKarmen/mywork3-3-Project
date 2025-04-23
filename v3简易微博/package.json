@@ -1,5 +1,5 @@
 {
-  "name": "xingchen_shopping",
+  "name": "v3-shopping",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -12,6 +12,8 @@
     "type-check": "vue-tsc --build"
   },
   "dependencies": {
+    "axios": "^1.8.4",
+    "element-plus": "^2.9.7",
     "pinia": "^3.0.1",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"
@@ -27,6 +29,8 @@
     "jsdom": "^26.0.0",
     "npm-run-all2": "^7.0.2",
     "typescript": "~5.8.0",
+    "unplugin-auto-import": "^19.1.2",
+    "unplugin-vue-components": "^28.4.1",
     "vite": "^6.2.4",
     "vite-plugin-vue-devtools": "^7.7.2",
     "vitest": "^3.1.1",

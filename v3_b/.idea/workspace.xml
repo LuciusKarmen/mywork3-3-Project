@@ -5,24 +5,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="007ac0c1-688c-444d-84e9-f272ad0a04ec" name="更改" comment="3">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/xgm/mapper/TipMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/xgm/mapper/UserMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/xgm/pojo/Tip.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/xgm/pojo/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/xgm/uDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/xgm/web/TipDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/xgm/web/UserDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/xgm/xDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/xgm/mapper/TipMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mybatis-config.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/10486be3-ac00-4d8d-983d-a114da6f672b.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/10486be3-ac00-4d8d-983d-a114da6f672b.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xgm/pojo/Tip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xgm/pojo/Tip.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xgm/web/TipDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xgm/web/TipDemo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xingchen_shopping/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xingchen_shopping/.vscode/extensions.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xingchen_shopping/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xingchen_shopping/env.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xingchen_shopping/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xingchen_shopping/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xingchen_shopping/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xingchen_shopping/public/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xingchen_shopping/src/App.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xingchen_shopping/src/assets/base.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xingchen_shopping/src/assets/logo.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xingchen_shopping/src/components/lead.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xingchen_shopping/src/components/show.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xingchen_shopping/src/components/top.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xingchen_shopping/src/main.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xingchen_shopping/src/page/111.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xingchen_shopping/src/page/222.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xingchen_shopping/src/page/333.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xingchen_shopping/src/router/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xingchen_shopping/tsconfig.app.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xingchen_shopping/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xingchen_shopping/tsconfig.node.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xingchen_shopping/tsconfig.vitest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xingchen_shopping/vite.config.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../xingchen_shopping/vitest.config.ts" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +76,7 @@
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/HP/Desktop/zijing/ModernWebExperiment-EasyWeibo/backend&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/HP/Desktop/自己作业/mywork3/v3_b&quot;,
     &quot;mysql-explain.enableMySQLExplain&quot;: &quot;true&quot;,
     &quot;mysql-explain.existMysqlJar&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -147,6 +159,9 @@
       <workItem from="1744606299843" duration="178000" />
       <workItem from="1744606516941" duration="5050000" />
       <workItem from="1744630514636" duration="722000" />
+      <workItem from="1745378208311" duration="250000" />
+      <workItem from="1745378838474" duration="454000" />
+      <workItem from="1745379305891" duration="485000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <option name="closed" value="true" />

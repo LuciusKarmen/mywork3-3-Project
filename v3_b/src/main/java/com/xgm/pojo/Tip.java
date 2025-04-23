@@ -1,6 +1,8 @@
 package com.xgm.pojo;
 
 public class Tip {
+
+
     public String getName() {
         return name;
     }
@@ -17,35 +19,28 @@ public class Tip {
         this.id = id;
     }
 
-    public String getTip() {
-        return tip;
+    public String getContent() {
+        return content;
     }
 
-    public void setTip(String tip) {
-        this.tip = tip;
+    public void setContent(String content) {
+        this.content = content;
     }
 
-    public int getLike() {
-        return like;
-    }
-
-    public void setLike(int like) {
-        this.like = like;
-    }
-
-    private Integer id;
-    private String tip;
-    private String name;
-    private Integer like;
 
     @Override
     public String toString() {
         return "Tip{" +
                 "id=" + id +
-                ", tip='" + tip + '\'' +
                 ", name='" + name + '\'' +
-                ", like=" + like +
+                ", content='" + content + '\'' +
                 '}';
     }
+
+    private Integer id;
+    private String name;
+    private String content;
+
+
 
 }

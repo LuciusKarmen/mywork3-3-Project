@@ -27,7 +27,7 @@ public class TipDemo extends HttpServlet {
 
         for(Tip tip:tipMapper.selectTip())
         {
-            System.out.println(tip.getId()+" "+tip.getName()+" "+tip.getTip()+" "+tip.getLike());
+            System.out.println(tip.getId()+" "+tip.getName()+" "+tip.getContent());
         }
 
 
