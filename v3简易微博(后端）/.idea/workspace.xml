@@ -4,17 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="007ac0c1-688c-444d-84e9-f272ad0a04ec" name="更改" comment="3">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xgm/uDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xgm/service/uDemo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xgm/web/TipDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xgm/servlet/TipDemo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xgm/web/UserDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xgm/servlet/UserDemo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xgm/xDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xgm/service/xDemo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../v3简易微博/src/components/main.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../v3简易微博/src/components/main.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../v3简易微博/src/pages/other.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../v3简易微博/src/pages/other.vue" afterDir="false" />
-    </list>
+    <list default="true" id="007ac0c1-688c-444d-84e9-f272ad0a04ec" name="更改" comment="3" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -147,7 +137,7 @@
       <workItem from="1745378838474" duration="454000" />
       <workItem from="1745379305891" duration="485000" />
       <workItem from="1745380233941" duration="5261000" />
-      <workItem from="1745547994963" duration="2580000" />
+      <workItem from="1745547994963" duration="3177000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <option name="closed" value="true" />
