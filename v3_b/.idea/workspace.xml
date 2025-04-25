@@ -6,35 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="007ac0c1-688c-444d-84e9-f272ad0a04ec" name="更改" comment="3">
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/10486be3-ac00-4d8d-983d-a114da6f672b.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/10486be3-ac00-4d8d-983d-a114da6f672b.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xgm/pojo/Tip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xgm/pojo/Tip.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xgm/web/TipDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xgm/web/TipDemo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../xingchen_shopping/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../xingchen_shopping/.vscode/extensions.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../xingchen_shopping/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../xingchen_shopping/env.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../xingchen_shopping/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../xingchen_shopping/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../xingchen_shopping/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../xingchen_shopping/public/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../xingchen_shopping/src/App.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../xingchen_shopping/src/assets/base.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../xingchen_shopping/src/assets/logo.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../xingchen_shopping/src/components/lead.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../xingchen_shopping/src/components/show.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../xingchen_shopping/src/components/top.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../xingchen_shopping/src/main.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../xingchen_shopping/src/page/111.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../xingchen_shopping/src/page/222.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../xingchen_shopping/src/page/333.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../xingchen_shopping/src/router/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../xingchen_shopping/tsconfig.app.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../xingchen_shopping/tsconfig.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../xingchen_shopping/tsconfig.node.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../xingchen_shopping/tsconfig.vitest.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../xingchen_shopping/vite.config.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../xingchen_shopping/vitest.config.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xgm/uDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xgm/service/uDemo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xgm/web/TipDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xgm/servlet/TipDemo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xgm/web/UserDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xgm/servlet/UserDemo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xgm/xDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xgm/service/xDemo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../v3简易微博/src/components/main.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../v3简易微博/src/components/main.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../v3简易微博/src/pages/other.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../v3简易微博/src/pages/other.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +25,7 @@
       <list>
         <option value="Interface" />
         <option value="Class" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -69,6 +49,7 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Application.myDemo2.executor&quot;: &quot;Run&quot;,
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
     &quot;Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor&quot;: &quot;Run&quot;,
     &quot;Maven.v3_1 [compile].executor&quot;: &quot;Run&quot;,
     &quot;Maven.v3_1 [tomcat7:run].executor&quot;: &quot;Run&quot;,
@@ -84,6 +65,9 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;模块&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;,
     &quot;应用程序.mybatisdemo.executor&quot;: &quot;Run&quot;,
@@ -105,11 +89,11 @@
   </component>
   <component name="RunManager" selected="应用程序.xDemo">
     <configuration name="uDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.xgm.uDemo" />
+      <option name="MAIN_CLASS_NAME" value="com.xgm.service.uDemo" />
       <module name="v3_1" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.xgm.*" />
+          <option name="PATTERN" value="com.xgm.service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -118,11 +102,11 @@
       </method>
     </configuration>
     <configuration name="xDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.xgm.xDemo" />
+      <option name="MAIN_CLASS_NAME" value="com.xgm.service.xDemo" />
       <module name="v3_1" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.xgm.*" />
+          <option name="PATTERN" value="com.xgm.service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -162,6 +146,8 @@
       <workItem from="1745378208311" duration="250000" />
       <workItem from="1745378838474" duration="454000" />
       <workItem from="1745379305891" duration="485000" />
+      <workItem from="1745380233941" duration="5261000" />
+      <workItem from="1745547994963" duration="2580000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <option name="closed" value="true" />

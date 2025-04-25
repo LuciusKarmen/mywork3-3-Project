@@ -42,6 +42,7 @@
     height: 400px;
     margin: auto;
     border: 3px solid rgb(154, 154, 154);
+    overflow-y: auto;
     border-radius: 20px;
     padding: 20px;
     margin-bottom: 10px;

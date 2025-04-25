@@ -15,8 +15,8 @@
           <label for="password" class="a3">密码:</label>
           <input v-model="user.password" key="password">
           <br><br>
-          <el-button @click="push">提交</el-button>
-          <el-button @click="aaa" >清空</el-button>
+          <el-button @click="push()">提交</el-button>
+          <el-button @click="aaa()" >清空</el-button>
         </div>
       </div>
   </div>
@@ -29,21 +29,32 @@ import axios from 'axios'
 
 const user=reactive({
   username: '手机号/邮箱/用户名',
-  password: '请输入密码',
+  password: '请输入密码'
 })
 
+let flag=false;
 
-async function push() {
+let response = reactive([{name:'',password:''}])
 
-  const res = await axios.post('http://localhost:8080/v3_1/user',user)
-  console.log(res.data)
-  if(res.data=="登录成功"){
-    alert('登录成功')
-    window.location.href = '/work'
-  }else{
-    alert('登录失败')
-  }
+function push() {
 
+  axios.get('/api/user').then(res=>{
+    console.log(res.data)
+    response=res.data
+    console.log(response[1].name)
+    for(let i=0;i<response.length;i++){
+      if(response[i].name==user.username&&response[i].password==user.password){
+        alert('登录成功')
+        flag=true;
+        window.location.href = '/work/home'
+      }
+    }
+    if(flag==false){
+      alert('账号或密码错误')
+    }
+
+  })
+  
 }
 function aaa() {
   user.username = ''

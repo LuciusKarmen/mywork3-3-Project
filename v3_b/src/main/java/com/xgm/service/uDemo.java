@@ -1,8 +1,6 @@
-package com.xgm;
+package com.xgm.service;
 
-import com.xgm.mapper.TipMapper;
 import com.xgm.mapper.UserMapper;
-import com.xgm.pojo.Tip;
 import com.xgm.pojo.User;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -13,7 +11,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
-public class xDemo {
+public class uDemo {
     public static void main(String[] args) throws IOException {
         //1、加载配置文件
         String resource = "mybatis-config.xml";
@@ -25,12 +23,12 @@ public class xDemo {
 
         //3.执行查询
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
-        TipMapper tipMapper = sqlSession.getMapper(TipMapper.class);
-        List<Tip> a = tipMapper.selectTip();
+        List<User> users=userMapper.selectBlog();
 
-        System.out.println(a);
+        System.out.println(users);
 
         sqlSession.close();
 
     }
 }
+
