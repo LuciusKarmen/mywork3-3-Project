@@ -14,9 +14,11 @@
         <div>
           <label for="password" class="a3">密码:</label>
           <input v-model="user.password" key="password">
-          <br><br>
+          <div>
+            <a href="https://www.taobao.com/" class="add">还没有加入？点击注册</a>
+          </div>
           <el-button @click="push()">提交</el-button>
-          <el-button @click="aaa()" >清空</el-button>
+          <el-button @click="clean()" >清空</el-button>
         </div>
       </div>
   </div>
@@ -56,7 +58,7 @@ function push() {
   })
   
 }
-function aaa() {
+function clean() {
   user.username = ''
   user.password = ''
 }
@@ -108,5 +110,13 @@ function aaa() {
   width: 70px;
   height:75px;
 
+}
+.add{
+  font-size: 10px;
+  font-style: italic;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-style: bold;
+  color:rgb(0, 89, 255);
+  text-decoration: none;
 }
 </style>

@@ -32,6 +32,7 @@ public class TipDemo extends HttpServlet {
 
         List<Tip> a = tipMapper.selectTip();
         String s= JSON.toJSONString(a);
+        response.setContentType("text/html;charset=utf-8");
         response.getWriter().print(s);
     }
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

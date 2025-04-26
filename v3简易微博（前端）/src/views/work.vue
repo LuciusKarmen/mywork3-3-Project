@@ -27,6 +27,10 @@
   </script>
   
   <style>
+  .A{
+    width: 100%;
+    height: 100%;
+  }
   .wb {
     width: 600px; 
     margin: auto;

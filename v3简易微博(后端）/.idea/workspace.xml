@@ -4,7 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="007ac0c1-688c-444d-84e9-f272ad0a04ec" name="更改" comment="3" />
+    <list default="true" id="007ac0c1-688c-444d-84e9-f272ad0a04ec" name="更改" comment="3">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xgm/servlet/Tippush.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/xgm/servlet/Userpush.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/10486be3-ac00-4d8d-983d-a114da6f672b.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/10486be3-ac00-4d8d-983d-a114da6f672b.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xgm/pojo/Tip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xgm/pojo/Tip.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xgm/servlet/TipDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xgm/servlet/TipDemo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xgm/servlet/UserDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xgm/servlet/UserDemo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../v3简易微博（前端）/components.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../v3简易微博（前端）/components.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../v3简易微博（前端）/src/components/main.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../v3简易微博（前端）/src/components/main.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../v3简易微博（前端）/src/pages/other.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../v3简易微博（前端）/src/pages/other.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../v3简易微博（前端）/src/views/work.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../v3简易微博（前端）/src/views/work.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../v3简易微博（前端）/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../v3简易微博（前端）/vite.config.ts" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,8 +28,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="HTML File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -36,39 +50,39 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.myDemo2.executor&quot;: &quot;Run&quot;,
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.v3_1 [compile].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.v3_1 [tomcat7:run].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/HP/Desktop/自己作业/mywork3/v3_b&quot;,
-    &quot;mysql-explain.enableMySQLExplain&quot;: &quot;true&quot;,
-    &quot;mysql-explain.existMysqlJar&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;模块&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;,
-    &quot;应用程序.mybatisdemo.executor&quot;: &quot;Run&quot;,
-    &quot;应用程序.xDemo.executor&quot;: &quot;Run&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.myDemo2.executor": "Run",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
+    "Maven.v3_1 [compile].executor": "Run",
+    "Maven.v3_1 [tomcat7:run].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/HP/Desktop/work3/mywork3/v3简易微博(后端）",
+    "mysql-explain.enableMySQLExplain": "true",
+    "mysql-explain.existMysqlJar": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "模块",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true",
+    "应用程序.mybatisdemo.executor": "Run",
+    "应用程序.xDemo.executor": "Run"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql_aurora_aws&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql_aurora_aws"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\HP\Desktop\后端\mywork3\v3_1\src\main\resources\com\xgm\mapper" />
@@ -138,6 +152,7 @@
       <workItem from="1745379305891" duration="485000" />
       <workItem from="1745380233941" duration="5261000" />
       <workItem from="1745547994963" duration="3177000" />
+      <workItem from="1745555940340" duration="8271000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <option name="closed" value="true" />

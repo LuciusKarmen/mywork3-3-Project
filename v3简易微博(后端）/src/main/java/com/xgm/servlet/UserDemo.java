@@ -31,8 +31,12 @@ public class UserDemo extends HttpServlet {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
 
+        //1.
         List<User> a = userMapper.selectBlog();
+        //2.
         String s= JSON.toJSONString(a);
+        //3.
+        response.setContentType("text/html;charset=utf-8");
         response.getWriter().print(s);
 
 
