@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="007ac0c1-688c-444d-84e9-f272ad0a04ec" name="更改" comment="5">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../CSDN项目/csdn(后端) -springboot/代码/src/main/java/org/example/s9/mapper/UserNameMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../CSDN项目/csdn(后端) -springboot/代码/src/main/java/org/example/s9/mapper/UserNameMapper.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,7 +22,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
@@ -52,7 +51,7 @@
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/HP/Desktop/仓库3(练习项目）/mywork3/微博项目/x-Luiouskarmen/v3简易微博(后端）&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/HP/Desktop/仓库3 (练习项目）/mywork3/微博项目/v3简易微博(后端）&quot;,
     &quot;mysql-explain.enableMySQLExplain&quot;: &quot;true&quot;,
     &quot;mysql-explain.existMysqlJar&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -150,6 +149,8 @@
       <workItem from="1746288585218" duration="529000" />
       <workItem from="1746525002711" duration="229000" />
       <workItem from="1746526173800" duration="16000" />
+      <workItem from="1747663940370" duration="1527000" />
+      <workItem from="1747721767003" duration="5033000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <option name="closed" value="true" />
