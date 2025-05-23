@@ -5,7 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="007ac0c1-688c-444d-84e9-f272ad0a04ec" name="更改" comment="5">
-      <change beforePath="$PROJECT_DIR$/../../CSDN项目/csdn(后端) -springboot/代码/src/main/java/org/example/s9/mapper/UserNameMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../CSDN项目/csdn(后端) -springboot/代码/src/main/java/org/example/s9/mapper/UserNameMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../星辰购物网/系统前端/src/pages/logins.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../星辰购物网/系统前端/src/pages/logins.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../星辰购物网/系统前端/src/pages/loginu.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../星辰购物网/系统前端/src/pages/loginu.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../星辰购物网/系统前端/src/pages/our.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../星辰购物网/系统前端/src/pages/our.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../星辰购物网/系统前端/src/pages/regs.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../星辰购物网/系统前端/src/pages/regs.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../星辰购物网/系统前端/src/pages/regu.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../星辰购物网/系统前端/src/pages/regu.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../星辰购物网/系统前端/src/pages/worku.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../星辰购物网/系统前端/src/pages/worku.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../星辰购物网/系统前端/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../星辰购物网/系统前端/src/router/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,6 +157,7 @@
       <workItem from="1746526173800" duration="16000" />
       <workItem from="1747663940370" duration="1527000" />
       <workItem from="1747721767003" duration="5033000" />
+      <workItem from="1747990155117" duration="77000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <option name="closed" value="true" />

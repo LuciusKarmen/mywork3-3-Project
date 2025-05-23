@@ -18,6 +18,31 @@ const router = createRouter({
       name: 'logins',
       component: () => import('../pages/logins.vue'),
     },
+    {
+      path: '/our',
+      name: 'our',
+      component: () => import('../pages/our.vue'),
+    },
+    {
+      path: '/regs',
+      name: 'regs',
+      component: () => import('../pages/regs.vue'),
+    },
+    {
+      path: '/regu',
+      name: 'regu',
+      component: () => import('../pages/regu.vue'),
+    },
+    {
+      path: '/worku',
+      name: 'worku',
+      component: () => import('../pages/worku.vue'),
+    },
+    {
+      path: '/works',
+      name: 'works',
+      component: () => import('../pages/works.vue'),
+    },
   ],
 })
 
