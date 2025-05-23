@@ -8,9 +8,9 @@
         <n-input v-model:value="username" type="text" placeholder="用户名/电话号码" id="username" />
 
         <label id="password" for="password">密码:</label>
-        <n-input v-model:value="password" type="text" placeholder="密码" id="password" />
+        <n-input v-model:value="userpassword" type="text" placeholder="密码" id="password" />
       </n-space>
-      <n-button type="primary" class="button">登录</n-button>
+      <n-button type="primary" class="button" @click="handleLogin">登录</n-button>
       <div class="register-link">还没有加入大家庭吗<a href="/regu">点击注册</a></div>
     </div>
   </div>
@@ -18,9 +18,40 @@
 
 <script setup lang="ts" name="face">
 import { ref } from 'vue'
+import axios from 'axios'
 
 const username = ref('')
-const password = ref('')
+const userpassword = ref('')
+
+function handleLogin() {
+  axios
+    .post(
+      '/api/user/loginuser',
+      // 发送的数据,设置请求体
+      {
+        username: username.value,
+        userpassword: userpassword.value,
+      },
+      // 设置请求头
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      },
+    )
+    .then((response) => {
+      console.log(response.data)
+      if (response.data === 'success') {
+        alert('登录成功')
+      } else {
+        alert('登录失败，请检查用户名和密码')
+      }
+    })
+    .catch((error) => {
+      console.error(error)
+      alert('发生错误，请稍后再试')
+    })
+}
 </script>
 
 <style scoped lang="scss">

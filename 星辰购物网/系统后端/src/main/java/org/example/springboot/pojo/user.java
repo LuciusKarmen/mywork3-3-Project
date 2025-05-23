@@ -25,12 +25,12 @@ public class user {
         this.userid = userid;
     }
 
-    public String getSuserpath() {
-        return suserpath;
+    public String getuserpath() {
+        return userpath;
     }
 
-    public void setSuserpath(String suserpath) {
-        this.suserpath = suserpath;
+    public void setuserpath(String suserpath) {
+        this.userpath = suserpath;
     }
 
     @Override
@@ -39,14 +39,14 @@ public class user {
                 "username='" + username + '\'' +
                 ", userpassword='" + userpassword + '\'' +
                 ", userid='" + userid + '\'' +
-                ", suserpath='" + suserpath + '\'' +
+                ", userpath='" + userpath + '\'' +
                 '}';
     }
 
     private String username;
     private String userpassword;
     private String userid;
-    private String suserpath;
+    private String userpath;
 
 
 
