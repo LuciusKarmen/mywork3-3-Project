@@ -33,15 +33,18 @@ const router = createRouter({
       name: 'regu',
       component: () => import('../pages/regu.vue'),
     },
+    ////////////////
     {
       path: '/worku',
       name: 'worku',
       component: () => import('../pages/worku.vue'),
+      children: [],
     },
     {
       path: '/works',
       name: 'works',
       component: () => import('../pages/works.vue'),
+      children: [],
     },
   ],
 })

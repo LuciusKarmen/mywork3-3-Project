@@ -13,19 +13,14 @@
       <n-space vertical class="a">
         <div class="label">选择头像：</div>
         <div class="k">
-          <input
-            type="file"
-            class="input"
-            id="avatar"
-            accept="image/*"
-            @change="handleAvatarUpload"
-          />
+          <input type="file" accept="image/*" @change="handleAvatarUpload" />
+
           <div v-if="avatarUrl" class="avatar-preview">
             <img :src="avatarUrl" alt="头像预览" />
           </div>
         </div>
       </n-space>
-      <n-button type="warning" class="button">入驻</n-button>
+      <n-button type="warning" class="button" @click="handleRegisters">入驻</n-button>
       <div class="register-link">入住了成功了吧<a href="/logins">点击登录</a></div>
     </div>
   </div>
@@ -33,15 +28,18 @@
 
 <script setup lang="ts" name="face">
 import { ref } from 'vue'
+import axios from 'axios'
 
 const username = ref('')
 const password = ref('')
 const avatarUrl = ref('')
+const shopfile = ref<File | null>(null)
 
 // 处理头像上传
 const handleAvatarUpload = (event: Event) => {
   const target = event.target as HTMLInputElement
   const file = target.files?.[0]
+  shopfile.value = file || null
   if (file) {
     // 创建临时 URL 预览图片
     const reader = new FileReader()
@@ -50,6 +48,35 @@ const handleAvatarUpload = (event: Event) => {
     }
     reader.readAsDataURL(file)
   }
+}
+
+const handleRegisters = () => {
+  const formData = new FormData()
+  formData.append('username', username.value)
+  formData.append('password', password.value)
+  if (shopfile.value) {
+    formData.append('avatar', shopfile.value)
+  }
+
+  axios
+    .post('/api/shop/register', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    })
+    .then((response) => {
+      console.log(response.data)
+      if (response.data === 'success') {
+        alert('注册成功')
+        window.location.href = '/works'
+      } else {
+        alert('注册失败，请检查输入信息')
+      }
+    })
+    .catch((error) => {
+      console.error(error)
+      alert('发生错误，请稍后再试')
+    })
 }
 </script>
 

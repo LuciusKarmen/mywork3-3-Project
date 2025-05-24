@@ -1,7 +1,11 @@
 <template>
-  <div>欢迎加入</div>
+  <div>
+    <header></header>
+  </div>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import header from '../views/mainu/header.vue'
+</script>
 
 <style scoped lang="scss"></style>

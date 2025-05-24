@@ -42,6 +42,7 @@ const avatarUrl = ref('')
 const handleAvatarUpload = (event: Event) => {
   const target = event.target as HTMLInputElement
   const file = target.files?.[0]
+
   if (file) {
     // 创建临时 URL 预览图片
     const reader = new FileReader()
