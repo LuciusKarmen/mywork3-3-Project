@@ -5,13 +5,13 @@
       <h3>合作共赢是我们的宗旨</h3>
       <n-space vertical>
         <label id="username" for="username">用户名:</label>
-        <n-input v-model:value="username" type="text" placeholder="用户名/电话号码" id="username" />
+        <n-input v-model:value="shopname" type="text" placeholder="用户名/电话号码" id="username" />
 
         <label id="password" for="password" class="password">密码:</label>
-        <n-input v-model:value="password" type="text" placeholder="密码" id="password" />
+        <n-input v-model:value="shoppassword" type="text" placeholder="密码" id="password" />
       </n-space>
 
-      <n-button type="warning" class="button">登录</n-button>
+      <n-button type="warning" class="button" @click="handleLogin">登录</n-button>
       <div class="register-link">还没有加盟吗<a href="/regs">点击入驻</a></div>
     </div>
   </div>
@@ -19,9 +19,40 @@
 
 <script setup lang="ts" name="face">
 import { ref } from 'vue'
+import axios from 'axios'
 
-const username = ref('')
-const password = ref('')
+const shopname = ref('')
+const shoppassword = ref('')
+function handleLogin() {
+  axios
+    .post(
+      '/api/shop/loginshop',
+      // 发送的数据,设置请求体
+      {
+        shopname: shopname.value,
+        shoppassword: shoppassword.value,
+      },
+      // 设置请求头
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      },
+    )
+    .then((response) => {
+      console.log(response.data)
+      if (response.data === 'success') {
+        alert('登录成功')
+        window.location.href = '/works'
+      } else {
+        alert('登录失败，请检查用户名和密码')
+      }
+    })
+    .catch((error) => {
+      console.error(error)
+      alert('发生错误，请稍后再试')
+    })
+}
 </script>
 
 <style scoped lang="scss">

@@ -43,6 +43,7 @@ function handleLogin() {
       console.log(response.data)
       if (response.data === 'success') {
         alert('登录成功')
+        window.location.href = '/worku'
       } else {
         alert('登录失败，请检查用户名和密码')
       }
