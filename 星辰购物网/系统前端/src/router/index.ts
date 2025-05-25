@@ -38,7 +38,13 @@ const router = createRouter({
       path: '/worku',
       name: 'worku',
       component: () => import('../pages/worku.vue'),
-      children: [],
+      children: [
+        {
+          path: 'shopping',
+          name: 'shopping',
+          component: () => import('../views/mainu/shopping.vue'),
+        },
+      ],
     },
     {
       path: '/works',
