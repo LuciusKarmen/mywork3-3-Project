@@ -2,7 +2,7 @@
   <div class="title">
     <div class="subtitle">xingcheng.com</div>
     <div class="search">
-      <input placeholder="搜索" class="search-input" />
+      <input placeholder="🔍搜索   天地万物，皆入掌中" class="search-input" />
     </div>
     <div class="user">
       <img src="../../pic/购物车.png" alt="" />
@@ -31,10 +31,10 @@
     </div>
     <div class="classify">
       <div class="classify-item">星辰商城</div>
-      <div class="classify-item">待发货订单</div>
-      <div class="classify-item">待收货订单</div>
-      <div class="classify-item">已完成订单</div>
-      <div class="classify-item" @click="toAbout()">联系我们</div>
+      <div class="classify-item">购物车车</div>
+      <div class="classify-item">我的订单</div>
+      <div class="classify-item" @click="toContact()">联系客服</div>
+      <div class="classify-item" @click="toAbout()">关于我们</div>
     </div>
   </div>
 </template>
@@ -44,6 +44,10 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 const toAbout = () => {
   router.push('/our')
+}
+//拨打电话
+const toContact = () => {
+  window.location.href = 'tel:16670870515'
 }
 </script>
 

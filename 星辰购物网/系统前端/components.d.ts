@@ -16,6 +16,7 @@ declare module 'vue' {
     NCardHeader: typeof import('naive-ui')['NCardHeader']
     NCarousel: typeof import('naive-ui')['NCarousel']
     NInput: typeof import('naive-ui')['NInput']
+    NScrollbar: typeof import('naive-ui')['NScrollbar']
     NSpace: typeof import('naive-ui')['NSpace']
     NTabPane: typeof import('naive-ui')['NTabPane']
     NTabs: typeof import('naive-ui')['NTabs']

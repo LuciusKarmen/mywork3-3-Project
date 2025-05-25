@@ -1,19 +1,22 @@
 <template>
   <div class="shopping-container">
     <div class="header">
-      <n-card>
-        <n-tabs type="line" animated>
-          <n-tab-pane name="成人服饰" tab="成人服饰"><Good></Good></n-tab-pane>
-          <n-tab-pane name="电子产品" tab="电子产品"><Good></Good></n-tab-pane>
-          <n-tab-pane name="家居用品" tab="家居用品"><Good></Good></n-tab-pane>
-          <n-tab-pane name="食品" tab="食品"><Good></Good></n-tab-pane>
-          <n-tab-pane name="运动器械" tab="运动器械"><Good></Good></n-tab-pane>
-          <n-tab-pane name="玩具五金" tab="玩具五金"><Good></Good></n-tab-pane>
-          <n-tab-pane name="其他" tab="其他"><Good></Good></n-tab-pane>
-        </n-tabs>
-      </n-card>
+      <div class="active">成人服饰</div>
+      <div class="active">儿童服饰</div>
+      <div class="active">家居用品</div>
+      <div class="active">数码产品</div>
+      <div class="active">运动用品</div>
+      <div class="active">枪支弹药</div>
+      <div class="active">食品饮料</div>
+      <div class="active">其他</div>
     </div>
-    <div class="content"></div>
+    <div class="content">
+      <n-scrollbar class="scrollbar">
+        <div class="good-list">
+          <Good v-for="item in 15" :key="item" class="good" />
+        </div>
+      </n-scrollbar>
+    </div>
   </div>
 </template>
 
@@ -39,6 +42,43 @@ const activeTab = ref('成人服饰')
     position: absolute;
     top: 0;
     left: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    .active {
+      width: 10%;
+      height: 70%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 15px;
+      color: #000;
+      cursor: pointer;
+      &:hover {
+        text-decoration: underline;
+        color: #ff1919;
+        background-color: #cfcdcd;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
+    }
+  }
+  .content {
+    margin-top: 5vh;
+    height: 88vh;
+    width: 100%;
+
+    .scrollbar {
+      height: 100%;
+      width: 100%;
+      padding: 20px;
+      .good-list {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        gap: 10px;
+      }
+    }
   }
 }
 </style>
