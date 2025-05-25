@@ -23,11 +23,11 @@ import java.util.UUID;
 public class Shopshow {
     @Autowired
     private ShopMapper shopa;
-    private shop shop = new shop();
+    
     private static final String UPLOAD_DIR = "./uploads/";
 
     @PostMapping("/register")
-    public Object registerShop(
+    public String registerShop(
 
             @RequestParam("shopid") String shopid,
             @RequestParam("shopname") String shopname,
@@ -37,23 +37,20 @@ public class Shopshow {
 
 
 
-        // Create uploads directory if it doesn't exist
+        // 创建上传目录
         Path uploadPath = Paths.get(UPLOAD_DIR);
         if (!Files.exists(uploadPath)) {
             Files.createDirectories(uploadPath);
         }
 
-        // Generate unique file name
+        //name
         String fileName = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
         Path filePath = uploadPath.resolve(fileName);
 
-        // Save the file
+        // Save
         file.transferTo(filePath.toFile());
 
-        shop.setShopid(shopid);
-        shop.setShopname(shopname);
-        shop.setShoppassword(shoppassword);
-        shop.setShoppath(filePath.toString());
+
 
         // Insert the shop into the database
         shopa.insert(shopid,shopname,shoppassword,filePath.toString());

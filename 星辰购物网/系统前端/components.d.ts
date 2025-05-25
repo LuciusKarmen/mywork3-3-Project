@@ -8,10 +8,17 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    Good: typeof import('./src/components/good.vue')['default']
     NButton: typeof import('naive-ui')['NButton']
+    NCard: typeof import('naive-ui')['NCard']
+    NCardBody: typeof import('naive-ui')['NCardBody']
+    NCardFooter: typeof import('naive-ui')['NCardFooter']
+    NCardHeader: typeof import('naive-ui')['NCardHeader']
     NCarousel: typeof import('naive-ui')['NCarousel']
     NInput: typeof import('naive-ui')['NInput']
     NSpace: typeof import('naive-ui')['NSpace']
+    NTabPane: typeof import('naive-ui')['NTabPane']
+    NTabs: typeof import('naive-ui')['NTabs']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

@@ -5,10 +5,10 @@
       <h3>祝您每天开开心心</h3>
       <n-space vertical>
         <label id="username" for="username">用户名:</label>
-        <n-input v-model:value="username" type="text" placeholder="用户名/电话号码" id="username" />
+        <n-input v-model:value="shopname" type="text" placeholder="用户名/电话号码" id="username" />
 
         <label id="password" for="password">密码:</label>
-        <n-input v-model:value="password" type="text" placeholder="密码" id="password" />
+        <n-input v-model:value="shoppassword" type="text" placeholder="密码" id="password" />
       </n-space>
       <n-space vertical class="a">
         <div class="label">选择头像：</div>
@@ -27,15 +27,19 @@
 </template>
 
 <script setup lang="ts" name="face">
-import { ref } from 'vue'
+import { reactive, ref } from 'vue'
 import axios from 'axios'
 
-const username = ref('')
-const password = ref('')
-const avatarUrl = ref('')
+const shopid = ref('')
+const shopname = ref('')
+const shoppassword = ref('')
+const shoppath = ref('')
 const shopfile = ref<File | null>(null)
 
+shopid.value = crypto.randomUUID()
+
 // 处理头像上传
+
 const handleAvatarUpload = (event: Event) => {
   const target = event.target as HTMLInputElement
   const file = target.files?.[0]
@@ -44,22 +48,26 @@ const handleAvatarUpload = (event: Event) => {
     // 创建临时 URL 预览图片
     const reader = new FileReader()
     reader.onload = (e) => {
-      avatarUrl.value = e.target?.result as string
+      shoppath.value = e.target?.result as string
     }
     reader.readAsDataURL(file)
   }
 }
 
 const handleRegisters = () => {
-  const formData = new FormData()
-  formData.append('username', username.value)
-  formData.append('password', password.value)
+  const fromdata = new FormData()
   if (shopfile.value) {
-    formData.append('avatar', shopfile.value)
+    fromdata.append('shopfile', shopfile.value)
   }
 
+  fromdata.append('shopid', shopid.value)
+  fromdata.append('shopname', shopname.value)
+  fromdata.append('shoppassword', shoppassword.value)
+  fromdata.append('shopfile', shopfile.value || '')
+
+  console.log('Form Data:', fromdata)
   axios
-    .post('/api/shop/register', formData, {
+    .post('/api/shop/register', fromdata, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },

@@ -8,7 +8,7 @@
         <n-input v-model:value="username" type="text" placeholder="用户名/电话号码" id="username" />
 
         <label id="password" for="password">密码:</label>
-        <n-input v-model:value="password" type="text" placeholder="密码" id="password" />
+        <n-input v-model:value="userpassword" type="text" placeholder="密码" id="password" />
       </n-space>
       <n-space vertical class="a">
         <div class="label">选择头像：</div>
@@ -25,7 +25,7 @@
           </div>
         </div>
       </n-space>
-      <n-button type="primary" class="button">注册</n-button>
+      <n-button type="primary" class="button" @click="handleRegister">注册</n-button>
       <div class="register-link">注册好了吧<a href="/loginu">点击登录</a></div>
     </div>
   </div>
@@ -33,24 +33,54 @@
 
 <script setup lang="ts" name="face">
 import { ref } from 'vue'
+import axios from 'axios'
 
 const username = ref('')
-const password = ref('')
+const userpassword = ref('')
 const avatarUrl = ref('')
+const userid = ref(crypto.randomUUID())
+const userfile = ref<File | null>(null)
 
-// 处理头像上传
 const handleAvatarUpload = (event: Event) => {
   const target = event.target as HTMLInputElement
   const file = target.files?.[0]
-
+  userfile.value = file || null
   if (file) {
-    // 创建临时 URL 预览图片
     const reader = new FileReader()
     reader.onload = (e) => {
       avatarUrl.value = e.target?.result as string
     }
     reader.readAsDataURL(file)
   }
+}
+function handleRegister() {
+  const formData = new FormData()
+  if (userfile.value) {
+    formData.append('userfile', userfile.value)
+  }
+  formData.append('username', username.value)
+  formData.append('userpassword', userpassword.value)
+  formData.append('userid', userid.value)
+
+  axios
+    .post('/api/user/registeruser', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    })
+    .then((response) => {
+      console.log(response.data)
+      if (response.data === 'success') {
+        alert('注册成功')
+        window.location.href = '/worku'
+      } else {
+        alert('注册失败，请检查用户名和密码')
+      }
+    })
+    .catch((error) => {
+      console.error(error)
+      alert('发生错误，请稍后再试')
+    })
 }
 </script>
 

@@ -49,7 +49,7 @@ const toAbout = () => {
 
 <style scoped lang="scss">
 .title {
-  height: 7%;
+  height: 7vh;
   width: 100%;
   font-size: 30px;
   font-weight: bold;
@@ -92,7 +92,7 @@ const toAbout = () => {
 
   .pic {
     width: 100%;
-    height: 30%;
+    height: 32%;
 
     .carousel-img {
       width: 100%;
@@ -114,7 +114,7 @@ const toAbout = () => {
       align-items: center;
       justify-content: center;
       width: 100%;
-      height: 20%;
+      height: 17vh;
       font-size: 18px;
       color: #fffdfd;
       border-bottom: 1px solid #fffdfd;
