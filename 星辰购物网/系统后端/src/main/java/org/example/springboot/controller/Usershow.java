@@ -1,7 +1,7 @@
 package org.example.springboot.controller;
 
 import org.example.springboot.mapper.UserMapper;
-import org.example.springboot.pojo.user;
+import org.example.springboot.pojo.User;
 import org.example.springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,18 +22,18 @@ public class Usershow {
     @Autowired
     private UserService userService;
 
-    user usera = new user();
+    User usera = new User();
 
     private static final String UPLOAD_DIR = "./uploads/";
 
     //(～￣▽￣)～展示一下
     @RequestMapping("/showuser")
-    public List<user> getAll(){
+    public List<User> getAll(){
         return userMapper.getAll();
     }
     //登录
     @PostMapping("/loginuser")
-    public  String checkUser(@RequestBody user user)
+    public  String checkUser(@RequestBody User user)
     {
         if(userService.checkUser(user.getUsername(), user.getUserpassword())){
             return "success";

@@ -1,6 +1,6 @@
 package org.example.springboot.pojo;
 
-public class user {
+public class User {
     public String getUsername() {
         return username;
     }

@@ -1,6 +1,6 @@
 package org.example.springboot.pojo;
 
-public class order {
+public class Order {
     public int getOrderok() {
         return orderok;
     }

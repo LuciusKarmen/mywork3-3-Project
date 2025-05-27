@@ -30,21 +30,22 @@
       </n-carousel>
     </div>
     <div class="classify">
-      <div class="classify-item">星辰商城</div>
-      <div class="classify-item">购物车车</div>
-      <div class="classify-item">我的订单</div>
+      <RouterLink to="/worku/index" class="classify-item">星辰商城</RouterLink>
+      <RouterLink to="/worku/car" class="classify-item">购物车车</RouterLink>
+      <RouterLink to="/worku/order" class="classify-item">我的订单</RouterLink>
       <div class="classify-item" @click="toContact()">联系客服</div>
-      <div class="classify-item" @click="toAbout()">关于我们</div>
+      <RouterLink to="/our" class="classify-item">关于我们</RouterLink>
     </div>
+  </div>
+  <div class="show">
+    <router-view></router-view>
   </div>
 </template>
 
 <script lang="ts" setup name="Header">
-import { useRouter } from 'vue-router'
+import { RouterLink, useRouter, RouterView } from 'vue-router'
 const router = useRouter()
-const toAbout = () => {
-  router.push('/our')
-}
+
 //拨打电话
 const toContact = () => {
   window.location.href = 'tel:16670870515'
@@ -91,8 +92,10 @@ const toContact = () => {
 .left {
   height: 93vh;
   width: 17%;
-
   background-color: #fa4646;
+  position: absolute;
+  top: 7vh;
+  left: 0;
 
   .pic {
     width: 100%;
@@ -131,5 +134,12 @@ const toContact = () => {
       }
     }
   }
+}
+.show {
+  height: 93vh;
+  width: 83%;
+  position: absolute;
+  top: 7vh;
+  left: 17%;
 }
 </style>

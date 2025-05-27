@@ -1,6 +1,6 @@
 package org.example.springboot.pojo;
 
-public class shop {
+public class Shop {
     public String getShopid() {
         return shopid;
     }

@@ -1,6 +1,6 @@
 package org.example.springboot.pojo;
 
-public class good {
+public class Good {
     public String getGoodpath() {
         return goodpath;
     }

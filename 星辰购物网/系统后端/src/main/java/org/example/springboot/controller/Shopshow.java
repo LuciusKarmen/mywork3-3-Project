@@ -2,19 +2,16 @@ package org.example.springboot.controller;
 
 
 
-import org.apache.catalina.connector.Response;
 import org.example.springboot.mapper.ShopMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.example.springboot.pojo.shop;
 import org.springframework.web.multipart.MultipartFile;
-import java.io.File;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import java.io.IOException;
 import java.util.UUID;
 
 @RestController
