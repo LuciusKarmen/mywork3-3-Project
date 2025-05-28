@@ -26,7 +26,7 @@ const shoppassword = ref('')
 function handleLogin() {
   axios
     .post(
-      '/api/shop/loginshop',
+      '/api/shop/logins',
       // 发送的数据,设置请求体
       {
         shopname: shopname.value,

@@ -1,12 +1,4 @@
 <template>
-  <!-- <div class="active">成人服饰</div>
-      <div class="active">儿童服饰</div>
-      <div class="active">家居用品</div>
-      <div class="active">数码产品</div>
-      <div class="active">运动用品</div>
-      <div class="active">枪支弹药</div>
-      <div class="active">食品饮料</div>
-      <div class="active">其他</div> -->
   <div class="shopping">
     <div class="tabs">
       <div
@@ -28,16 +20,36 @@
         <div class="tab-item">{{ item }}</div>
       </div>
     </div>
+    <div class="show">
+      <n-scrollbar class="scroll">
+        <div class="kuang">
+          <div v-for="item in goods" :key="item.id" class="good-item">
+            <Good :item="item" />
+          </div>
+        </div>
+        <footer>
+          <div class="footer-content">
+            <p>&copy; 2025 许光明拥有购物网站. 保留所有权利.</p>
+          </div>
+        </footer>
+      </n-scrollbar>
+    </div>
   </div>
 </template>
 <script setup lang="ts" name="shop">
 import { ref } from 'vue'
 import Good from '../../components/good.vue'
+import axios from 'axios'
 
-const tab = ref('1')
+const tab = ref('')
 const show = (item: string) => {
   tab.value = item
 }
+const goods = ref([{ id: '', shop: '', path: '', name: '', price: '', class: '' }])
+axios.post('/api/good/showgood').then((res) => {
+  goods.value = res.data
+  console.log(goods.value)
+})
 </script>
 
 <style scoped lang="scss">
@@ -65,7 +77,24 @@ const show = (item: string) => {
         border-radius: 5px;
         &:hover {
           background-color: #ddd;
+          color: #000;
+          transition: all 0.5s;
         }
+      }
+    }
+  }
+  .show {
+    width: 100%;
+    height: 94%;
+    .scroll {
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+      .kuang {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        grid-gap: 10px;
       }
     }
   }

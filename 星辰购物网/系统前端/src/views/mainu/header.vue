@@ -124,12 +124,13 @@ const toContact = () => {
       height: 17vh;
       font-size: 18px;
       color: #fffdfd;
-      border-bottom: 1px solid #fffdfd;
+      text-decoration: none;
       background-color: #e600ff;
       cursor: pointer;
       &:hover {
         color: #fc7b7b;
-        text-decoration: none;
+
+        border-bottom: 1px solid #fffdfd;
         background-color: #00ffff;
       }
     }

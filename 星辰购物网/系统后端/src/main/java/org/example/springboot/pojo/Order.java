@@ -1,12 +1,13 @@
 package org.example.springboot.pojo;
 
 public class Order {
-    public int getOrderok() {
-        return orderok;
+
+    public int getOrdernumber() {
+        return ordernumber;
     }
 
-    public void setOrderok(int orderok) {
-        this.orderok = orderok;
+    public void setOrdernumber(int ordernumber) {
+        this.ordernumber = ordernumber;
     }
 
     public String getOrderid() {
@@ -33,14 +34,6 @@ public class Order {
         this.ordershop = ordershop;
     }
 
-    public int getOrdersend() {
-        return ordersend;
-    }
-
-    public void setOrdersend(int ordersend) {
-        this.ordersend = ordersend;
-    }
-
     public String getOrdername() {
         return ordername;
     }
@@ -49,34 +42,52 @@ public class Order {
         this.ordername = ordername;
     }
 
-    public int getOrdernumber() {
-        return ordernumber;
+    public Boolean getOrderCar() {
+        return orderCar;
     }
 
-    public void setOrdernumber(int ordernumber) {
-        this.ordernumber = ordernumber;
+    public void setOrderCar(Boolean orderCar) {
+        this.orderCar = orderCar;
+    }
+
+    public Boolean getOrderSend() {
+        return orderSend;
+    }
+
+    public void setOrderSend(Boolean orderSend) {
+        this.orderSend = orderSend;
+    }
+
+    public Boolean getOrderOk() {
+        return orderOk;
+    }
+
+    public void setOrderOk(Boolean orderOk) {
+        this.orderOk = orderOk;
     }
 
     @Override
     public String toString() {
-        return "order{" +
+        return "Order{" +
                 "orderid='" + orderid + '\'' +
                 ", orderuser='" + orderuser + '\'' +
                 ", ordershop='" + ordershop + '\'' +
-                ", ordersend=" + ordersend +
-                ", orderok=" + orderok +
                 ", ordername='" + ordername + '\'' +
                 ", ordernumber=" + ordernumber +
+                ", orderCar=" + orderCar +
+                ", orderSend=" + orderSend +
+                ", orderOk=" + orderOk +
                 '}';
     }
 
     private String orderid;
     private String orderuser;
     private String ordershop;
-    private int ordersend;
-    private int orderok;
     private String ordername;
     private int ordernumber;
+    private Boolean orderCar;
+    private Boolean orderSend;
+    private Boolean orderOk;
 
 
 }

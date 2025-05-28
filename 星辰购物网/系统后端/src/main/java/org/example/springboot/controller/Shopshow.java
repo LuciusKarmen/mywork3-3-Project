@@ -3,6 +3,7 @@ package org.example.springboot.controller;
 
 
 import org.example.springboot.mapper.ShopMapper;
+import org.example.springboot.pojo.Shop;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -31,9 +32,6 @@ public class Shopshow {
             @RequestParam("shoppassword") String shoppassword,
             @RequestParam("shopfile") MultipartFile file) throws IOException {
 
-
-
-
         // 创建上传目录
         Path uploadPath = Paths.get(UPLOAD_DIR);
         if (!Files.exists(uploadPath)) {
@@ -41,7 +39,7 @@ public class Shopshow {
         }
 
         //name
-        String fileName = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
+        String fileName =UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
         Path filePath = uploadPath.resolve(fileName);
 
         // Save
@@ -53,6 +51,19 @@ public class Shopshow {
         shopa.insert(shopid,shopname,shoppassword,filePath.toString());
 
         return "success";
+    }
+    @PostMapping("/logins")
+    public String checkShop(@RequestBody Shop shop)
+    {
+        Shop shop1=shopa.login(shop.getShopname(),shop.getShoppassword());
+        if(shop1==null)
+        {
+            return "fail";
+        }
+        else
+        {
+            return "success";
+        }
     }
 
 

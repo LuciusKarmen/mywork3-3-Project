@@ -33,7 +33,7 @@ const router = createRouter({
       name: 'regu',
       component: () => import('../pages/regu.vue'),
     },
-    ////////////////
+
     {
       path: '/worku',
       name: 'worku',
@@ -60,7 +60,23 @@ const router = createRouter({
       path: '/works',
       name: 'works',
       component: () => import('../pages/works.vue'),
-      children: [],
+      children: [
+        {
+          path: 'indexs',
+          name: 'indexs',
+          component: () => import('../views/mains/indexs.vue'),
+        },
+        {
+          path: 'shop',
+          name: 'shop',
+          component: () => import('../views/mains/shop.vue'),
+        },
+        {
+          path: 'order',
+          name: 'order',
+          component: () => import('../views/mains/order.vue'),
+        },
+      ],
     },
   ],
 })

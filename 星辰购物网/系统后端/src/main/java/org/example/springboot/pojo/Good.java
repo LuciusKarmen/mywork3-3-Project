@@ -41,14 +41,16 @@ public class Good {
         this.goodname = goodname;
     }
 
+
     @Override
     public String toString() {
-        return "order{" +
+        return "Good{" +
                 "goodname='" + goodname + '\'' +
                 ", goodprice='" + goodprice + '\'' +
                 ", goodshop='" + goodshop + '\'' +
                 ", goodid='" + goodid + '\'' +
                 ", goodpath='" + goodpath + '\'' +
+                ", goodclass='" + goodclass + '\'' +
                 '}';
     }
 
@@ -57,5 +59,15 @@ public class Good {
     private String goodshop;
     private String goodid;
     private String goodpath;
+
+    public String getGoodclass() {
+        return goodclass;
+    }
+
+    public void setGoodclass(String goodclass) {
+        this.goodclass = goodclass;
+    }
+
+    private String goodclass;
 
 }

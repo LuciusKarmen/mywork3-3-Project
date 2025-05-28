@@ -1,19 +1,89 @@
 <template>
-  <div>
-    <div class="good">
-      <img src="https://picsum.photos/200/300" alt="" />
-      <div class="good-name">商品名称</div>
-      <div class="good-price">商品价格</div>
-      <div class="good-desc">商品分类</div>
-      <div class="good-btn">加入购物车</div>
-      <div class="good-rating">商品评分: ★★★★☆</div>
-    </div>
+  <div class="good">
+    <!-- 商品图片 -->
+    <img :src="imagePath" alt="商品图片" class="good-image" />
+
+    <!-- 商品信息 -->
+    <div class="good-name">商品名称: {{ props.item?.goodname }}</div>
+    <div class="good-price">商品价格: {{ props.item?.goodprice }}</div>
+    <div class="good-desc">商品分类: {{ props.item?.goodclass }}</div>
+
+    <!-- 加入购物车按钮 -->
+    <div class="good-btn" @click="addToCart">加入购物车</div>
+
+    <!-- 商品评分 -->
+    <div class="good-rating">商品评分: ★★★★☆</div>
   </div>
 </template>
 
 <script lang="ts" setup name="Good">
-import { defineComponent } from 'vue'
+import { defineProps, PropType, computed } from 'vue'
+import { onMounted } from 'vue'
+
+interface GoodItem {
+  goodid: string
+  goodshop: string
+  goodpath: string
+  goodname: string
+  goodprice: string
+  goodclass: string
+}
+
+const props = defineProps({
+  item: {
+    type: Object as PropType<GoodItem>,
+    required: true,
+  },
+})
+
+const imagePath = computed(() => {
+  return `http://localhost:8080/${props.item.goodpath}`
+})
+
+onMounted(() => {
+  console.log('item:', props.item)
+})
 </script>
+
+<style scoped>
+.good {
+  border: 1px solid #ccc;
+  padding: 16px;
+  border-radius: 8px;
+  width: 250px;
+  text-align: center;
+  margin: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.good-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.good-name,
+.good-price,
+.good-desc,
+.good-rating {
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+.good-btn {
+  margin-top: 12px;
+  padding: 8px;
+  background-color: #2196f3;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.good-btn:hover {
+  background-color: #1976d2;
+}
+</style>
 
 <style scoped lang="scss">
 .good {
@@ -23,11 +93,21 @@ import { defineComponent } from 'vue'
   border-radius: 10px;
   margin: 10px;
   overflow: hidden;
-  img {
-    width: 90%;
-    margin: auto;
-    height: 100px;
+  box-shadow: #ff5722 0px 4px 8px 0px;
+  padding: 5px;
+
+  .good-image {
+    width: 100%;
+    height: 110px;
     object-fit: cover;
+    display: flex;
+    justify-content: center;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 5px;
+    }
   }
   .good-name {
     font-size: 16px;
@@ -54,6 +134,7 @@ import { defineComponent } from 'vue'
   }
   .good-btn {
     background-color: #ff5722;
+    margin-left: 15px;
     color: white;
     padding: 5px 10px;
     border-radius: 5px;

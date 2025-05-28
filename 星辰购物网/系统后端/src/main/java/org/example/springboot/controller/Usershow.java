@@ -24,7 +24,7 @@ public class Usershow {
 
     User usera = new User();
 
-    private static final String UPLOAD_DIR = "./uploads/";
+    private static final String UPLOAD_DIR = "C:/path/to/uploads";
 
     //(～￣▽￣)～展示一下
     @RequestMapping("/showuser")
@@ -43,13 +43,12 @@ public class Usershow {
         }
     }
     @PostMapping("/registeruser")
-    public  String insertUser(
+    public String insertUser(
             @RequestParam("userid") String userid,
             @RequestParam("username") String username,
             @RequestParam("userpassword") String userpassword,
             @RequestParam("userfile") MultipartFile file
-    ) throws IOException
-    {
+    ) throws IOException {
 
         Path uploadPath = Paths.get(UPLOAD_DIR);
         if (!Files.exists(uploadPath)) {
@@ -59,18 +58,12 @@ public class Usershow {
         String fileName = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
         Path filePath = uploadPath.resolve(fileName);
 
-        userMapper.insert(userid,username,userpassword,filePath.toString());
+
+        String dbPath = "uploads/" + fileName;
+
+        userMapper.insert(userid, username, userpassword, dbPath);
+        file.transferTo(filePath.toFile());
 
         return "success";
-
-
-
     }
-
-
-
-
-
-
-
 }
