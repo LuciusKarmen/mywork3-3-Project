@@ -2,17 +2,22 @@ package org.example.springboot.controller;
 
 import org.example.springboot.mapper.GoodMapper;
 import org.example.springboot.pojo.Good;
+import org.example.springboot.service.GoodService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/good")
@@ -20,26 +25,50 @@ public class Goodshow {
     @Autowired
     private GoodMapper goodMapper;
 
+
+    private static final String UPLOAD_DIR = "C:/path/to/uploads";
+
     @RequestMapping("/showgood")
     public List<Good> getAll() {
         return goodMapper.getAll();
     }
 
-    @GetMapping("/test-file")
-    public ResponseEntity<FileSystemResource> testFile() {
-        String filePath = "C:/path/to/uploads/37923bfb-28a7-4280-99ac-e90b09d9fa63_3216494093b8573fd9.jpg";
-        File file = new File(filePath);
+    @PostMapping("/add")
+    public String insert(
+            @RequestParam("goodid") String goodid,
+            @RequestParam("goodname") String goodname,
+            @RequestParam("goodprice") String goodprice,
+            @RequestParam("goodclass") String goodclass,
+            @RequestParam("goodshop") String goodshop,
+            @RequestParam("goodpath") MultipartFile file
 
-        System.out.println("文件路径: " + file.getAbsolutePath());
-        System.out.println("文件是否存在: " + file.exists());
-        System.out.println("是否可读: " + file.canRead());
+    ) throws IOException {
 
-        if (!file.exists()) {
-            return ResponseEntity.notFound().build();
+        Path uploadPath = Paths.get(UPLOAD_DIR);
+        if (!Files.exists(uploadPath)) {
+            Files.createDirectories(uploadPath);
+        }
+        String fileName = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
+
+        Path filePath = uploadPath.resolve(fileName);
+
+        String goodpath = "uploads/"+ fileName;
+
+
+
+        if (goodMapper.insert(goodid,goodname,goodprice,goodclass,goodpath,goodshop)) {
+            file.transferTo(filePath.toFile());
+            return "success";
+        } else {
+            return "error";
         }
 
-        return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_TYPE, MediaType.IMAGE_JPEG_VALUE)
-                .body(new FileSystemResource(file));
+
+
     }
+
+
+
+
+
 }

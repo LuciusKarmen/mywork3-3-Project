@@ -1,17 +1,10 @@
 <template>
   <div class="good">
-    <!-- 商品图片 -->
     <img :src="imagePath" alt="商品图片" class="good-image" />
-
-    <!-- 商品信息 -->
     <div class="good-name">商品名称: {{ props.item?.goodname }}</div>
-    <div class="good-price">商品价格: {{ props.item?.goodprice }}</div>
-    <div class="good-desc">商品分类: {{ props.item?.goodclass }}</div>
-
-    <!-- 加入购物车按钮 -->
+    <div class="good-price">商品价格: {{ props.item?.goodprice }}元</div>
+    <div class="good-desc">分类: {{ props.item?.goodclass }}&nbsp;{{ props.item?.goodshop }}</div>
     <div class="good-btn" @click="addToCart">加入购物车</div>
-
-    <!-- 商品评分 -->
     <div class="good-rating">商品评分: ★★★★☆</div>
   </div>
 </template>
@@ -43,6 +36,10 @@ const imagePath = computed(() => {
 onMounted(() => {
   console.log('item:', props.item)
 })
+
+function addToCart() {
+  console.log('addCart')
+}
 </script>
 
 <style scoped>

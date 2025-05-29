@@ -40,9 +40,9 @@ const router = createRouter({
       component: () => import('../pages/worku.vue'),
       children: [
         {
-          path: 'index',
-          name: 'shop',
-          component: () => import('../views/mainu/index.vue'),
+          path: 'indexu',
+          name: 'indexu',
+          component: () => import('../views/mainu/indexu.vue'),
         },
         {
           path: 'order',

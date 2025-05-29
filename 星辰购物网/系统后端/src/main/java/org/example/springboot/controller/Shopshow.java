@@ -1,7 +1,5 @@
 package org.example.springboot.controller;
 
-
-
 import org.example.springboot.mapper.ShopMapper;
 import org.example.springboot.pojo.Shop;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +19,10 @@ import java.util.UUID;
 public class Shopshow {
     @Autowired
     private ShopMapper shopa;
+    @Autowired
+    private ShopMapper shopb;
     
-    private static final String UPLOAD_DIR = "./uploads/";
+    private static final String UPLOAD_DIR = "C:/path/to/uploads";
 
     @PostMapping("/register")
     public String registerShop(
@@ -40,31 +40,28 @@ public class Shopshow {
 
         //name
         String fileName =UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
+
+        //这个是生成标准地址
         Path filePath = uploadPath.resolve(fileName);
+
+        //这个是生成名字保存
+        String dbPath = "uploads/" + fileName;
 
         // Save
         file.transferTo(filePath.toFile());
 
-
-
         // Insert the shop into the database
-        shopa.insert(shopid,shopname,shoppassword,filePath.toString());
-
+        shopa.insert(shopid,shopname,shoppassword,dbPath);
         return "success";
     }
     @PostMapping("/logins")
     public String checkShop(@RequestBody Shop shop)
     {
-        Shop shop1=shopa.login(shop.getShopname(),shop.getShoppassword());
-        if(shop1==null)
-        {
+        if(shopb.login(shop.getShopname(),shop.getShoppassword())!=null){
+            return "success";
+        }else{
             return "fail";
         }
-        else
-        {
-            return "success";
-        }
+
     }
-
-
 }
