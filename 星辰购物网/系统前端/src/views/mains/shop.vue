@@ -46,9 +46,9 @@
     </div>
     <div class="shop">货品列表</div>
     <div class="kuang">
-      <div v-for="item in filteredGoods" :key="item.id" class="good-item">
+      <div v-for="item in filteredGoods" :key="item.goodid" class="good-item">
         <Good :item="item" />
-        <n-button type="warning">下架该商品</n-button>
+        <n-button type="warning" @click="deletegood(item.goodid)">下架该商品</n-button>
       </div>
     </div>
   </n-scrollbar>
@@ -58,13 +58,14 @@
 import { reactive, ref, computed } from 'vue'
 import axios from 'axios'
 import Good from '../../components/good.vue'
+import { id } from 'element-plus/es/locales.mjs'
 
 // 定义商品类型
 interface GoodItem {
-  id: string
-  name: string
-  price: string
-  class: string
+  goodid: string
+  goodname: string
+  goodprice: string
+  goodclass: string
   goodshop: string
   goodpath?: string
 }
@@ -108,6 +109,9 @@ const handleSubmit = () => {
     .then((response) => {
       if (response.data === 'success') {
         alert('提交成功')
+        axios.post('/api/good/showgood').then((res) => {
+          goods.value = res.data
+        })
         handleReset()
       } else {
         alert('提交失败: ' + response.data.message)
@@ -140,8 +144,34 @@ axios.post('/api/good/showgood').then((res) => {
   console.log(goods.value)
 })
 
+const deletegood = (id: string) => {
+  console.log(id)
+  axios
+    .post(
+      '/api/good/delete',
+      { goodid: id },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      },
+    )
+    .then((res) => {
+      console.log(res.data)
+      if (res.data == 'success') {
+        alert('下架成功')
+        axios.post('/api/good/showgood').then((res) => {
+          goods.value = res.data
+        })
+      } else {
+        alert('删除失败')
+      }
+    })
+}
+
+//这边搞一个过滤器
 const filteredGoods = computed(() => {
-  return goods.value.filter((item) => item.goodshop == '暗夜科技')
+  return goods.value.filter((item) => item.goodshop == '散爆网络')
 })
 </script>
 
@@ -152,8 +182,9 @@ const filteredGoods = computed(() => {
   width: 500px;
   height: 600px;
   margin: 20px auto;
-  margin-left: 100px;
+  margin-left: 350px;
   padding: 40px;
+  margin-bottom: 50px;
   background-color: rgba($color: #41ecff, $alpha: 0.5);
   border-radius: 20px;
   border: 3px solid #ffffff;
@@ -196,6 +227,9 @@ const filteredGoods = computed(() => {
   color: #f732cc;
   padding: 10px;
   background-color: rgba($color: #23ffff, $alpha: 0.4);
+  border-radius: 20px;
+  width: 700px;
+  margin-left: 250px;
 }
 .kuang {
   width: 100%;

@@ -63,10 +63,18 @@ public class Goodshow {
             return "error";
         }
 
-
-
     }
-
+    @PostMapping("/delete")
+    public String delete(@RequestBody Good good)
+            {
+                String goodid = good.getGoodid();
+                if (goodMapper.delete(goodid)) {
+                    goodMapper.delete(goodid);
+                    return "success";
+                } else {
+                    return "error";
+                }
+            }
 
 
 

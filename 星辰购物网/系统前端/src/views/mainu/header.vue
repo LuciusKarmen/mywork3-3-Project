@@ -30,6 +30,7 @@
       </n-carousel>
     </div>
     <div class="classify">
+      <RouterLink to="/works/ind" class="classify-item">星辰商城</RouterLink>
       <RouterLink to="/worku/indexu" class="classify-item">星辰商城</RouterLink>
       <RouterLink to="/worku/car" class="classify-item">购物车车</RouterLink>
       <RouterLink to="/worku/order" class="classify-item">我的订单</RouterLink>

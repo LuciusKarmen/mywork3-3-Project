@@ -1,5 +1,6 @@
 package org.example.springboot.mapper;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -17,4 +18,7 @@ public interface GoodMapper {
 
     @Insert("insert into good(goodid,goodname,goodprice,goodclass,goodpath,goodshop) values(#{goodid},#{goodname},#{goodprice},#{goodclass},#{goodpath},#{goodshop})")
     boolean insert(String goodid,String goodname,String goodprice,String goodclass,String goodpath,String goodshop);
+
+    @Delete("delete from good where goodid=#{goodid}")
+    boolean delete(String goodid);
 }

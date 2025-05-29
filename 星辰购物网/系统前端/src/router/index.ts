@@ -54,6 +54,11 @@ const router = createRouter({
           name: 'car',
           component: () => import('../views/mainu/car.vue'),
         },
+        {
+          path: 'index',
+          name: 'index',
+          component: () => import('../views/mainu/index.vue'),
+        },
       ],
     },
     {
@@ -62,9 +67,9 @@ const router = createRouter({
       component: () => import('../pages/works.vue'),
       children: [
         {
-          path: 'indexs',
-          name: 'indexs',
-          component: () => import('../views/mains/indexs.vue'),
+          path: 'index',
+          name: 'index',
+          component: () => import('../views/mains/index.vue'),
         },
         {
           path: 'shop',

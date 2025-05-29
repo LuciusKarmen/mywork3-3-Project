@@ -28,7 +28,7 @@
       </n-carousel>
     </div>
     <div class="classify">
-      <RouterLink to="/works/indexs" class="classify-item">星辰介绍</RouterLink>
+      <RouterLink to="/works/index" class="classify-item">星辰介绍</RouterLink>
       <RouterLink to="/works/shop" class="classify-item">我的商店</RouterLink>
       <RouterLink to="/works/order" class="classify-item">我的业务</RouterLink>
       <div class="classify-item" @click="toContact()">联系官方</div>
