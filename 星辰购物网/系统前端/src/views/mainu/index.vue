@@ -45,6 +45,7 @@
           <li>加入购物车并结算</li>
           <li>完成支付并等待收货</li>
         </ol>
+        <n-button @click="a" type="primary">开始你的旅程</n-button>
       </section>
 
       <footer class="footer">
@@ -54,7 +55,15 @@
   </n-scrollbar>
 </template>
 
-<script setup></script>
+<script setup lang="ts" name="IntroductionPage">
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+const a = () => {
+  router.push('/worku/indexu')
+}
+</script>
 
 <style scoped>
 .introduction-page {

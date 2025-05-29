@@ -34,6 +34,7 @@ const shopid = ref('')
 const shopname = ref('')
 const shoppassword = ref('')
 const shoppath = ref('')
+const avatarUrl = ref('')
 const shopfile = ref<File | null>(null)
 
 shopid.value = crypto.randomUUID()

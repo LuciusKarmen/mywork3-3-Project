@@ -1,16 +1,20 @@
 <template>
   <div class="order-card">
     <div class="order-header">
-      <div class="order-shop">厂商：光明有限公司</div>
-      <div class="order-id">订单号：123456</div>
+      <div class="order-shop">厂商：{{ props.order.ordershop }}</div>
+      <div class="order-id">订单号：{{ props.order.orderid }}</div>
     </div>
     <div class="order-content">
-      <div class="order-name">商品名称：光明牛奶</div>
-      <div class="order-number">商品个数：2</div>
+      <div class="order-name">商品名称：{{ props.order.ordername }}</div>
+      <div class="order-number">商品个数：{{ props.order.ordernumber }}</div>
     </div>
     <div class="order-state">
-      <div>是否发货：<span class="status-tag success">是</span></div>
-      <div>是否收货：<span class="status-tag warning">否</span></div>
+      <div>
+        是否发货：<span class="status-tag success">{{ props.order.orderSend }}</span>
+      </div>
+      <div>
+        是否收货：<span class="status-tag warning">{{ props.order.orderOk }}</span>
+      </div>
     </div>
     <div class="order-actions">
       <n-button type="primary" size="small">确认收货</n-button>
@@ -26,6 +30,21 @@
 
 <script setup lang="ts" name="Order">
 import { ref } from 'vue'
+import { Order } from '../type/order'
+const order = ref<Order>({
+  orderid: '',
+  orderuser: '',
+  ordershop: '',
+  ordername: '',
+  ordernumber: 0,
+  orderCar: false,
+  orderSend: false,
+  orderOk: false,
+})
+
+const props = defineProps<{
+  order: Order
+}>()
 </script>
 
 <style scoped lang="scss">

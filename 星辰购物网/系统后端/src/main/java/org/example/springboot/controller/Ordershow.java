@@ -4,31 +4,38 @@ import org.apache.ibatis.annotations.Mapper;
 import org.example.springboot.mapper.OrderMapper;
 import org.example.springboot.pojo.Order;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@Mapper
+@RestController
+@RequestMapping("/order")
 public class Ordershow {
 
     @Autowired
     private OrderMapper orderMapper;
     @RequestMapping("/showorder")
-    public List<Order> getAll(
-            @RequestParam("orderid") String orderid,
-            @RequestParam("orderuser") String orderuser,
-            @RequestParam("ordershop") String ordershop,
-            @RequestParam("ordername") String ordername,
-            @RequestParam("ordernumber") int ordernumber,
-            @RequestParam("orderCar") Boolean orderCar,
-            @RequestParam("orderSend") Boolean orderSend,
-            @RequestParam("orderOk") Boolean orderOk
-    ){
-
+    public List<Order> getAll(){
             return orderMapper.getAll();
-
-
-
     }
+
+    @RequestMapping("/add")
+    public String insert(
+            @RequestBody  Order order
+    )
+    {
+       if(orderMapper.insert(order.getOrderid(),order.getOrderuser(),order.getOrdershop(),order.getOrdername(),order.getOrdernumber(),order.getOrderCar(),order.getOrderSend(),order.getOrderOk())){
+           return "success";
+       }else{
+           return "fail";
+       }
+    }
+//    @RequestMapping("/delete")
+//
+//    @RequestMapping('/update')
+
+
 }

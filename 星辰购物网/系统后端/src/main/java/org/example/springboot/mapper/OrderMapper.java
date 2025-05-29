@@ -10,10 +10,19 @@ import java.util.List;
 @Mapper
 public interface OrderMapper {
 
-    @Select("select * from order")
+    @Select("select * from orders")
     List<Order> getAll();
 
-    @Insert("insert into order(orderid,orderuser,ordershop,ordername,ordernumber,orderCar,orderSend,orderOk) values(#{orderid},#{orderuser},#{ordershop},#{ordername},#{orderCar},#{orderSend},#{orderOk})")
-    boolean insert(String orderid,String orderuser,String ordershop,String ordername,int ordernumber,Boolean orderCar,Boolean orderSend,Boolean orderOk);
-
+    @Insert("INSERT INTO orders(orderid, orderuser, ordershop, ordername, ordernumber, orderCar, orderSend, orderOk) " +
+            "VALUES (#{orderid}, #{orderuser}, #{ordershop}, #{ordername}, #{ordernumber}, #{orderCar}, #{orderSend}, #{orderOk})")
+    boolean insert(
+            String orderid,
+            String orderuser,
+            String ordershop,
+            String ordername,
+            int ordernumber,
+            Boolean orderCar,
+            Boolean orderSend,
+            Boolean orderOk
+    );
 }

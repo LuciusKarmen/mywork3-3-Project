@@ -10,6 +10,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     Good: typeof import('./src/components/good.vue')['default']
     NButton: typeof import('naive-ui')['NButton']
+    NBuutton: typeof import('naive-ui')['NBuutton']
     NCard: typeof import('naive-ui')['NCard']
     NCardBody: typeof import('naive-ui')['NCardBody']
     NCardFooter: typeof import('naive-ui')['NCardFooter']

@@ -12,6 +12,8 @@
 <script lang="ts" setup name="Good">
 import { defineProps, PropType, computed } from 'vue'
 import { onMounted } from 'vue'
+import axios from 'axios'
+import { Order } from '../type/order'
 
 interface GoodItem {
   goodid: string
@@ -37,8 +39,37 @@ onMounted(() => {
   console.log('item:', props.item)
 })
 
+const order: Order = {
+  orderid: '',
+  orderuser: '',
+  ordershop: '',
+  ordername: '',
+  ordernumber: 0,
+  orderCar: false,
+  orderSend: false,
+  orderOk: false,
+}
 function addToCart() {
-  console.log('addCart')
+  order.orderid = crypto.randomUUID()
+  order.orderuser = 'karmen'
+  order.ordershop = props.item.goodshop
+  order.ordername = props.item.goodname
+  order.ordernumber = 1
+  order.orderCar = true
+  order.orderSend = false
+  order.orderOk = false
+  console.log(order)
+  axios
+    .post('/api/order/add', order, {
+      headers: { 'Content-Type': 'application/json' },
+    })
+    .then((res) => {
+      if (res.data == 'success') {
+        alert('已添加至购物车')
+      } else {
+        alert('添加失败')
+      }
+    })
 }
 </script>
 

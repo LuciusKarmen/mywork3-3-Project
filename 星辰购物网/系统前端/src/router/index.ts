@@ -1,4 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import IntroductionPage from '../views/mainu/index.vue'
+import order from '../views/mainu/order.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -40,24 +42,24 @@ const router = createRouter({
       component: () => import('../pages/worku.vue'),
       children: [
         {
+          path: 'index',
+          name: 'index',
+          component: IntroductionPage,
+        },
+        {
           path: 'indexu',
           name: 'indexu',
           component: () => import('../views/mainu/indexu.vue'),
         },
         {
           path: 'order',
-          name: 'order',
-          component: () => import('../views/mainu/order.vue'),
+          name: 'orderu',
+          component: order,
         },
         {
           path: 'car',
-          name: 'car',
+          name: 'caru',
           component: () => import('../views/mainu/car.vue'),
-        },
-        {
-          path: 'index',
-          name: 'index',
-          component: () => import('../views/mainu/index.vue'),
         },
       ],
     },
@@ -68,7 +70,7 @@ const router = createRouter({
       children: [
         {
           path: 'index',
-          name: 'index',
+          name: 'indexs',
           component: () => import('../views/mains/index.vue'),
         },
         {
@@ -78,7 +80,7 @@ const router = createRouter({
         },
         {
           path: 'order',
-          name: 'order',
+          name: 'orders',
           component: () => import('../views/mains/order.vue'),
         },
       ],
