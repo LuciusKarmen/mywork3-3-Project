@@ -45,5 +45,17 @@ public class Ordershow {
 
 
     }
+    @RequestMapping("/send")
+    public String updateSend(
+            @RequestBody Order order
+    ){
+        if(orderMapper.updateSend(order.getOrderSend(),order.getOrderid())){
+            return "success";
+        }else{
+            return "fail";
+        }
+
+
+    }
 
 }

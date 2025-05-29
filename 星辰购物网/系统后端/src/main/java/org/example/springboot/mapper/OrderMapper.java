@@ -37,5 +37,10 @@ public interface OrderMapper {
             String orderid
 
     );
+    @Update("update orders set orderSend=#{orderSend} where orderid=#{orderid}")
+    boolean updateSend(
+            Boolean orderSend,
+            String orderid
+    );
 }
 
