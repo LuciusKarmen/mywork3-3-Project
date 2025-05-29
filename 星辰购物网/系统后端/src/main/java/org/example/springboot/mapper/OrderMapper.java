@@ -3,6 +3,7 @@ package org.example.springboot.mapper;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.example.springboot.pojo.Order;
 
 import java.util.List;
@@ -13,8 +14,8 @@ public interface OrderMapper {
     @Select("select * from orders")
     List<Order> getAll();
 
-    @Insert("INSERT INTO orders(orderid, orderuser, ordershop, ordername, ordernumber, orderCar, orderSend, orderOk) " +
-            "VALUES (#{orderid}, #{orderuser}, #{ordershop}, #{ordername}, #{ordernumber}, #{orderCar}, #{orderSend}, #{orderOk})")
+    @Insert("INSERT INTO orders(orderid, orderuser, ordershop, ordername, ordernumber, orderCar,orderBuy, orderSend, orderOk) " +
+            "VALUES (#{orderid}, #{orderuser}, #{ordershop}, #{ordername}, #{ordernumber}, #{orderCar},#{orderBuy}, #{orderSend}, #{orderOk})")
     boolean insert(
             String orderid,
             String orderuser,
@@ -22,7 +23,19 @@ public interface OrderMapper {
             String ordername,
             int ordernumber,
             Boolean orderCar,
+            Boolean orderBuy,
             Boolean orderSend,
             Boolean orderOk
     );
+    @Update("update orders set orderCar=#{orderCar},orderOk=#{orderOk} ,orderSend=#{orderSend},orderBuy=#{orderBuy} where orderid=#{orderid}")
+    boolean update(
+
+            Boolean orderCar,
+            Boolean  orderSend,
+            Boolean orderOk,
+            Boolean orderBuy,
+            String orderid
+
+    );
 }
+

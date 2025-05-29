@@ -2,28 +2,20 @@
   <div class="shopping">
     <div class="tabs">
       <div
+        v-for="(category, index) in categories"
+        :key="index"
         class="tab"
-        v-for="item in [
-          '全部商品',
-          '成人服饰',
-          '儿童服饰',
-          '家居用品',
-          '数码产品',
-          '运动用品',
-          '枪支弹药',
-          '食品饮料',
-          '其他',
-        ]"
-        :key="item"
-        @click="show(item)"
+        :class="{ active: tab === category }"
+        @click="setActiveCategory(category)"
       >
-        <div class="tab-item">{{ item }}</div>
+        {{ category }}
       </div>
     </div>
+
     <div class="show">
       <n-scrollbar class="scroll">
         <div class="kuang">
-          <div v-for="item in goods" :key="item.id" class="good-item">
+          <div v-for="item in changeshow" :key="item.goodid" class="good-item">
             <Good :item="item" />
           </div>
         </div>
@@ -36,19 +28,53 @@
     </div>
   </div>
 </template>
-<script setup lang="ts" name="shop">
-import { ref } from 'vue'
+
+<script setup lang="ts">
+import { ref, computed, onMounted } from 'vue'
 import Good from '../../components/good.vue'
 import axios from 'axios'
 
+const goods = ref([])
+const item = ref({
+  goodid: '',
+  goodshop: '',
+  goodpath: '',
+  goodname: '',
+  goodprice: '',
+  goodclass: '',
+})
+
 const tab = ref('')
-const show = (item: string) => {
-  tab.value = item
+
+const setActiveCategory = (category: string) => {
+  tab.value = category
 }
-const goods = ref([{ id: '', shop: '', path: '', name: '', price: '', class: '' }])
-axios.post('/api/good/showgood').then((res) => {
-  goods.value = res.data
-  console.log(goods.value)
+
+const categories = [
+  '全部商品',
+  '成人服饰',
+  '儿童服饰',
+  '家居用品',
+  '数码产品',
+  '运动用品',
+  '枪支弹药',
+  '食品饮料',
+  '其他',
+]
+
+const changeshow = computed(() => {
+  if (!goods.value || goods.value.length === 0) return []
+  if (!tab.value || tab.value === '全部商品') {
+    return goods.value
+  }
+  return goods.value.filter((item) => item.goodclass === tab.value)
+})
+
+onMounted(() => {
+  axios.post('/api/good/showgood').then((res) => {
+    goods.value = res.data
+    console.log('获取到的商品数据：', goods.value)
+  })
 })
 </script>
 
@@ -56,6 +82,7 @@ axios.post('/api/good/showgood').then((res) => {
 .shopping {
   width: 100%;
   height: 100%;
+
   .tabs {
     width: 100%;
     height: 6%;
@@ -63,38 +90,42 @@ axios.post('/api/good/showgood').then((res) => {
     flex-wrap: wrap;
     justify-content: space-around;
     background-color: aliceblue;
+
     .tab {
       width: 11%;
       height: 100%;
       display: flex;
       justify-content: center;
+      align-items: center;
       cursor: pointer;
-      .tab-item {
-        font-size: 16px;
-        color: #333;
-        font-weight: bold;
-        padding: 5px 10px;
-        border-radius: 5px;
-        &:hover {
-          background-color: #ddd;
-          color: #000;
-          transition: all 0.5s;
-        }
+      transition: all 0.3s ease;
+
+      &.active {
+        color: #fa5353;
+        background-color: #fff;
+        border-bottom: 2px solid #fa5353;
+      }
+
+      &:hover {
+        background-color: #f0f0f0;
       }
     }
   }
+
   .show {
     width: 100%;
     height: 94%;
+
     .scroll {
       width: 100%;
       height: 100%;
       overflow-y: auto;
+
       .kuang {
         display: grid;
         grid-template-columns: repeat(5, 1fr);
-        grid-template-rows: repeat(3, 1fr);
         grid-gap: 10px;
+        padding: 10px;
       }
     }
   }

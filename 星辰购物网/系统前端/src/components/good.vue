@@ -46,6 +46,7 @@ const order: Order = {
   ordername: '',
   ordernumber: 0,
   orderCar: false,
+  orderBuy: false,
   orderSend: false,
   orderOk: false,
 }
@@ -56,6 +57,7 @@ function addToCart() {
   order.ordername = props.item.goodname
   order.ordernumber = 1
   order.orderCar = true
+  order.orderBuy = false
   order.orderSend = false
   order.orderOk = false
   console.log(order)

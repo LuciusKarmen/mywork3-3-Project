@@ -66,6 +66,15 @@ public class Order {
         this.orderOk = orderOk;
     }
 
+    public Boolean getOrderBuy() {
+        return orderBuy;
+    }
+
+    public void setOrderBuy(Boolean orderBuy) {
+        this.orderBuy = orderBuy;
+    }
+
+
     @Override
     public String toString() {
         return "Order{" +
@@ -75,6 +84,7 @@ public class Order {
                 ", ordername='" + ordername + '\'' +
                 ", ordernumber=" + ordernumber +
                 ", orderCar=" + orderCar +
+                ", orderBuy=" + orderBuy +
                 ", orderSend=" + orderSend +
                 ", orderOk=" + orderOk +
                 '}';
@@ -86,6 +96,7 @@ public class Order {
     private String ordername;
     private int ordernumber;
     private Boolean orderCar;
+    private Boolean orderBuy;
     private Boolean orderSend;
     private Boolean orderOk;
 

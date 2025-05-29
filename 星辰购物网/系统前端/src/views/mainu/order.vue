@@ -1,6 +1,6 @@
 <template>
-  <div class="my-order">
-    <n-scrollbar class="scroll">
+  <n-scrollbar>
+    <div class="my-order">
       <div class="aa">
         <n-tag :bordered="false" type="info" class="tag"> 待发货 </n-tag>
         <div class="kuang">
@@ -25,28 +25,19 @@
           </div>
         </div>
       </div>
-    </n-scrollbar>
-  </div>
+    </div>
+  </n-scrollbar>
 </template>
 
 <script setup lang="ts" name="order">
 import axios from 'axios'
 import Order from '../../components/order.vue'
-import { Order } from '../../type/order'
-import { NScrollbar } from 'naive-ui'
-import { reactive, ref, computed } from 'vue'
 
-const orders = reactive<Order>({
-  orderid: '',
-  orderuser: '',
-  ordershop: '',
-  ordername: '',
-  ordernumber: 0,
-  orderCar: false,
-  orderSend: false,
-  orderOk: false,
-})
-const item = ref([
+import { NScrollbar } from 'naive-ui'
+import { reactive, ref, computed, onMounted } from 'vue'
+import { Ordertype } from '../../type/order'
+
+const item = ref<Ordertype[]>([
   {
     orderid: '',
     orderuser: '',
@@ -54,23 +45,43 @@ const item = ref([
     ordername: '',
     ordernumber: 0,
     orderCar: false,
+    orderBuy: false,
     orderSend: false,
     orderOk: false,
   },
 ])
-axios.post('/api/order/showorder').then((res) => {
-  console.log(res.data)
-  orders.value = res.data
+onMounted(() => {
+  axios.post('/api/order/showorder').then((res) => {
+    item.value = res.data
+    console.log('获取到的订单数据：', item.value)
+  })
 })
 
 const filterwaitsend = computed(() => {
-  return orders.value.filter((item: any) => item.orderSend == true)
+  return item.value.filter(
+    (item: any) => !item.orderSend && !item.orderOk && item.orderCar && item.orderBuy,
+  )
 })
 const filtersendwaitget = computed(() => {
-  return orders.value.filter((item: any) => item.orderSend == false)
+  return item.value.filter(
+    (item: any) => item.orderSend && !item.orderOk && item.orderCar && item.orderBuy,
+  )
 })
 const filterget = computed(() => {
-  return orders.value.filter((item: any) => item.orderSend == false)
+  return item.value.filter(
+    (item: any) => item.orderSend && item.orderOk && item.orderCar && item.orderBuy,
+  )
+})
+const fetchData = () => {
+  axios.post('/api/order/showorder').then((res) => {
+    item.value = res.data
+  })
+}
+onMounted(() => {
+  fetchData()
+  setInterval(() => {
+    fetchData()
+  }, 5000)
 })
 </script>
 

@@ -27,15 +27,23 @@ public class Ordershow {
             @RequestBody  Order order
     )
     {
-       if(orderMapper.insert(order.getOrderid(),order.getOrderuser(),order.getOrdershop(),order.getOrdername(),order.getOrdernumber(),order.getOrderCar(),order.getOrderSend(),order.getOrderOk())){
+       if(orderMapper.insert(order.getOrderid(),order.getOrderuser(),order.getOrdershop(),order.getOrdername(),order.getOrdernumber(),order.getOrderCar(),order.getOrderBuy(),order.getOrderSend(),order.getOrderOk())){
            return "success";
        }else{
            return "fail";
        }
     }
-//    @RequestMapping("/delete")
-//
-//    @RequestMapping('/update')
+    @RequestMapping("/update")
+    public String update(
+            @RequestBody Order order
+    ){
+        if(orderMapper.update(order.getOrderCar() ,order.getOrderSend(),order.getOrderOk(),order.getOrderBuy(),order.getOrderid())){
+            return "success";
+        }else{
+            return "fail";
+        }
 
+
+    }
 
 }

@@ -5,7 +5,7 @@
       <input placeholder="🔍搜索   天地万物，皆入掌中" class="search-input" />
     </div>
     <div class="user">
-      <img src="../../pic/购物车.png" alt="" />
+      <img src="../../pic/购物车.png" alt="" @click="toCart" />
     </div>
   </div>
   <div class="left">
@@ -30,12 +30,18 @@
       </n-carousel>
     </div>
     <div class="classify">
-      <RouterLink to="/worku/index" class="classify-item">星辰介绍</RouterLink>
-      <RouterLink to="/worku/indexu" class="classify-item">星辰商城</RouterLink>
-      <RouterLink to="/worku/car" class="classify-item">购物车车</RouterLink>
-      <RouterLink to="/worku/order" class="classify-item">我的订单</RouterLink>
+      <RouterLink to="/worku/index" class="classify-item" active-class="active"
+        >星辰介绍</RouterLink
+      >
+      <RouterLink to="/worku/indexu" class="classify-item" active-class="active"
+        >星辰商城</RouterLink
+      >
+      <RouterLink to="/worku/car" class="classify-item" active-class="active">购物车车</RouterLink>
+      <RouterLink to="/worku/order" class="classify-item" active-class="active"
+        >我的订单</RouterLink
+      >
       <div class="classify-item" @click="toContact()">联系客服</div>
-      <RouterLink to="/our" class="classify-item">关于我们</RouterLink>
+      <RouterLink to="/our" class="classify-item" active-class="active">关于我们</RouterLink>
     </div>
   </div>
   <div class="show">
@@ -47,9 +53,12 @@
 import { RouterLink, useRouter, RouterView } from 'vue-router'
 const router = useRouter()
 
-//拨打电话
+//拨打电话(nb吧)
 const toContact = () => {
   window.location.href = 'tel:16670870515'
+}
+const toCart = () => {
+  router.push('/worku/car')
 }
 </script>
 
@@ -128,9 +137,8 @@ const toContact = () => {
       text-decoration: none;
       background-color: #e600ff;
       cursor: pointer;
-      &:hover {
+      &.active {
         color: #fc7b7b;
-
         border-bottom: 1px solid #fffdfd;
         background-color: #00ffff;
       }

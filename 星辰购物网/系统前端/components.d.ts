@@ -8,6 +8,7 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    ElButton: typeof import('element-plus/es')['ElButton']
     Good: typeof import('./src/components/good.vue')['default']
     NButton: typeof import('naive-ui')['NButton']
     NBuutton: typeof import('naive-ui')['NBuutton']
