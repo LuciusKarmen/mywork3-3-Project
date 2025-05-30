@@ -1,6 +1,6 @@
 <template>
   <n-scrollbar>
-    <div>待处理订单</div>
+    <div class="fancy-heading">待处理订单</div>
     <div v-for="item in filter" :key="item.orderid">
       <Order :item="item" />
       <div class="btn">
@@ -66,5 +66,22 @@ onMounted(() => {
   margin-left: 350px;
   width: 200px;
   height: 50px;
+}
+.fancy-heading {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 3rem;
+  background: linear-gradient(45deg, #ff0dbe, #ff7eb3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+  margin: 2rem 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  transition:
+    transform 0.3s ease,
+    color 0.3s ease;
+}
+
+.fancy-heading:hover {
+  transform: scale(1.05);
 }
 </style>

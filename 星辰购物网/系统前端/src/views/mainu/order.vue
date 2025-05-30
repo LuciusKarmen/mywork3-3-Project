@@ -2,29 +2,32 @@
   <n-scrollbar>
     <div class="my-order">
       <div class="aa">
-        <n-tag :bordered="false" type="info" class="tag"> 待发货 </n-tag>
+        <h4 class="fancy-heading">待发货</h4>
         <div class="kuang">
           <div v-for="item in filterwaitsend" :key="item.orderid" class="myorder-item">
             <Order :item="item" />
           </div>
         </div>
       </div>
+      <hr />
       <div class="aa">
-        <n-tag :bordered="false" type="warning" class="tag"> 待收货 </n-tag>
+        <h4 class="fancy-heading">待收货</h4>
         <div class="kuang">
           <div v-for="item in filtersendwaitget" :key="item.orderid" class="myorder-item">
             <Order :item="item" />
           </div>
         </div>
       </div>
+      <hr />
       <div class="aa">
-        <n-tag :bordered="false" type="success" class="tag"> 已收货 </n-tag>
+        <h4 class="fancy-heading">已收货</h4>
         <div class="kuang">
           <div v-for="item in filterget" :key="item.orderid" class="myorder-item">
             <Order :item="item" />
           </div>
         </div>
       </div>
+      <hr />
     </div>
   </n-scrollbar>
 </template>
@@ -114,6 +117,7 @@ onMounted(() => {
     height: 100%;
     overflow-y: auto;
     .aa {
+      min-height: 150px;
       .tag {
         margin-left: 10px;
         margin-top: 10px;
@@ -131,5 +135,22 @@ onMounted(() => {
       }
     }
   }
+}
+.fancy-heading {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.5rem;
+  background: linear-gradient(45deg, #ecf934, #ff7eb3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+  margin: 2rem 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  transition:
+    transform 0.3s ease,
+    color 0.3s ease;
+}
+
+.fancy-heading:hover {
+  transform: scale(1.05);
 }
 </style>

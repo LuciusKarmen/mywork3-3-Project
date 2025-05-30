@@ -3,7 +3,7 @@
     <div class="introduction-page">
       <header class="header">
         <h1>
-          欢迎来到星辰购物网站, <span class="highlight">{{ username }}客人</span>
+          欢迎来到星辰购物网站, <span class="fancy-heading">{{ username }}客人</span>
         </h1>
         <p>一站式购物平台，品质生活从这里开始</p>
       </header>
@@ -153,5 +153,22 @@ const a = () => {
   color: #e74c3c;
   font-weight: bold;
   font-size: 40px;
+}
+.fancy-heading {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 3.5rem;
+  background: linear-gradient(45deg, #ff758c, #ff7eb3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+  margin: 2rem 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  transition:
+    transform 0.3s ease,
+    color 0.3s ease;
+}
+
+.fancy-heading:hover {
+  transform: scale(1.05);
 }
 </style>

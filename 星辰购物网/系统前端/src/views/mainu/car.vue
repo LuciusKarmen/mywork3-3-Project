@@ -1,7 +1,7 @@
 <template>
   <n-scrollbar class="scroll">
     <div class="aa">
-      <n-tag :bordered="false" type="success" class="tag custom-shopping-cart-title"> 购物车</n-tag>
+      <h1 class="fancy-heading">专属于您的购物车车</h1>
       <div class="kuang">
         <div v-for="item in filterCar" :key="item.orderid" class="myorder-item">
           <Order :item="item" />
@@ -73,5 +73,22 @@ onMounted(() => {
 }
 .myorder-item {
   margin-left: -400px;
+}
+.fancy-heading {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 3.5rem;
+  background: linear-gradient(45deg, #ff758c, #ff7eb3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+  margin: 2rem 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  transition:
+    transform 0.3s ease,
+    color 0.3s ease;
+}
+
+.fancy-heading:hover {
+  transform: scale(1.05);
 }
 </style>

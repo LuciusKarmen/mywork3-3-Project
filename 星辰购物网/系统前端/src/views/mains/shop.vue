@@ -20,12 +20,17 @@
 
       <div class="add-product">
         <label for="product">商品分类：</label
-        ><n-input
-          id="product"
-          placeholder="请输入货品分类"
-          class="add"
-          v-model:value="form.class"
-        />
+        ><select name="a" id="product" class="add" v-model="form.class">
+          <option value="">请选择商品分类</option>
+          <option class="" value="成人服饰">成人服饰</option>
+          <option class="" value="儿童服饰">儿童服饰</option>
+          <option class="" value="家居用品">家居用品</option>
+          <option class="" value="数码产品">数码产品</option>
+          <option class="" value="运动用品">运动用品</option>
+          <option class="" value="枪支弹药">枪支弹药</option>
+          <option class="" value="食品饮料">食品饮料</option>
+          <option class="" value="其他">其他</option>
+        </select>
       </div>
 
       <div class="add-product">
@@ -59,7 +64,6 @@ import { reactive, ref, computed } from 'vue'
 import axios from 'axios'
 import Good from '../../components/good.vue'
 import { id } from 'element-plus/es/locales.mjs'
-
 // 定义商品类型
 interface GoodItem {
   goodid: string
@@ -184,7 +188,7 @@ const filteredGoods = computed(() => {
   width: 500px;
   height: 600px;
   margin: 20px auto;
-  margin-left: 350px;
+  margin-left: 250px;
   padding: 40px;
   margin-bottom: 50px;
   background-color: rgba($color: #41ecff, $alpha: 0.5);
@@ -244,5 +248,9 @@ const filteredGoods = computed(() => {
     align-items: center;
     padding: 10px;
   }
+}
+.add {
+  width: 300px;
+  height: 30px;
 }
 </style>

@@ -73,7 +73,7 @@ function handleRegister() {
       if (response.data === 'success') {
         alert('注册成功')
         localStorage.setItem('username', username.value)
-        window.location.href = '/worku'
+        window.location.href = '/worku/index'
       } else {
         alert('注册失败，请检查用户名和密码')
       }
