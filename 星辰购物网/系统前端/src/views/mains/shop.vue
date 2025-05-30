@@ -89,6 +89,8 @@ const handleFileChange = (event: Event) => {
   }
 }
 
+const shopname = ref<String | null>('')
+shopname.value = localStorage.getItem('shopname')
 const handleSubmit = () => {
   const formData = new FormData()
   form.id = crypto.randomUUID()
@@ -171,7 +173,7 @@ const deletegood = (id: string) => {
 
 //这边搞一个过滤器
 const filteredGoods = computed(() => {
-  return goods.value.filter((item) => item.goodshop == '散爆网络')
+  return goods.value.filter((item) => item.goodshop == shopname.value)
 })
 </script>
 
@@ -229,7 +231,7 @@ const filteredGoods = computed(() => {
   background-color: rgba($color: #23ffff, $alpha: 0.4);
   border-radius: 20px;
   width: 700px;
-  margin-left: 250px;
+  margin-left: 150px;
 }
 .kuang {
   width: 100%;

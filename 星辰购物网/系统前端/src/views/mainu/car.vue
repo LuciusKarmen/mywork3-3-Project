@@ -16,12 +16,15 @@ import Order from '../../components/order.vue'
 import { Ordertype } from '../../type/order'
 import { ref, onMounted, computed } from 'vue'
 import axios from 'axios'
-const item = ref<Ordertype[]>([
+const username = ref<String | null>('')
+username.value = localStorage.getItem('username')
+
+const item = ref([
   {
     orderid: '',
     orderuser: '',
     ordershop: '',
-    ordername: '',
+    ordername: username.value,
     ordernumber: 0,
     orderCar: false,
     orderBuy: false,
@@ -41,7 +44,10 @@ const fetchData = () => {
 }
 const filterCar = computed(() => {
   console.log(item.value)
-  return item.value.filter((item: any) => item.orderCar === true && item.orderBuy == false)
+  return item.value.filter(
+    (item: any) =>
+      item.orderCar === true && item.orderBuy == false && item.orderuser == username.value,
+  )
 })
 onMounted(() => {
   fetchData()

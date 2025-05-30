@@ -5,30 +5,71 @@
       <h3>祝您每天开开心心</h3>
       <n-space vertical>
         <label id="username" for="username">用户名:</label>
-        <n-input v-model:value="shopname" type="text" placeholder="用户名/电话号码" id="username" />
+        <n-input
+          v-model:value="shopname"
+          type="text"
+          placeholder="用户名/电话号码"
+          id="username"
+          @blur="shopBlur"
+        />
+        <span v-if="errors.name">{{ errors.name }}</span>
 
         <label id="password" for="password">密码:</label>
-        <n-input v-model:value="shoppassword" type="text" placeholder="密码" id="password" />
+        <n-input
+          v-model:value="shoppassword"
+          type="text"
+          placeholder="密码"
+          id="password"
+          @blur="shopBlur"
+        />
+        <span v-if="errors.password">{{ errors.password }}</span>
       </n-space>
       <n-space vertical class="a">
         <div class="label">选择头像：</div>
         <div class="k">
           <input type="file" accept="image/*" @change="handleAvatarUpload" />
-
           <div v-if="avatarUrl" class="avatar-preview">
             <img :src="avatarUrl" alt="头像预览" />
           </div>
         </div>
       </n-space>
-      <n-button type="warning" class="button" @click="handleRegisters">入驻</n-button>
+      <n-button type="warning" class="button" @click="handleRegisters" :disable="!isFormValid"
+        >入驻</n-button
+      >
       <div class="register-link">入住了成功了吧<a href="/logins">点击登录</a></div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts" name="face">
-import { reactive, ref } from 'vue'
+import { reactive, ref, computed } from 'vue'
 import axios from 'axios'
+
+const errors = ref({
+  name: '',
+  password: '',
+})
+const shopBlur = () => {
+  let hasshow = false
+  if (!shopname.value) {
+    errors.value.name = '请输入用户名'
+    hasshow = true
+  } else {
+    errors.value.name = ''
+  }
+
+  if (shoppassword.value.length < 7) {
+    errors.value.password = '密码太短'
+    hasshow = true
+  } else {
+    errors.value.password = ''
+  }
+  return !hasshow
+}
+
+const isFormValid = computed(() => {
+  return shopname.value.trim() !== '' && shoppassword.value.length >= 7
+})
 
 const shopid = ref('')
 const shopname = ref('')

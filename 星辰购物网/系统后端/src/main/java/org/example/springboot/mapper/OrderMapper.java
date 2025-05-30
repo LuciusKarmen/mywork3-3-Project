@@ -27,13 +27,14 @@ public interface OrderMapper {
             Boolean orderSend,
             Boolean orderOk
     );
-    @Update("update orders set orderCar=#{orderCar},orderOk=#{orderOk} ,orderSend=#{orderSend},orderBuy=#{orderBuy} where orderid=#{orderid}")
+    @Update("update orders set orderCar=#{orderCar},orderOk=#{orderOk} ,orderSend=#{orderSend},orderBuy=#{orderBuy},orderuser=#{orderuser} where orderid=#{orderid}")
     boolean update(
 
             Boolean orderCar,
             Boolean  orderSend,
             Boolean orderOk,
             Boolean orderBuy,
+            String orderuser,
             String orderid
 
     );

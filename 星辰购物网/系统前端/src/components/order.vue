@@ -33,6 +33,9 @@
 import { ref } from 'vue'
 import { Ordertype } from '../type/order'
 import axios from 'axios'
+const username = ref<String | null>('')
+username.value = localStorage.getItem('username')
+
 const order = ref<Ordertype>({
   orderid: '',
   orderuser: '',
@@ -52,6 +55,7 @@ const v1 = ref(props.item?.orderCar)
 const v2 = ref(props.item?.orderBuy)
 const v3 = ref(props.item?.orderSend)
 const v4 = ref(props.item?.orderOk)
+const v5 = ref(props.item?.orderuser)
 const id = ref(props.item?.orderid)
 
 //更新数据(这倒是第一次)
@@ -65,6 +69,7 @@ const handleBuy = () => {
         orderBuy: v2.value,
         orderSend: v3.value,
         orderOk: v4.value,
+        orderuser: username.value,
         orderid: id.value,
       },
       {
@@ -93,6 +98,7 @@ const handleSend = () => {
         orderBuy: v2.value,
         orderSend: v3.value,
         orderOk: v4.value,
+        orderuser: username.value,
         orderid: id.value,
       },
       {

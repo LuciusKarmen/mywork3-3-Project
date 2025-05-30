@@ -37,17 +37,15 @@ public class Usershow {
     }
     //登录
     @PostMapping("/loginuser")
-    public Result<String> checkUser(@RequestBody User user)
+    public String checkUser(@RequestBody User user)
     {
         if(userService.checkUser(user.getUsername(), user.getUserpassword())){
-            Map<String,Object> claims = new HashMap<>();
-            claims.put("username",user.getUsername());
-            String token = JWTUTIL.genToken(claims);
-            return Result.success(token);
+
+            return "success";
         }
         else {
 
-            return Result.error(400,"用户名或密码错误");
+            return "fail";
         }
     }
     @PostMapping("/registeruser")

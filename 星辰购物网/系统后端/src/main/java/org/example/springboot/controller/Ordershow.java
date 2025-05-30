@@ -37,7 +37,7 @@ public class Ordershow {
     public String update(
             @RequestBody Order order
     ){
-        if(orderMapper.update(order.getOrderCar() ,order.getOrderSend(),order.getOrderOk(),order.getOrderBuy(),order.getOrderid())){
+        if(orderMapper.update(order.getOrderCar() ,order.getOrderSend(),order.getOrderOk(),order.getOrderBuy(), order.getOrderuser(),order.getOrderid())){
             return "success";
         }else{
             return "fail";

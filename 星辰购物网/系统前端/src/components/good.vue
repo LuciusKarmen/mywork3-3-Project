@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts" setup name="Good">
-import { defineProps, PropType, computed } from 'vue'
+import { defineProps, PropType, computed, ref } from 'vue'
 import { onMounted } from 'vue'
 import axios from 'axios'
 import { Order } from '../type/order'
@@ -52,7 +52,7 @@ const order: Order = {
 }
 function addToCart() {
   order.orderid = crypto.randomUUID()
-  order.orderuser = 'karmen'
+  order.orderuser = localStorage.getItem('username')
   order.ordershop = props.item.goodshop
   order.ordername = props.item.goodname
   order.ordernumber = 1
@@ -63,7 +63,7 @@ function addToCart() {
   console.log(order)
   axios
     .post('/api/order/add', order, {
-      headers: { 'Content-Type': 'application/json', token: localStorage.getItem('token') },
+      headers: { 'Content-Type': 'application/json' },
     })
     .then((res) => {
       if (res.data == 'success') {

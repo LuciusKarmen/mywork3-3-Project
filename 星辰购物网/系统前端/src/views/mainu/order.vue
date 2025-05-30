@@ -57,19 +57,37 @@ onMounted(() => {
   })
 })
 
+const username = ref<String | null>('')
+username.value = localStorage.getItem('username')
+
 const filterwaitsend = computed(() => {
   return item.value.filter(
-    (item: any) => !item.orderSend && !item.orderOk && item.orderCar && item.orderBuy,
+    (item: any) =>
+      !item.orderSend &&
+      !item.orderOk &&
+      item.orderCar &&
+      item.orderBuy &&
+      item.orderuser == username.value,
   )
 })
 const filtersendwaitget = computed(() => {
   return item.value.filter(
-    (item: any) => item.orderSend && !item.orderOk && item.orderCar && item.orderBuy,
+    (item: any) =>
+      item.orderSend &&
+      !item.orderOk &&
+      item.orderCar &&
+      item.orderBuy &&
+      item.orderuser == username.value,
   )
 })
 const filterget = computed(() => {
   return item.value.filter(
-    (item: any) => item.orderSend && item.orderOk && item.orderCar && item.orderBuy,
+    (item: any) =>
+      item.orderSend &&
+      item.orderOk &&
+      item.orderCar &&
+      item.orderBuy &&
+      item.orderuser == username.value,
   )
 })
 const fetchData = () => {

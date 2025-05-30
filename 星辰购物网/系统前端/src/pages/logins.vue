@@ -6,11 +6,9 @@
       <n-space vertical>
         <label id="username" for="username">用户名:</label>
         <n-input v-model:value="shopname" type="text" placeholder="用户名/电话号码" id="username" />
-
         <label id="password" for="password" class="password">密码:</label>
-        <n-input v-model:value="shoppassword" type="text" placeholder="密码" id="password" />
+        <n-input v-model:value="shoppassword" type="password" placeholder="密码" id="password" />
       </n-space>
-
       <n-button type="warning" class="button" @click="handleLogin">登录</n-button>
       <div class="register-link">还没有加盟吗<a href="/regs">点击入驻</a></div>
     </div>

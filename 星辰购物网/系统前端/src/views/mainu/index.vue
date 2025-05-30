@@ -3,7 +3,7 @@
     <div class="introduction-page">
       <header class="header">
         <h1>
-          欢迎来到星辰购物网站, <span class="highlight">{{ usersname }}客人</span>
+          欢迎来到星辰购物网站, <span class="highlight">{{ username }}客人</span>
         </h1>
         <p>一站式购物平台，品质生活从这里开始</p>
       </header>
@@ -59,13 +59,19 @@
 
 <script setup lang="ts" name="IntroductionPage">
 import type { S } from 'vitest/dist/chunks/config.d.UqE-KR0o.js'
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 
-const router = useRouter()
-const username = ref<String | null>('')
-username.value = localStorage.getItem('username')
+const username = ref<string | null>(null)
 
+onMounted(() => {
+  // 从 localStorage 读取用户名
+  const storedUsername = localStorage.getItem('username')
+  username.value = storedUsername
+  console.log('获取到的用户名:', username.value)
+})
+
+const router = useRouter()
 const a = () => {
   router.push('/worku/indexu')
 }

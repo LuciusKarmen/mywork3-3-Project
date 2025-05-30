@@ -24,9 +24,13 @@ const fetchData = () => {
     orderList.value = res.data
   })
 }
+const shopname = ref<String | null>('')
+shopname.value = localStorage.getItem('shopname')
 
 const filter = computed(() => {
-  return orderList.value.filter((item) => !item.orderSend && item.orderBuy && item.orderCar)
+  return orderList.value.filter(
+    (item) => !item.orderSend && item.orderBuy && item.orderCar && item.ordershop == shopname.value,
+  )
 })
 
 const Send = (clickedItem: Ordertype) => {

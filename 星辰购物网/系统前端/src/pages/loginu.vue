@@ -8,7 +8,7 @@
         <n-input v-model:value="username" type="text" placeholder="用户名/电话号码" id="username" />
 
         <label id="password" for="password">密码:</label>
-        <n-input v-model:value="userpassword" type="text" placeholder="密码" id="password" />
+        <n-input v-model:value="userpassword" type="password" placeholder="密码" id="password" />
       </n-space>
       <n-button type="primary" class="button" @click="handleLogin">登录</n-button>
       <div class="register-link">还没有加入大家庭吗<a href="/regu">点击注册</a></div>
@@ -41,9 +41,10 @@ function handleLogin() {
     )
     .then((response) => {
       console.log(response.data)
-      if (response.data.message === 'success') {
+      if (response.data === 'success') {
         alert('登录成功')
         localStorage.setItem('username', username.value)
+
         window.location.href = '/worku/index'
       } else {
         alert('登录失败，请检查用户名和密码')
