@@ -63,7 +63,7 @@ function addToCart() {
   console.log(order)
   axios
     .post('/api/order/add', order, {
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', token: localStorage.getItem('token') },
     })
     .then((res) => {
       if (res.data == 'success') {

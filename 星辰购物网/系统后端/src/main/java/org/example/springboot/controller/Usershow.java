@@ -1,8 +1,10 @@
 package org.example.springboot.controller;
 
+import org.example.springboot.config.Result;
 import org.example.springboot.mapper.UserMapper;
 import org.example.springboot.pojo.User;
 import org.example.springboot.service.UserService;
+import org.example.springboot.utils.JWTUTIL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -11,7 +13,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @RestController
@@ -33,13 +37,17 @@ public class Usershow {
     }
     //登录
     @PostMapping("/loginuser")
-    public  String checkUser(@RequestBody User user)
+    public Result<String> checkUser(@RequestBody User user)
     {
         if(userService.checkUser(user.getUsername(), user.getUserpassword())){
-            return "success";
+            Map<String,Object> claims = new HashMap<>();
+            claims.put("username",user.getUsername());
+            String token = JWTUTIL.genToken(claims);
+            return Result.success(token);
         }
         else {
-            return "fail";
+
+            return Result.error(400,"用户名或密码错误");
         }
     }
     @PostMapping("/registeruser")

@@ -2,7 +2,9 @@
   <n-scrollbar>
     <div class="introduction-page">
       <header class="header">
-        <h1>欢迎来到星辰购物网站</h1>
+        <h1>
+          欢迎来到星辰购物网站, <span class="highlight">{{ usersname }}客人</span>
+        </h1>
         <p>一站式购物平台，品质生活从这里开始</p>
       </header>
 
@@ -56,9 +58,13 @@
 </template>
 
 <script setup lang="ts" name="IntroductionPage">
+import type { S } from 'vitest/dist/chunks/config.d.UqE-KR0o.js'
+import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
+const username = ref<String | null>('')
+username.value = localStorage.getItem('username')
 
 const a = () => {
   router.push('/worku/indexu')

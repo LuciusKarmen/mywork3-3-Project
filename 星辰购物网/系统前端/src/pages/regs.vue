@@ -77,6 +77,7 @@ const handleRegisters = () => {
       console.log(response.data)
       if (response.data === 'success') {
         alert('注册成功')
+        localStorage.setItem('shopname', shopname.value)
         window.location.href = '/works'
       } else {
         alert('注册失败，请检查输入信息')

@@ -19,6 +19,7 @@
 <script setup lang="ts" name="face">
 import { ref } from 'vue'
 import axios from 'axios'
+import { lo } from 'element-plus/es/locales.mjs'
 
 const username = ref('')
 const userpassword = ref('')
@@ -27,12 +28,11 @@ function handleLogin() {
   axios
     .post(
       '/api/user/loginuser',
-      // 发送的数据,设置请求体
       {
         username: username.value,
         userpassword: userpassword.value,
       },
-      // 设置请求头
+
       {
         headers: {
           'Content-Type': 'application/json',
@@ -41,8 +41,9 @@ function handleLogin() {
     )
     .then((response) => {
       console.log(response.data)
-      if (response.data === 'success') {
+      if (response.data.message === 'success') {
         alert('登录成功')
+        localStorage.setItem('username', username.value)
         window.location.href = '/worku/index'
       } else {
         alert('登录失败，请检查用户名和密码')

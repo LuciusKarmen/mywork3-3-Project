@@ -43,6 +43,7 @@ function handleLogin() {
       console.log(response.data)
       if (response.data === 'success') {
         alert('登录成功')
+        localStorage.setItem('shopname', shopname.value)
         window.location.href = '/works/index'
       } else {
         alert('登录失败，请检查用户名和密码')

@@ -72,6 +72,7 @@ function handleRegister() {
       console.log(response.data)
       if (response.data === 'success') {
         alert('注册成功')
+        localStorage.setItem('username', username.value)
         window.location.href = '/worku'
       } else {
         alert('注册失败，请检查用户名和密码')

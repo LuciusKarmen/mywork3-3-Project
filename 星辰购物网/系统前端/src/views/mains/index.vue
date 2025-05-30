@@ -2,7 +2,9 @@
   <n-scrollbar>
     <div class="introduction-page">
       <header class="header">
-        <h1>欢迎来到星辰购物网站</h1>
+        <h1>
+          欢迎来到星辰购物网站, <span class="highlight">{{ shopname }}老板</span>
+        </h1>
         <p>一站式购物平台，品质生活从这里开始</p>
       </header>
 
@@ -54,7 +56,10 @@
   </n-scrollbar>
 </template>
 
-<script setup></script>
+<script setup>
+const shopname = ref('')
+shopname.value = localStorage.getItem('shopname')
+</script>
 
 <style scoped>
 .introduction-page {
@@ -132,5 +137,8 @@
   color: #e74c3c;
   font-weight: bold;
   font-size: 40px;
+}
+.highlight {
+  color: #e74c3c;
 }
 </style>

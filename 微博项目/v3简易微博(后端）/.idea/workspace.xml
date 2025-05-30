@@ -5,16 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="007ac0c1-688c-444d-84e9-f272ad0a04ec" name="更改" comment="5">
-      <change afterPath="$PROJECT_DIR$/../../星辰购物网/系统后端/src/main/java/org/example/springboot/controller/Goodshow.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../星辰购物网/系统后端/src/main/java/org/example/springboot/controller/Ordershow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../星辰购物网/系统前端/components.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../星辰购物网/系统前端/components.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../星辰购物网/系统前端/src/components/good.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../星辰购物网/系统前端/src/components/good.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../星辰购物网/系统前端/src/views/mainu/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../星辰购物网/系统前端/src/views/mainu/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../星辰购物网/系统前端/src/views/mainu/order.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../星辰购物网/系统前端/src/views/mainu/order.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../星辰购物网/系统后端/src/main/java/org/example/springboot/mapper/GoodMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../星辰购物网/系统后端/src/main/java/org/example/springboot/mapper/GoodMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../星辰购物网/系统后端/src/main/java/org/example/springboot/mapper/OrderMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../星辰购物网/系统后端/src/main/java/org/example/springboot/mapper/OrderMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../星辰购物网/系统后端/src/main/java/org/example/springboot/pojo/Good.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../星辰购物网/系统后端/src/main/java/org/example/springboot/pojo/Good.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../星辰购物网/系统后端/src/main/java/org/example/springboot/pojo/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../星辰购物网/系统后端/src/main/java/org/example/springboot/pojo/Order.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -162,6 +153,8 @@
       <workItem from="1747721767003" duration="5033000" />
       <workItem from="1747990155117" duration="77000" />
       <workItem from="1748400681219" duration="43000" />
+      <workItem from="1748567835918" duration="709000" />
+      <workItem from="1748571477422" duration="5000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <option name="closed" value="true" />

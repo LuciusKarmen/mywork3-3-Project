@@ -27,9 +27,7 @@ public class JWTUTIL {
                 .asMap();
     }
 
-    public static JWTCreator.Builder create(){
-        return com.auth0.jwt.JWT.create();
-    }
+
 
 
 
