@@ -5,6 +5,7 @@
       <div>您的到来是我们最大的荣幸</div>
     </div>
     <div class="user">站长: Karmen-John-Lucius</div>
+    
   </div>
   <div class="left">
     <div class="pic">

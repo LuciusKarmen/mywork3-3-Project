@@ -99,7 +99,7 @@ function handleRegister() {
     flex-direction: column;
     align-items: center;
 
-    height: 70vh;
+    height: 65vh;
     width: 24%;
     border: 1px solid #000;
     border-radius: 20px;

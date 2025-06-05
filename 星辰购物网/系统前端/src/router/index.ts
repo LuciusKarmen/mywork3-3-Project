@@ -35,7 +35,11 @@ const router = createRouter({
       name: 'regu',
       component: () => import('../pages/regu.vue'),
     },
-
+    {
+      path: '/regm',
+      name: 'regm',
+      component: () => import('../pages/regm.vue'),
+    },
     {
       path: '/worku',
       name: 'worku',

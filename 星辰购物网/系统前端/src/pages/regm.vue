@@ -2,16 +2,21 @@
   <div class="all">
     <div class="face">
       <h1>欢迎来到星辰网</h1>
-      <h3>祝您每天开开心心</h3>
+      <h3>我的主人--Karmen.John.Lucius</h3>
+      <h2>--Karmen.John.Lucius</h2>
       <n-space vertical>
-        <label id="username" for="username">用户名:</label>
-        <n-input v-model:value="username" type="text" placeholder="用户名/电话号码" id="username" />
+        <label id="username" for="username">秘钥:</label>
+        <n-input v-model:value="username" type="text" placeholder="秘钥名称" id="username" />
 
         <label id="password" for="password">密码:</label>
         <n-input v-model:value="userpassword" type="password" placeholder="密码" id="password" />
       </n-space>
       <n-button type="primary" class="button" @click="handleLogin">登录</n-button>
-      <div class="register-link">还没有加入大家庭吗<a href="/regu">点击注册</a></div>
+      <div class="register-link">联系我们成为合伙人</div>
+      <br />
+      <br />
+      <br />
+      <a href="/our">点击开启新世界的大门</a>
     </div>
   </div>
 </template>
@@ -45,7 +50,7 @@ function handleLogin() {
         alert('登录成功')
         localStorage.setItem('username', username.value)
 
-        window.location.href = '/worku/index'
+        window.location.href = '/our'
       } else {
         alert('登录失败，请检查用户名和密码')
       }
@@ -71,7 +76,7 @@ function handleLogin() {
     flex-direction: column;
     align-items: center;
 
-    height: 65vh;
+    height: 70vh;
     width: 24%;
     border: 1px solid #000;
     border-radius: 20px;
@@ -95,11 +100,11 @@ function handleLogin() {
 
     .register-link {
       font-size: 14px;
-      color: orange;
+      color: rgb(255, 0, 0);
       text-decoration: none;
       position: absolute;
-      bottom: 0%;
-      left: 5%;
+      bottom: 10%;
+      left: 32%;
 
       a {
         color: #007bff;

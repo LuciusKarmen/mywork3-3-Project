@@ -19,7 +19,7 @@ const gos = () => {
   window.location.href = '/logins'
 }
 const gom = () => {
-  window.location.href = '/our'
+  window.location.href = '/regm'
 }
 </script>
 

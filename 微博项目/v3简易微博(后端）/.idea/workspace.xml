@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="007ac0c1-688c-444d-84e9-f272ad0a04ec" name="更改" comment="5">
-      <change beforePath="$PROJECT_DIR$/../../星辰购物网/系统前端/src/components/good.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../星辰购物网/系统前端/src/components/good.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../星辰购物网/系统前端/src/views/mains/head.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../星辰购物网/系统前端/src/views/mains/head.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -155,6 +155,9 @@
       <workItem from="1748400681219" duration="43000" />
       <workItem from="1748567835918" duration="709000" />
       <workItem from="1748571477422" duration="5000" />
+      <workItem from="1748855082587" duration="1663000" />
+      <workItem from="1748868437604" duration="2000" />
+      <workItem from="1748916635119" duration="8000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <option name="closed" value="true" />
