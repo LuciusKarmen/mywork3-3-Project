@@ -31,7 +31,7 @@
 
 <script setup lang="ts" name="Order">
 import { ref } from 'vue'
-import { Ordertype } from '../type/order'
+import { type Ordertype } from '../type/order'
 import axios from 'axios'
 const username = ref<String | null>('')
 username.value = localStorage.getItem('username')
