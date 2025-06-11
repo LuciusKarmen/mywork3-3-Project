@@ -25,12 +25,12 @@ function handleLogin() {
   axios
     .post(
       '/api/shop/logins',
-
+      // 发送的数据,设置请求体
       {
         shopname: shopname.value,
         shoppassword: shoppassword.value,
       },
-
+      // 设置请求头
       {
         headers: {
           'Content-Type': 'application/json',
