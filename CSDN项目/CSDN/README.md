@@ -1,4 +1,4 @@
-# csdn(前端）-vue3
+# CSDN
 
 This template should help get you started developing with Vue 3 in Vite.
 
