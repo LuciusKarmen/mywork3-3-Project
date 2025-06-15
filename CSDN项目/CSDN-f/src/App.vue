@@ -7,5 +7,5 @@ import { RouterView } from 'vue-router'
 </script>
 
 <style scoped lang="scss">
-@use './index.css';
+@use './index.css' as *;
 </style>
