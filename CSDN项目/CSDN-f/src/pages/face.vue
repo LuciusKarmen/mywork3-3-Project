@@ -2,4 +2,4 @@
 
 <script setup lang="ts" name="face"></script>
 
-<style></style>
+<style lang="scss" scoped></style>
