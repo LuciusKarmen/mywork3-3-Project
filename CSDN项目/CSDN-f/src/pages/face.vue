@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <h1 class="text-3xl font-bold underline">Hello world!</h1>
-  </div>
+  <el-button type="info">Info</el-button>
+  <el-button>Default</el-button>
+  <nut-button>hh</nut-button>
 </template>
 
 <script setup lang="ts" name="face"></script>
