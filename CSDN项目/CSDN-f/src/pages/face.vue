@@ -62,7 +62,6 @@
   transform: scale(1.05);
 }
 
-// 动画定义
 @keyframes gradientBG {
   0% {
     background-position: 0% 50%;
@@ -108,7 +107,6 @@
   }
 }
 
-// 移动端适配
 @media (max-width: 768px) {
   .title {
     font-size: 2rem;

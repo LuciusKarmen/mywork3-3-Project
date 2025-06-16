@@ -28,9 +28,9 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup name="our"></script>
 
-<style scoped lang="scss" name="our">
+<style scoped lang="scss">
 .about-container {
   position: relative;
   height: 110vh;

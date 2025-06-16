@@ -7,9 +7,10 @@
     <nut-input v-model="password" placeholder="密码" id="password" class="a" />
     <div class="btn">
       <nut-button type="success" @click="get" class="btn1">登录</nut-button>
-      <nut-button type="warning" @click="get">清空</nut-button>
+      <nut-button type="warning" @click="clear">清空</nut-button>
     </div>
     <div class="tip">还没有账号?<a href="/reg">点击注册</a></div>
+    <div class="h"><a href="/our" class="h1">关于我们</a></div>
   </div>
   <footer>
     <hr />
@@ -27,6 +28,10 @@ const Upload = () => {
 }
 const get = () => {
   console.log('提交')
+}
+const clear = () => {
+  name.value = ''
+  password.value = ''
 }
 </script>
 
@@ -50,7 +55,7 @@ const get = () => {
     display: flex;
     justify-content: space-between;
     position: absolute;
-    left: 15%;
+    left: 17%;
     bottom: 10%;
     .btn1 {
       margin-right: 35%;
@@ -65,6 +70,21 @@ const get = () => {
       color: #c3ff00;
       margin-left: 20%;
       font-style: italic;
+    }
+  }
+  .h {
+    font-size: 20px;
+    position: fixed;
+    left: 48%;
+    transform: translate(-50%, 0);
+    color: rgb(0, 46, 248);
+    bottom: 1%;
+    .h1 {
+      text-decoration: none;
+      &:hover {
+        color: rgb(255, 255, 255);
+        background-color: #c3ff00;
+      }
     }
   }
 }
