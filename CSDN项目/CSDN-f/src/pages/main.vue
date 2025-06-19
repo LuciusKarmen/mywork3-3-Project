@@ -1,8 +1,8 @@
 <template>
   <div class="title">
-    <div class="logo"></div>
-    <div class="search"></div>
-    <div class="pic"><img src="../pic" alt="" /></div>
+    <div class="logo">1</div>
+    <div class="search">1</div>
+    <div class="pic">1></div>
   </div>
   <div class="main">
     <div v-for="(item, index) in 11" :key="index">
@@ -21,9 +21,24 @@ import Title from '../components/title.vue'
 </script>
 
 <style lang="scss" scoped>
+.title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1% 5%;
+  background-color: rgb(208, 208, 208);
+  height: 6vh;
+  .search {
+  }
+}
 .footer {
   position: fixed;
   bottom: 0;
   width: 100%;
+}
+@media (max-width: 768px) {
+  .title {
+    height: 7vh;
+  }
 }
 </style>

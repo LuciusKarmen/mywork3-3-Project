@@ -28,7 +28,10 @@
   </div>
 </template>
 
-<script setup name="our"></script>
+<script setup name="our">
+import { ref } from 'vue'
+const a = ref('')
+</script>
 
 <style scoped lang="scss">
 .about-container {
