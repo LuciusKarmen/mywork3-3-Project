@@ -40,7 +40,7 @@ const clear = () => {
   width: 30%;
   margin: 0 auto;
   padding: 20px;
-  height: 70vh;
+  height: 60vh;
   border: 1px solid #ffffff;
   border-radius: 20px;
   background-color: rgba(122, 244, 251, 0.467);
@@ -53,12 +53,11 @@ const clear = () => {
 
   .btn {
     display: flex;
-    justify-content: space-between;
     position: absolute;
-    left: 17%;
+    left: 20%;
     bottom: 10%;
     .btn1 {
-      margin-right: 35%;
+      margin-right: 100px;
     }
   }
   .tit {
@@ -115,6 +114,15 @@ const clear = () => {
     }
     .tit {
       margin-bottom: 40px;
+    }
+    .btn {
+      display: flex;
+      position: absolute;
+      left: 20%;
+      bottom: 10%;
+      .btn1 {
+        margin-right: 35%;
+      }
     }
   }
   .footer {

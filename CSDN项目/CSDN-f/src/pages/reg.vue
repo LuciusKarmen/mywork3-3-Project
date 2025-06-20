@@ -1,10 +1,12 @@
 <template>
   <Transition name="slide-in" appear>
     <div class="login">
-      <div class="tit">注册<span class="title">欢迎加入KSDN</span></div>
+      <div class="tit">注册<span class="title"></span></div>
       <label for="name" class="label">用户名：</label>
       <nut-input v-model="name" placeholder="姓名" id="name" class="a" />
       <label for="password" class="label">密 码：</label>
+      <nut-input v-model="password" placeholder="密码" id="password" class="a" />
+      <label for="password" class="label">确认密码：</label>
       <nut-input v-model="password" placeholder="密码" id="password" class="a" />
       <label for="pic" class="label">选择头像：</label>
       <input type="file" accept="image/*" @change="Upload" />
@@ -97,7 +99,6 @@ const get = () => {
       color: #1980fd;
     }
     .tit {
-      margin-bottom: 40px;
     }
   }
   .footer {

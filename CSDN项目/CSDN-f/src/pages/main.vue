@@ -1,8 +1,8 @@
 <template>
   <div class="title">
-    <div class="logo">1</div>
-    <div class="search">1</div>
-    <div class="pic">1></div>
+    <div class="logo">logo</div>
+    <div class="search"></div>
+    <div class="pic">111</div>
   </div>
   <div class="main">
     <div v-for="(item, index) in 11" :key="index">
@@ -29,6 +29,10 @@ import Title from '../components/title.vue'
   background-color: rgb(208, 208, 208);
   height: 6vh;
   .search {
+    width: 50%;
+    height: 70%;
+    background-color: rbga(rgb(0, 0, 0), 0.5);
+    border-radius: 15px;
   }
 }
 .footer {

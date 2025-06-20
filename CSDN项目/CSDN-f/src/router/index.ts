@@ -39,6 +39,21 @@ const router = createRouter({
       name: 'my',
       component: () => import('../pages/my.vue'),
     },
+    {
+      path: '/preview/:id',
+      name: 'Preview',
+      component: () => import('../pages/pre.vue'),
+    },
+    {
+      path: '/about',
+      name: 'about',
+      component: () => import('../pages/about.vue'),
+    },
+    {
+      path: '/send',
+      name: 'send',
+      component: () => import('../pages/send.vue'),
+    },
   ],
 })
 export default router
