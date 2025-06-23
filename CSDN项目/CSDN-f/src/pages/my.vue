@@ -2,7 +2,7 @@
   <div class="my">
     <div class="t">
       <div class="pic"><img src="/src/pic/IMG_20250312_172314.jpg" alt="" class="p" /></div>
-      <div class="name">karmen</div>
+      <div class="name">Karmen</div>
     </div>
     <div class="m">
       <div class="li">我的发帖</div>
@@ -11,6 +11,8 @@
       <div class="li">关于网站</div>
       <div class="li" @click="our">联系我们</div>
     </div>
+    <br />
+    <br />
     <div class="footer">
       <Title></Title>
     </div>

@@ -9,6 +9,7 @@
       <nut-button type="success" @click="get" class="btn1">登录</nut-button>
       <nut-button type="warning" @click="clear">清空</nut-button>
     </div>
+    <br />
     <div class="tip">还没有账号?<a href="/reg">点击注册</a></div>
     <div class="h"><a href="/our" class="h1">关于我们</a></div>
   </div>

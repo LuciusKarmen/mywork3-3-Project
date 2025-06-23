@@ -1,7 +1,7 @@
 <template>
   <div class="title">
-    <div class="logo">logo</div>
-    <div class="search"></div>
+    <div class="logo"></div>
+    <input type="text" placeholder="搜索" class="search" />
     <div class="pic">111</div>
   </div>
   <div class="main">
@@ -30,9 +30,10 @@ import Title from '../components/title.vue'
   height: 6vh;
   .search {
     width: 50%;
-    height: 70%;
-    background-color: rbga(rgb(0, 0, 0), 0.5);
+    height: 5vh;
+    background-color: rgb(255, 255, 255);
     border-radius: 15px;
+    border: 2px solid paleturquoise;
   }
 }
 .footer {

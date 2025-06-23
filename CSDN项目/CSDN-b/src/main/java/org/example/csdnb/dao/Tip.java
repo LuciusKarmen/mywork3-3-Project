@@ -75,4 +75,14 @@ public class Tip {
     private Integer tgood;
     private Integer tmessage;
     private String tpic;
+
+    public String getTclass() {
+        return tclass;
+    }
+
+    public void setTclass(String tclass) {
+        this.tclass = tclass;
+    }
+
+    private String tclass;
 }

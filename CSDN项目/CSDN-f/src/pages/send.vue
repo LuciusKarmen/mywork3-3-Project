@@ -2,7 +2,7 @@
   <div class="send">
     <div class="title">
       <el-button type="warning">取消编辑</el-button>
-      <el-button type="primary">发帖</el-button>
+      <el-button type="primary" @click="send">发帖</el-button>
     </div>
     <div class="content">
       <el-input
@@ -22,12 +22,28 @@
       <hr />
       <div class="avatar-upload">
         <p>点击下方方形区域上传封面</p>
-        <!-- 预览图 -->
         <div class="avatar-preview" @click="triggerUpload">
           <img v-if="avatarUrl" :src="avatarUrl" alt="头像预览" />
           <span v-else>+</span>
           <input ref="fileInput" type="file" accept="image/*" @change="handleImageChange" />
         </div>
+      </div>
+      <hr />
+      <div>
+        <span>选择你的分区：</span>
+        <select
+          v-model="tclass"
+          clearable
+          placeholder="Select"
+          style="width: 100px; height: 30px; margin-left: 10px"
+        >
+          <option
+            v-for="(item, index) in options"
+            :key="index"
+            :label="item.label"
+            :tclass="item.tclass"
+          ></option>
+        </select>
       </div>
     </div>
     <br />
@@ -61,6 +77,32 @@ const handleImageChange = (event: Event) => {
     }
     reader.readAsDataURL(file)
   }
+}
+const tclass = ref('')
+const options = [
+  {
+    tclass: '学习',
+    label: '学习',
+  },
+  {
+    tclass: '端游',
+    label: '端游',
+  },
+  {
+    tclass: '手游',
+    label: '手游',
+  },
+  {
+    tclass: '生活',
+    label: '生活',
+  },
+  {
+    tclass: '其他',
+    label: '其他',
+  },
+]
+const send = async () => {
+  const res = await sendTip(tclass.value, title.value, content.value, pic.value)
 }
 </script>
 
