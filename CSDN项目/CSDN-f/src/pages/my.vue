@@ -19,7 +19,7 @@
 
 <script setup lang="ts" name="My">
 import router from '../router/index'
-import Title from '../components/Title.vue'
+import Title from '../components/title.vue'
 
 const our = () => {
   router.push('/our')

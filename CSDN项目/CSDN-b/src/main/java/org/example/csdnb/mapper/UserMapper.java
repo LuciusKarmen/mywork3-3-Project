@@ -1,4 +1,11 @@
 package org.example.csdnb.mapper;
 
-public class UserMapper {
+import org.apache.catalina.User;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
+
+@Mapper
+public interface UserMapper {
+    @Select("SELECT * FROM user where name={#name}")
+    User getUser(String name);
 }
