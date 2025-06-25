@@ -12,5 +12,8 @@ public class UserService {
     public User getUser(String name) {
         return userMapper.getUser(name);
     }
+    public String getPic(String name) {
+        return userMapper.getUserPic(name);
+    }
 
 }

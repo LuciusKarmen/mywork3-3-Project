@@ -3,20 +3,39 @@
     <div class="t2">
       <div class="tp"><img src="../pic/KK.png" alt="" class="ti" /></div>
       <div class="content">
-        <div class="tn">Karmen</div>
-        <div class="tt">2025.6.16</div>
+        <div class="tn">{{ tip.tname }}</div>
+        <div class="tt">{{ tip.ttime }}</div>
       </div>
     </div>
-    <div class="tc">Hello,world!</div>
+    <div class="tc">{{ tip.tcontent }}</div>
     <div class="foot">
-      <div class="tg">点赞:0<Heart class="tc"></Heart></div>
-      <div>评论:0<Comment class="tc"></Comment></div>
+      <div class="tg">点赞:{{ tip.tgood }}<Heart class="tc"></Heart></div>
+      <div>评论:{{ tip.tmessage }}<Comment class="tc"></Comment></div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts" name="Tip">
 import { Heart, Comment } from '@nutui/icons-vue'
+
+import { ref, reactive, toRefs, watch, onMounted } from 'vue'
+import { type Tip } from '../api/tip'
+const props = defineProps<{
+  tip: Tip
+}>()
+const ok = ref(false)
+const OK = () => {
+  ok.value = !ok.value
+}
+watch(
+  () => props.tip,
+  () => {
+    console.log(props.tip)
+  },
+)
+onMounted(() => {
+  console.log(props.tip)
+})
 </script>
 
 <style scoped lang="scss">
