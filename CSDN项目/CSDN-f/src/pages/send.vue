@@ -80,30 +80,21 @@ const handleImageChange = (event: Event) => {
 }
 const tclass = ref('')
 const options = [
-  {
-    tclass: '学习',
-    label: '学习',
-  },
-  {
-    tclass: '端游',
-    label: '端游',
-  },
-  {
-    tclass: '手游',
-    label: '手游',
-  },
-  {
-    tclass: '生活',
-    label: '生活',
-  },
-  {
-    tclass: '其他',
-    label: '其他',
-  },
+  { tclass: '全部', label: '全部' },
+  { tclass: '学习', label: '学习' },
+  { tclass: '编程', label: '编程' },
+  { tclass: '生活', label: '生活' },
+  { tclass: '端游', label: '端游' },
+  { tclass: '手游', label: '手游' },
+  { tclass: '动漫', label: '动漫' },
+  { tclass: '影视', label: '影视' },
+  { tclass: '音乐', label: '音乐' },
+  { tclass: '文学', label: '文学' },
+  { tclass: '科技', label: '科技' },
+  { tclass: '体育', label: '体育' },
+  { tclass: '美食', label: '美食' },
+  { tclass: '旅游', label: '旅游' },
 ]
-const send = async () => {
-  const res = await sendTip(tclass.value, title.value, content.value, pic.value)
-}
 </script>
 
 <style lang="scss" scoped>

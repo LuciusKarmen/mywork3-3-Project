@@ -11,6 +11,7 @@
   <div class="footer">
     <Bar></Bar>
   </div>
+  <!-- 回顶刷新 -->
 </template>
 
 <script setup lang="ts" name="face">
