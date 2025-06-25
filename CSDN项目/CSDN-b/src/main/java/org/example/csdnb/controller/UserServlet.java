@@ -1,5 +1,6 @@
 package org.example.csdnb.controller;
 
+import org.apache.catalina.User;
 import org.example.csdnb.service.UserService;
 import org.example.csdnb.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,14 @@ public class UserServlet {
     public Result<String> getUserPic(String name)
     {
         return Result.ok(userService.getPic(name));
+    }
+    @RequestMapping("/login")
+    public Result<User> login(String name, String password){
+        return Result.ok(userService.login(name,password));
+    }
+    @RequestMapping("/register")
+    public Result<String> register(){
+        return userService.register(name,password);
     }
 
 

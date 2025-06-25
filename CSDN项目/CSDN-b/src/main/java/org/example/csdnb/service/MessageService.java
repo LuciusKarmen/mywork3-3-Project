@@ -14,4 +14,5 @@ public class MessageService {
     public List<Message> getMessage(){
         return messageMapper.getMessage();
     }
+
 }

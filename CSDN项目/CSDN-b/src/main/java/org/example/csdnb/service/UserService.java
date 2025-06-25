@@ -15,5 +15,8 @@ public class UserService {
     public String getPic(String name) {
         return userMapper.getUserPic(name);
     }
+    public User login(String name, String password) {
+        return userMapper.login(name, password);
+    }
 
 }

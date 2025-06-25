@@ -10,5 +10,6 @@ public interface UserMapper {
     User getUser(String name);
     @Select("SELECT pic FROM user where name={#name}")
     String getUserPic(String name);
-
+    @Select("SELECT * FROM user where name={#name} and password={#password}")
+    User login(String name,String password);
 }

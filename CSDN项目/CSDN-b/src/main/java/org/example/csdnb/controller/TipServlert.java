@@ -19,5 +19,10 @@ public class TipServlert {
         List<Tip> tips = tipService.getTips();
         return Result.ok(tips);
     }
+    @RequestMapping("/addTip")
+    public Result<String> addTip(Tip tip) {
+        tipService.addTip(tip);
+        return Result.ok();
+    }
 
 }

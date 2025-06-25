@@ -40,7 +40,8 @@ const router = createRouter({
       component: () => import('../pages/my.vue'),
     },
     {
-      path: '/preview/:id',
+      // path: '/preview/:id',
+      path: '/pre',
       name: 'Preview',
       component: () => import('../pages/pre.vue'),
     },
