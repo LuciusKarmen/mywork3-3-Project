@@ -14,14 +14,14 @@
     <br />
     <br />
     <div class="footer">
-      <Title></Title>
+      <Bar></Bar>
     </div>
   </div>
 </template>
 
 <script setup lang="ts" name="My">
 import router from '../router/index'
-import Title from '../components/title.vue'
+import Bar from '../components/bar.vue'
 
 const our = () => {
   router.push('/our')

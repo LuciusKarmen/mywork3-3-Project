@@ -50,13 +50,13 @@
     <br />
     <br />
     <div class="footer">
-      <Title></Title>
+      <Bar></Bar>
     </div>
   </div>
 </template>
 
 <script setup lang="ts" name="face">
-import Title from '../components/title.vue'
+import Bar from '../components/bar.vue'
 import { ref } from 'vue'
 const title = ref('')
 const tcontent = ref('')
