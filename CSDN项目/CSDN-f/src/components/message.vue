@@ -35,9 +35,8 @@ const OK = () => {
   margin: auto;
   border-radius: 5px;
   padding: 10px;
-  background-color: rgba(205, 205, 205, 0.9);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  background-color: rgba(255, 255, 255, 1);
+
   position: relative;
   .t2 {
     display: flex;
@@ -83,7 +82,7 @@ const OK = () => {
     width: 96%;
     height: 14vh;
     margin: 0 auto;
-    background-color: rgba(205, 205, 205, 0.9);
+
     backdrop-filter: blur(10px);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     .t2 {
