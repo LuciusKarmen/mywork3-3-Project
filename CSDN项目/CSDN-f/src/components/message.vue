@@ -3,11 +3,11 @@
     <div class="t2">
       <div class="tp"><img src="../pic/KK.png" alt="" class="ti" /></div>
       <div class="content">
-        <div class="tn">xgm</div>
-        <div class="tt">2025.6.16</div>
+        <div class="tn">{{ mes.msend }}</div>
+        <div class="tt">{{ mes.mtime }}</div>
       </div>
     </div>
-    <div class="tc">Hello,world!</div>
+    <div class="tc">{{ mes.mcontent }}</div>
     <div class="ok" v-show="ok" @click="OK"></div>
   </div>
 </template>
@@ -18,13 +18,22 @@ import { ref, reactive, toRefs, watch, onMounted } from 'vue'
 import { type Message } from '../api/message'
 
 const props = defineProps<{
-  tip: Message
+  mes: Message
 }>()
 
 const ok = ref(false)
 const OK = () => {
   ok.value = !ok.value
 }
+watch(
+  () => props.mes,
+  () => {
+    console.log(props.mes)
+  },
+)
+onMounted(() => {
+  console.log(props.mes)
+})
 </script>
 
 <style scoped lang="scss">

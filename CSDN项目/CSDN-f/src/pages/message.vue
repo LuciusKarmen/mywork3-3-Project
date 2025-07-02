@@ -5,8 +5,8 @@
     <br />
     <br />
     <div class="main">
-      <div v-for="(item, index) in 11" :key="index">
-        <Message ></Message>
+      <div v-for="(item, index) in messages" :key="index">
+        <Message :mes="item"></Message>
       </div>
     </div>
     <div class="footer">
@@ -18,6 +18,26 @@
 <script setup lang="ts" name="face">
 import Bar from '../components/bar.vue'
 import Message from '../components/message.vue'
+import { onMounted, ref } from 'vue'
+import request from '../util/request'
+import { type Message } from '../api/message'
+// 定义一个函数来获取消息
+const messages = ref<Message[]>([])
+const getMessages = () =>
+  request<Message[]>({
+    method: 'get',
+    url: '/tip/getMessages',
+  })
+    .then((data) => {
+      messages.value = Array.isArray(data) ? data : [data]
+      // 如果数据是单个对象，转换为数组
+      console.log('请求成功:', data)
+    })
+    .catch((error) => {
+      messages.value = []
+      // 如果请求失败，清空消息列表
+      console.error('请求失败:', error)
+    })
 </script>
 
 <style lang="scss" scoped>
