@@ -15,7 +15,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="Tip">
+<script setup lang="ts" name="Tipcomponent">
 import { Heart, Comment } from '@nutui/icons-vue'
 
 import { ref, reactive, toRefs, watch, onMounted } from 'vue'

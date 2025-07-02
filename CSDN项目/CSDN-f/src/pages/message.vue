@@ -20,11 +20,11 @@ import Bar from '../components/bar.vue'
 import Message from '../components/message.vue'
 import { onMounted, ref } from 'vue'
 import request from '../util/request'
-import { type Message } from '../api/message'
+import { type Message as MessageType } from '../api/message'
 // 定义一个函数来获取消息
-const messages = ref<Message[]>([])
+const messages = ref<MessageType[]>([])
 const getMessages = () =>
-  request<Message[]>({
+  request<MessageType[]>({
     method: 'get',
     url: '/tip/getMessages',
   })
