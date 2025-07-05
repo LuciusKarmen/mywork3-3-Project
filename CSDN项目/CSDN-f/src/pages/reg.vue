@@ -5,14 +5,20 @@
       <label for="name" class="label">用户名：</label>
       <nut-input v-model="name" placeholder="姓名" id="name" class="a" />
       <label for="password" class="label">密 码：</label>
-      <nut-input v-model="password" placeholder="密码" id="password" class="a" />
+      <nut-input v-model="password" placeholder="密码" id="password" class="a" type="password" />
       <label for="password" class="label">确认密码：</label>
-      <nut-input v-model="password" placeholder="密码" id="password" class="a" />
+      <nut-input
+        v-model="passwordConfirm"
+        placeholder="确认密码"
+        id="password"
+        class="a"
+        type="password"
+      />
       <label for="pic" class="label">选择头像：</label>
-      <input type="file" accept="image/*" @change="Upload" />
+      <input type="file" accept="image/*" @change="handleUpload" />
       <div class="btn">
-        <nut-button type="success" @click="get" class="btn1">登录</nut-button>
-        <nut-button type="warning" @click="get">清空</nut-button>
+        <nut-button type="success" @click="Upload">登录</nut-button>
+        <nut-button type="warning" @click="clean">清空</nut-button>
       </div>
     </div>
   </Transition>
@@ -20,25 +26,67 @@
     <hr />
     <div class="footer">©解释权Lucius.John.Karmen(许光明)</div>
   </footer>
+  <!-- 算了还是加一个返回登录吧 -->
+  <div class="back" @click="back">
+    <el-icon size="10"><Back /><span>返回登录</span></el-icon>
+  </div>
 </template>
 
 <script setup lang="ts" name="reg">
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import { ElIcon } from 'element-plus'
+import { Back } from '@element-plus/icons-vue'
+import request from '../util/request'
+
+const router = useRouter()
 const name = ref('')
 const password = ref('')
+const passwordConfirm = ref('')
 
-const pic= ref<File | null>(null)
-const Upload = (event: Event) => {
-  const input = event.target as HTMLInputElement
-  if (input.files && input.files.length > 0) {
-    pic.value = input.files[0]
-    console.log('上传的文件:', pic.value)
-  } else {
-    console.log('没有选择文件')
-  }
+const pic = ref<File | null>(null)
+const handleUpload = (e: Event) => {
+  const file = (e.target as HTMLInputElement).files?.[0]
+  pic.value = file || null
 }
-const get = () => {
-  console.log('提交')
+const Upload = () => {
+  if (password.value !== passwordConfirm.value) {
+    alert('两次输入的密码不一致，请重新输入！')
+    return
+  }
+  const formData = new FormData()
+  formData.append('name', name.value)
+  formData.append('password', password.value)
+  formData.append('pic', pic.value!)
+  request({
+    method: 'post',
+    url: '/user/register',
+    data: formData,
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  })
+    .then((data: any) => {
+      console.log(data)
+      if (data === '注册成功') {
+        alert('注册成功！')
+        router.push('/login')
+      } else {
+        alert('注册失败，宝宝请稍后再试！')
+      }
+    })
+    .catch((error) => {
+      console.error('请求失败:', error)
+    })
+}
+const clean = () => {
+  name.value = ''
+  password.value = ''
+  passwordConfirm.value = ''
+  pic.value = null
+}
+const back = () => {
+  router.push('/login')
 }
 </script>
 
@@ -60,13 +108,8 @@ const get = () => {
 
   .btn {
     display: flex;
-    justify-content: space-between;
-    position: absolute;
-    left: 15%;
-    bottom: 4%;
-    .btn1 {
-      margin-right: 30%;
-    }
+    justify-content: space-around;
+    margin-top: 20px;
   }
   .tit {
     font-size: 24px;
@@ -74,7 +117,7 @@ const get = () => {
     font-weight: 600;
     .title {
       font-size: 20px;
-      color: #c3ff00;
+      color: #f69116;
       margin-left: 20%;
       font-style: italic;
     }
@@ -92,7 +135,12 @@ const get = () => {
   font-weight: 400;
   color: #27aef7;
 }
-
+.back {
+  color: #1980fd;
+  position: fixed;
+  top: 10px;
+  left: 10px;
+}
 @media (max-width: 768px) {
   .login {
     width: 68%;

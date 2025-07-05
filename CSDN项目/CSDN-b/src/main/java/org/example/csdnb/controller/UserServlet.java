@@ -24,8 +24,16 @@ public class UserServlet {
         return Result.ok(userService.getPic(name));
     }
     @RequestMapping("/login")
-    public Result<User> login(String name, String password){
-        return Result.ok((User) userService.login(name,password));
+    public Result<User> login(@RequestParam String name,
+                              @RequestParam String password
+    ){
+        if(userService.login(name,password))
+        {
+            return Result.ok();
+        }
+        return Result.error(400,"用户名或密码错误");
+
+
     }
     @RequestMapping("/register")
     public Result<String> register(
@@ -45,7 +53,7 @@ public class UserServlet {
         }
         else{
             userService.register(name,password,pic);
-            return Result.ok("注册成功");
+            return Result.ok();
         }
 
 

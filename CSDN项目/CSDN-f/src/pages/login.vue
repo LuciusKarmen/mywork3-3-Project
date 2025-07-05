@@ -4,14 +4,14 @@
     <label for="name" class="label">用户名：</label>
     <nut-input v-model="name" placeholder="姓名" id="name" class="a" />
     <label for="password" class="label">密 码：</label>
-    <nut-input v-model="password" placeholder="密码" id="password" class="a" />
+    <nut-input v-model="password" placeholder="密码" id="password" class="a" type="password" />
     <div class="btn">
-      <nut-button type="success" @click="get" class="btn1">登录</nut-button>
+      <nut-button type="success" @click="login" class="btn1">登录</nut-button>
       <nut-button type="warning" @click="clear">清空</nut-button>
     </div>
     <br />
     <div class="tip">还没有账号?<a href="/reg">点击注册</a></div>
-    <div class="h"><a href="/our" class="h1">关于我们</a></div>
+    <div class="h" @click="go">关于我们</div>
   </div>
   <footer>
     <hr />
@@ -20,16 +20,40 @@
 </template>
 
 <script setup lang="ts" name="face">
+import request from '../util/request'
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+const go = () => {
+  router.push('/our')
+}
 const name = ref('')
 const password = ref('')
 
-const Upload = () => {
-  console.log('上传')
+const login = () => {
+  if (name.value === '' || password.value === '') {
+    alert('用户名或密码不能为空！')
+    return
+  }
+  request({
+    url: '/user/login',
+    method: 'POST',
+    data: {
+      name: name.value,
+      password: password.value,
+    },
+  })
+    .then(() => {
+      // 能进到 then 说明 code == 200,这个才是统一接口的妙处
+      alert('登录成功！')
+      router.push('/main')
+    })
+    .catch(() => {
+      alert('登录失败，请检查用户名或密码')
+    })
 }
-const get = () => {
-  console.log('提交')
-}
+
 const clear = () => {
   name.value = ''
   password.value = ''
@@ -67,13 +91,13 @@ const clear = () => {
     font-weight: 600;
     .title {
       font-size: 20px;
-      color: #c3ff00;
+      color: #f7bd2a;
       margin-left: 20%;
       font-style: italic;
     }
   }
   .h {
-    font-size: 20px;
+    font-size: 18px;
     position: fixed;
     left: 48%;
     transform: translate(-50%, 0);

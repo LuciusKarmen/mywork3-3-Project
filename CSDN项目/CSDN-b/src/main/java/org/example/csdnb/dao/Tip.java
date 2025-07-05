@@ -75,6 +75,7 @@ public class Tip {
     private Integer tgood;
     private Integer tmessage;
     private String tpic;
+    private String tclass;
 
     public String getTclass() {
         return tclass;
@@ -84,5 +85,5 @@ public class Tip {
         this.tclass = tclass;
     }
 
-    private String tclass;
+
 }

@@ -8,5 +8,6 @@ interface Tip {
   tgood: number
   tmessage: number
   tpic: string
+  tclass: string
 }
 export type { Tip }
