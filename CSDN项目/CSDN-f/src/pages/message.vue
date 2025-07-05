@@ -26,7 +26,7 @@ const messages = ref<MessageType[]>([])
 const getMessages = () =>
   request<MessageType[]>({
     method: 'get',
-    url: '/tip/getMessages',
+    url: '/message/getMessages',
   })
     .then((data) => {
       messages.value = Array.isArray(data) ? data : [data]
@@ -38,6 +38,9 @@ const getMessages = () =>
       // 如果请求失败，清空消息列表
       console.error('请求失败:', error)
     })
+onMounted(() => {
+  getMessages()
+})
 </script>
 
 <style lang="scss" scoped>

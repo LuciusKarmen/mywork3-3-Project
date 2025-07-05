@@ -1,5 +1,6 @@
 package org.example.csdnb.controller;
 
+import jakarta.servlet.annotation.MultipartConfig;
 import org.apache.catalina.User;
 import org.example.csdnb.service.UserService;
 import org.example.csdnb.utils.Result;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserServlet {
     @Autowired
     private UserService userService;
+    private static final String UPLOAD_DIR = "C:/path/to/uploads";
     @RequestMapping("/getUserPic")
     public Result<String> getUserPic(String name)
     {
@@ -26,9 +28,25 @@ public class UserServlet {
     @RequestMapping("/register")
     public Result<String> register(
             @RequestParam String name,
-            @RequestParam String password
+            @RequestParam String password,
+            @MultipartConfig
     ){
-        return Result.ok();
+
+
+        if(userService.getUser(name)!=null) {
+            return Result.error(400, "用户已存在");
+        }else if(name.length()>10||password.length()>20){
+            return Result.error(400, "用户名或密码过长");
+        }else if(name.length()<4||password.length()<6){
+            return Result.error(400, "用户名或密码过短");
+
+        }
+        else{
+            userService.register(name,password);
+            return Result.ok("注册成功");
+        }
+
+
     }
 
 

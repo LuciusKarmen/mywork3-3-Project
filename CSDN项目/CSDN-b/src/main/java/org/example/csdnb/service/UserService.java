@@ -5,6 +5,8 @@ import org.example.csdnb.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 public class UserService {
     @Autowired
@@ -17,6 +19,13 @@ public class UserService {
     }
     public User login(String name, String password) {
         return userMapper.login(name, password);
+    }
+    public void register(String name, String password) {
+        String id= UUID.randomUUID().toString() ;
+        String pic="https://csdnb.oss-cn-beijing.aliyuncs.com/pic/default.png";
+
+
+        userMapper.register(id, name, password, pic);
     }
 
 }
