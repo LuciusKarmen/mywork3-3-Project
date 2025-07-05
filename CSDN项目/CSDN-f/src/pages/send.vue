@@ -10,7 +10,7 @@
         placeholder="请输入标题"
         rows="1"
         class="t"
-        v-model="title"
+        v-model="tipTip.title"
       ></el-input>
       <hr />
       <el-input
@@ -58,15 +58,10 @@
 <script setup lang="ts" name="face">
 import Bar from '../components/bar.vue'
 import { ref } from 'vue'
-const title = ref('')
-const tcontent = ref('')
-const fileInput = ref<HTMLInputElement | null>(null)
-const avatarUrl = ref<string | null>(null)
-const triggerUpload = () => {
-  if (fileInput.value) {
-    fileInput.value.click()
-  }
-}
+import {type Tip} from '../api/tip'
+
+const file= ref<HTMLInputElement | null>(null)
+
 
 const handleImageChange = (event: Event) => {
   const file = (event.target as HTMLInputElement).files?.[0]
@@ -95,6 +90,22 @@ const options = [
   { tclass: '美食', label: '美食' },
   { tclass: '旅游', label: '旅游' },
 ]
+//这里是我的提交数据功能
+const tipTip:Tip={
+  tid: '',
+  tname: '',
+  tcontent: '',
+  title: '',
+  ttime: '',
+  tuser: '',
+  tgood: 0,
+  tmessage: 0,
+  tpic: ''
+}
+
+
+
+
 </script>
 
 <style lang="scss" scoped>

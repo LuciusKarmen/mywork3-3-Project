@@ -27,8 +27,15 @@ import { ref } from 'vue'
 const name = ref('')
 const password = ref('')
 
-const Upload = () => {
-  console.log('上传')
+const pic= ref<File | null>(null)
+const Upload = (event: Event) => {
+  const input = event.target as HTMLInputElement
+  if (input.files && input.files.length > 0) {
+    pic.value = input.files[0]
+    console.log('上传的文件:', pic.value)
+  } else {
+    console.log('没有选择文件')
+  }
 }
 const get = () => {
   console.log('提交')

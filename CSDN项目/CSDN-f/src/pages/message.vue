@@ -30,12 +30,10 @@ const getMessages = () =>
   })
     .then((data) => {
       messages.value = Array.isArray(data) ? data : [data]
-      // 如果数据是单个对象，转换为数组
       console.log('请求成功:', data)
     })
     .catch((error) => {
       messages.value = []
-      // 如果请求失败，清空消息列表
       console.error('请求失败:', error)
     })
 onMounted(() => {

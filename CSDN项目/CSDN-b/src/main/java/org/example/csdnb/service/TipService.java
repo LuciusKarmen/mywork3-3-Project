@@ -16,12 +16,11 @@ public class TipService {
     {
         return tipMapper.getTips();
     }
-    public void addTip(Tip tip)
-    {
-        tip.setTid(UUID.randomUUID().toString());
-        tip.setTtime(java.time.LocalDateTime.now().toString());
-        tip.setTgood(0);
-        tip.setTmessage(0);
+    public void addTip(Tip tip){
+        String id= UUID.randomUUID().toString() ;
+        tip.setTid(id);
         tipMapper.addTip(tip);
+
     }
+
 }
