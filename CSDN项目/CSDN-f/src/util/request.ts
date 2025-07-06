@@ -29,6 +29,7 @@ const service = axios.create({
 service.interceptors.request.use(
   (config) => {
     // 可添加 token 等操作
+
     return config
   },
   (error) => {
@@ -48,7 +49,6 @@ service.interceptors.response.use(
       // 抛出异常，让调用方 catch 到
       return Promise.reject(new Error(res.message || 'Error'))
     }
-
     return res.data
   },
   (error) => {

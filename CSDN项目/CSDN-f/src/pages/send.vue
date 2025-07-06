@@ -69,23 +69,21 @@ const triggerUpload = () => {
     fileInput.click()
   }
 }
-
 const handleAvatarUpload = (event: Event) => {
-  const file = (e.target as HTMLInputElement).files?.[0]
-  pic.value = file || null
-  if (!file.value) {
-    console.error('No file selected')
-    return
-  }
-  if (file.value) {
-    //提前看图片
+  const target = event.target as HTMLInputElement
+  if (target.files && target.files.length > 0) {
+    file.value = target.files[0]
     const reader = new FileReader()
     reader.onload = (e) => {
       avatarUrl.value = e.target?.result as string
     }
-    reader.readAsDataURL(file)
+    reader.readAsDataURL(file.value)
+  } else {
+    file.value = null
+    avatarUrl.value = null
   }
 }
+
 const options = [
   { tclass: '全部', label: '全部' },
   { tclass: '学习', label: '学习' },
@@ -117,9 +115,11 @@ const tipTip: Tip = {
 }
 
 const Send = () => {
+  tipTip.tid = ''
+  tipTip.title = tipTip.title || '无标题'
   tipTip.tuser = localStorage.getItem('user') || '匿名用户'
   tipTip.ttime = new Date().toLocaleString()
-  tipTip.tclass = tipTip.tclass || '全部' //如果没有选择分类，则默认为全部
+  tipTip.tclass = tipTip.tclass || '全部'
   tipTip.tname = tipTip.tclass //这里的分类就是tname
   tipTip.tcontent = tipTip.tcontent || '无内容'
   tipTip.tgood = 0
@@ -128,7 +128,11 @@ const Send = () => {
     alert('标题和内容至少需要5个字！')
     return
   }
-
+  const formdata = new FormData()
+  formdata.append('tip', JSON.stringify(tipTip))
+  if (file.value) {
+    formdata.append('file', file.value)
+  }
   request({
     url: '/tip/addTip',
     method: 'POST',

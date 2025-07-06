@@ -10,7 +10,7 @@
       <nut-button type="warning" @click="clear">清空</nut-button>
     </div>
     <br />
-    <div class="tip">还没有账号?<a href="/reg">点击注册</a></div>
+    <div class="tip">还没有账号?<span @click="reg">点击注册</span></div>
     <div class="h" @click="go">关于我们</div>
   </div>
   <footer>
@@ -27,6 +27,9 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 const go = () => {
   router.push('/our')
+}
+const reg = () => {
+  router.push('/reg')
 }
 const name = ref('')
 const password = ref('')
