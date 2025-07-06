@@ -101,7 +101,7 @@ const options = [
   { tclass: '旅游', label: '旅游' },
 ]
 //这里是我的提交数据功能
-const tipTip: Tip = {
+const tipTip = ref<Tip>({
   tid: '',
   tname: '', //没错，这是分类
   tcontent: '',
@@ -112,24 +112,34 @@ const tipTip: Tip = {
   tmessage: 0,
   tpic: '',
   tclass: '',
-}
+})
 
 const Send = () => {
-  tipTip.tid = ''
-  tipTip.title = tipTip.title || '无标题'
-  tipTip.tuser = localStorage.getItem('user') || '匿名用户'
-  tipTip.ttime = new Date().toLocaleString()
-  tipTip.tclass = tipTip.tclass || '全部'
-  tipTip.tname = tipTip.tclass //这里的分类就是tname
-  tipTip.tcontent = tipTip.tcontent || '无内容'
-  tipTip.tgood = 0
-  tipTip.tmessage = 0
-  if (tipTip.title.length < 5 || tipTip.tcontent.length < 5) {
+  tipTip.value.tid = ''
+  tipTip.value.title = tipTip.value.title || '无标题'
+  tipTip.value.tuser = localStorage.getItem('user') || '匿名用户'
+  tipTip.value.ttime = new Date().toLocaleString()
+  tipTip.value.tclass = tipTip.value.tclass || '全部'
+  tipTip.value.tname = tipTip.value.tclass //这里的分类就是tname
+  tipTip.value.tcontent = tipTip.value.tcontent || '无内容'
+  tipTip.value.tgood = 0
+  tipTip.value.tmessage = 0
+  const formdata = new FormData()
+  formdata.append('tid', tipTip.value.tid)
+  formdata.append('tname', tipTip.value.title || '无标题') //这里的分类就是tname
+  formdata.append('tcontent', tipTip.value.tcontent)
+  formdata.append('title', tipTip.value.title)
+  formdata.append('ttime', tipTip.value.ttime)
+  formdata.append('tuser', tipTip.value.tuser)
+  formdata.append('tgood', tipTip.value.tgood.toString())
+  formdata.append('tmessage', tipTip.value.tmessage.toString())
+  formdata.append('tclass', tipTip.value.tclass)
+
+  if (tipTip.value.title.length < 5 || tipTip.value.tcontent.length < 5) {
     alert('标题和内容至少需要5个字！')
     return
   }
-  const formdata = new FormData()
-  formdata.append('tip', JSON.stringify(tipTip))
+
   if (file.value) {
     formdata.append('file', file.value)
   }
@@ -137,24 +147,18 @@ const Send = () => {
     url: '/tip/addTip',
     method: 'POST',
     data: formdata,
-    headers: {
-      'Content-Type': 'multipart/form-data',
-    },
+    headers: {},
   })
-    .then((data) => {
-      if (data === '发布成功') {
-        alert('发布成功！')
+    .then(() => {
+      alert('发布成功！')
 
-        tipTip.tcontent = ''
-        tipTip.title = ''
-        tipTip.tclass = ''
-        avatarUrl.value = null
-      } else {
-        alert('发布失败，请稍后再试！')
-      }
+      tipTip.value.tcontent = ''
+      tipTip.value.title = ''
+      tipTip.value.tclass = ''
+      avatarUrl.value = null
     })
-    .catch((error) => {
-      console.error('请求失败:', error)
+    .catch(() => {
+      console.error('请求失败')
       alert('发布失败，请稍后再试！')
     })
 }

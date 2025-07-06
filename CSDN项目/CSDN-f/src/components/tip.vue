@@ -1,5 +1,5 @@
 <template>
-  <div class="t1">
+  <div class="t1" @click="preview">
     <div class="t2">
       <div class="tp"><img src="../pic/KK.png" alt="" class="ti" /></div>
       <div class="content">
@@ -17,13 +17,19 @@
 
 <script setup lang="ts" name="Tipcomponent">
 import { Heart, Comment } from '@nutui/icons-vue'
-
+import { useRouter } from 'vue-router'
 import { ref, reactive, toRefs, watch, onMounted } from 'vue'
 import { type Tip } from '../api/tip'
+
+const router = useRouter()
 const props = defineProps<{
   tip: Tip
 }>()
 const ok = ref(false)
+
+const preview = () => {
+  router.push(`/pre/:tid${props.tip.tid}`)
+}
 const OK = () => {
   ok.value = !ok.value
 }

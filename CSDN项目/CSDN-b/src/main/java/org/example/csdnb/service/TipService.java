@@ -42,5 +42,9 @@ public class TipService {
         tipMapper.addTip(tip);
 
     }
+    public Tip getTip(String tid)
+    {
+        return tipMapper.getTip(tid);
+    }
 
 }

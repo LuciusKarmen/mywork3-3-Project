@@ -66,17 +66,14 @@ const Upload = () => {
       'Content-Type': 'multipart/form-data',
     },
   })
-    .then((data: any) => {
-      console.log(data)
-      if (data === '注册成功') {
-        alert('注册成功！')
-        router.push('/login')
-      } else {
-        alert('注册失败，宝宝请稍后再试！')
-      }
+    .then(() => {
+      console.log(1)
+      alert('注册成功！')
+      router.push('/login')
     })
-    .catch((error) => {
-      console.error('请求失败:', error)
+
+    .catch(() => {
+      console.error('请求失败')
     })
 }
 const clean = () => {

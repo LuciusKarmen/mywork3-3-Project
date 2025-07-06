@@ -21,7 +21,7 @@ import Message from '../components/message.vue'
 import { onMounted, ref } from 'vue'
 import request from '../util/request'
 import { type Message as MessageType } from '../api/message'
-// 定义一个函数来获取消息
+
 const messages = ref<MessageType[]>([])
 const getMessages = () =>
   request<MessageType[]>({

@@ -14,4 +14,6 @@ public interface TipMapper {
     List<Tip> getTips();
     @Insert("insert into tip(tid,tname,tcontent,tpic,tclass,tuser,ttime,tgood,tmessage) values(#{tid},#{tname},#{tcontent},#{tpic},#{tclass},#{tuser},#{ttime},#{tgood},#{tmessage})")
     void addTip(Tip tip);
+    @Select("select * from tip where tid=#{tid}")
+    Tip getTip(String tid);
 }

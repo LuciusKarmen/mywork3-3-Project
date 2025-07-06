@@ -39,13 +39,13 @@ const login = () => {
     alert('用户名或密码不能为空！')
     return
   }
+  const formdata = new FormData()
+  formdata.append('name', name.value)
+  formdata.append('password', password.value)
   request({
     url: '/user/login',
     method: 'POST',
-    data: {
-      name: name.value,
-      password: password.value,
-    },
+    data: formdata,
   })
     .then(() => {
       // 能进到 then 说明 code == 200,这个才是统一接口的妙处
