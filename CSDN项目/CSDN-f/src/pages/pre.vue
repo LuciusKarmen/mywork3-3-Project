@@ -1,6 +1,6 @@
 <template>
   <div class="tip-detail">
-    <h2>{{ tip.title }}</h2>
+    <h2>{{ tip.tname }}</h2>
     <p>分类：{{ tip.tclass }}</p>
     <p>作者：{{ tip.tuser }}</p>
     <p>时间：{{ tip.ttime }}</p>

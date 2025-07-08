@@ -3,11 +3,13 @@
     <div class="t2">
       <div class="tp"><img src="../pic/KK.png" alt="" class="ti" /></div>
       <div class="content">
-        <div class="tn">{{ tip.tname }}</div>
+        <div class="tn">{{ tip.tuser }}</div>
         <div class="tt">{{ tip.ttime }}</div>
+        <div class="tt">{{ tip.tclass }}</div>
+        <div class="tc">{{ tip.tname }}</div>
       </div>
     </div>
-    <div class="tc">{{ tip.tcontent }}</div>
+
     <div class="foot">
       <div class="tg">点赞:{{ tip.tgood }}<Heart class="tc"></Heart></div>
       <div>评论:{{ tip.tmessage }}<Comment class="tc"></Comment></div>
@@ -28,7 +30,7 @@ const props = defineProps<{
 const ok = ref(false)
 
 const preview = () => {
-  router.push(`/pre/:tid${props.tip.tid}`)
+  router.push(`/pre/${props.tip.tid}`)
 }
 const OK = () => {
   ok.value = !ok.value

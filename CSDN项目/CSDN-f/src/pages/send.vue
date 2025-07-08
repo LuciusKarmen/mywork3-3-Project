@@ -10,7 +10,7 @@
         placeholder="请输入标题"
         rows="1"
         class="t"
-        v-model="tipTip.title"
+        v-model="tipTip.tname"
       ></el-input>
       <hr />
       <el-input
@@ -105,7 +105,6 @@ const tipTip = ref<Tip>({
   tid: '',
   tname: '', //没错，这是分类
   tcontent: '',
-  title: '',
   ttime: '',
   tuser: '',
   tgood: 0,
@@ -116,26 +115,24 @@ const tipTip = ref<Tip>({
 
 const Send = () => {
   tipTip.value.tid = ''
-  tipTip.value.title = tipTip.value.title || '无标题'
+  tipTip.value.tname = tipTip.value.tname || '无标题'
   tipTip.value.tuser = localStorage.getItem('user') || '匿名用户'
   tipTip.value.ttime = new Date().toLocaleString()
   tipTip.value.tclass = tipTip.value.tclass || '全部'
-  tipTip.value.tname = tipTip.value.tclass //这里的分类就是tname
   tipTip.value.tcontent = tipTip.value.tcontent || '无内容'
   tipTip.value.tgood = 0
   tipTip.value.tmessage = 0
   const formdata = new FormData()
   formdata.append('tid', tipTip.value.tid)
-  formdata.append('tname', tipTip.value.title || '无标题') //这里的分类就是tname
+  formdata.append('tname', tipTip.value.tname || '无标题') //这里的分类就是tname
   formdata.append('tcontent', tipTip.value.tcontent)
-  formdata.append('title', tipTip.value.title)
   formdata.append('ttime', tipTip.value.ttime)
   formdata.append('tuser', tipTip.value.tuser)
   formdata.append('tgood', tipTip.value.tgood.toString())
   formdata.append('tmessage', tipTip.value.tmessage.toString())
   formdata.append('tclass', tipTip.value.tclass)
 
-  if (tipTip.value.title.length < 5 || tipTip.value.tcontent.length < 5) {
+  if (tipTip.value.tname.length < 5 || tipTip.value.tcontent.length < 5) {
     alert('标题和内容至少需要5个字！')
     return
   }
@@ -153,7 +150,7 @@ const Send = () => {
       alert('发布成功！')
 
       tipTip.value.tcontent = ''
-      tipTip.value.title = ''
+      tipTip.value.tname = ''
       tipTip.value.tclass = ''
       avatarUrl.value = null
     })

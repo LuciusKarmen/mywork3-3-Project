@@ -15,8 +15,8 @@ import java.util.List;
 public class TipServlert {
     @Autowired
     private TipService tipService;
-    @RequestMapping("/getTip")
-    public Result<Tip> getTip(String tid) {
+    @RequestMapping("/getTip/{tid}")
+    public Result<Tip> getTip(@PathVariable String tid) {
         Tip tip = tipService.getTip(tid);
         return Result.ok(tip);
     }
