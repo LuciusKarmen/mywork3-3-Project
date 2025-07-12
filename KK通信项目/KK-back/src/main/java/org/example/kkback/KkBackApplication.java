@@ -8,6 +8,7 @@ public class KkBackApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(KkBackApplication.class, args);
+        System.out.println("启动成功");
     }
 
 }
