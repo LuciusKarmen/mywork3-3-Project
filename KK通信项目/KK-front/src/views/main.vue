@@ -26,7 +26,16 @@ const historyMessage = ref([
     from: 'Karmen',
     to: 'xgm',
     id: '0',
-  }
+  },
+  {
+    content: 'hello world too',
+    time: '10:11',
+    is: false,
+    from: 'xgm',
+    to: 'Karmen',
+    id: '1',
+  },
+
 ])
 const sendMessage = () => {
   historyMessage.value.push({
@@ -43,5 +52,14 @@ const sendMessage = () => {
 .main{
   width: 100vw;
   height: 100vh;
+  position: relative;
+  .chat{
+    width:85vw;
+    height: 93vh;
+    position: absolute;
+    left: 15vw;
+    top: 7vh;
+    background: #d7fbfe;
+  }
 }
 </style>
