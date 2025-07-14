@@ -12,11 +12,6 @@ import java.util.List;
 public class UserService {
     @Autowired
     private UserMapper userMapper;
-    public User selectByName(String name)
-    {
-        return userMapper.selectByName(name);
-    }
-
     public List<User> selectAll()
     {
         return userMapper.selectAll();

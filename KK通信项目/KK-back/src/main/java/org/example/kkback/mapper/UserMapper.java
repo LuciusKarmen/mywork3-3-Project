@@ -1,18 +1,15 @@
 package org.example.kkback.mapper;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
-import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 import org.example.kkback.dao.User;
 
 import java.util.List;
 
+@Mapper
+public interface UserMapper  {
 
-public interface UserMapper{
-
-    @Insert("select * from user where name=#{name}")
-    User selectByName(String name);
-    @Insert("select * from user")
+    @Select("select * from user")
     List<User> selectAll();
 }

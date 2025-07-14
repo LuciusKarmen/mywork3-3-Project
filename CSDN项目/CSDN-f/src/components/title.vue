@@ -1,6 +1,8 @@
 <template>
   <div class="title">
-    <div class="logo"><img src="../pic/KK.png" alt="图片" /></div>
+    <div class="logo">
+      <img src="../pic/KK.png" alt="图片" />
+    </div>
     <div class="search">
       <Search class="iconfont"></Search>
       <input type="text" placeholder="搜索" class="search2" />

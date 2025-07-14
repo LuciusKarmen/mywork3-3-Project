@@ -17,9 +17,4 @@ public class UserServlet {
         userService.selectAll();
     }
 
-    @RequestMapping("/selectByName")
-    public void selectByName(String name)
-    {
-        userService.selectByName(name);
-    }
 }

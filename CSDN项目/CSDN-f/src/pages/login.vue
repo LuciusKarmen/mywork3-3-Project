@@ -51,6 +51,8 @@ const login = () => {
       // 能进到 then 说明 code == 200,这个才是统一接口的妙处
       alert('登录成功！')
       router.push('/main')
+      localStorage.setItem('name', name.value)
+      alert('登录成功"+name.value+"欢迎回来！')
     })
     .catch(() => {
       alert('登录失败，请检查用户名或密码')
