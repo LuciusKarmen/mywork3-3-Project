@@ -5,20 +5,22 @@
 
     <!-- 登录表单 -->
     <div class="form">
-      <h2>登录</h2>
+      <h2>KK Comm</h2>
       <input type="text" placeholder="用户名" />
       <input type="password" placeholder="密码" />
       <div class="buttons">
         <el-button @click="handleRegister">注册</el-button>
         <el-button @click="handleLogin">登录</el-button>
       </div>
-      <footer class="footer">StellarNet Studio</footer>
+      <br />
+      <footer class="footer" @click="show">StellarNet Studio</footer>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 
 const particleCanvas = ref<HTMLCanvasElement | null>(null)
 
@@ -115,7 +117,10 @@ function initParticles() {
 
   draw()
 }
-
+const router = useRouter()
+function show() {
+  router.push('/our')
+}
 function handleLogin() {
   alert('登录按钮被点击')
 }
@@ -161,6 +166,7 @@ onMounted(() => {
   text-align: center;
   color: #fff;
   width: 320px;
+  position: relative;
 
   h2 {
     margin-bottom: 20px;
@@ -181,7 +187,7 @@ onMounted(() => {
     display: flex;
     justify-content: space-between;
     button {
-      width: 40%;
+      width: 45%;
       padding: 10px;
       background: rgba(255, 255, 255, 0.3);
       color: white;
@@ -194,6 +200,17 @@ onMounted(() => {
 
   button:hover {
     background: rgba(255, 255, 255, 0.5);
+  }
+  .footer {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #919191;
+    cursor: pointer;
+    &:hover {
+      color: #fff;
+    }
   }
 }
 </style>
