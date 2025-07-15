@@ -1,9 +1,199 @@
 <template>
-    <div>
+  <div class="login">
+    <!-- 粒子背景 canvas -->
+    <canvas ref="particleCanvas" class="particles-canvas"></canvas>
+
+    <!-- 登录表单 -->
+    <div class="form">
+      <h2>登录</h2>
+      <input type="text" placeholder="用户名" />
+      <input type="password" placeholder="密码" />
+      <div class="buttons">
+        <el-button @click="handleRegister">注册</el-button>
+        <el-button @click="handleLogin">登录</el-button>
+      </div>
+      <footer class="footer">StellarNet Studio</footer>
     </div>
+  </div>
 </template>
-<script lang='ts' setup name='Login'>
-import { ref } from 'vue'
+
+<script lang="ts" setup>
+import { ref, onMounted } from 'vue'
+
+const particleCanvas = ref<HTMLCanvasElement | null>(null)
+
+// 粒子配置项
+const config = {
+  number: 100,
+  color: '#ffffff',
+  opacity: 0.5,
+  size: 2,
+  lineColor: '#ffffff',
+  lineOpacity: 0.3,
+  lineWidth: 1,
+  linkDistance: 150,
+  velocity: 1.5,
+}
+
+interface Particle {
+  x: number
+  y: number
+  vx: number
+  vy: number
+}
+
+const particles: Particle[] = []
+
+function initParticles() {
+  const canvas = particleCanvas.value
+  if (!canvas) return
+
+  const ctx = canvas.getContext('2d')
+  if (!ctx) return
+
+  // 设置 canvas 大小
+  function resize() {
+    if (!canvas) return
+    canvas.width = window.innerWidth
+    canvas.height = window.innerHeight
+  }
+
+  window.addEventListener('resize', resize)
+  resize()
+
+  // 初始化粒子
+  for (let i = 0; i < config.number; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      vx: (Math.random() - 0.5) * config.velocity,
+      vy: (Math.random() - 0.5) * config.velocity,
+    })
+  }
+
+  // 绘制粒子
+  function draw() {
+    if (!ctx || !canvas) return
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    ctx.fillStyle = config.color
+    ctx.globalAlpha = config.opacity
+
+    for (const p of particles) {
+      ctx.beginPath()
+      ctx.arc(p.x, p.y, config.size, 0, Math.PI * 2)
+      ctx.fill()
+
+      // 更新位置
+      p.x += p.vx
+      p.y += p.vy
+
+      if (p.x <= 0 || p.x >= canvas.width) p.vx *= -1
+      if (p.y <= 0 || p.y >= canvas.height) p.vy *= -1
+    }
+
+    // 连线
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x
+        const dy = particles[i].y - particles[j].y
+        const dist = Math.sqrt(dx * dx + dy * dy)
+
+        if (dist < config.linkDistance) {
+          ctx.strokeStyle = config.lineColor
+          ctx.globalAlpha = config.lineOpacity
+          ctx.beginPath()
+          ctx.moveTo(particles[i].x, particles[i].y)
+          ctx.lineTo(particles[j].x, particles[j].y)
+          ctx.stroke()
+        }
+      }
+    }
+
+    requestAnimationFrame(draw)
+  }
+
+  draw()
+}
+
+function handleLogin() {
+  alert('登录按钮被点击')
+}
+function handleRegister() {
+  alert('注册按钮被点击')
+}
+
+onMounted(() => {
+  initParticles()
+})
 </script>
-<style lang='scss' scoped>
+
+<style lang="scss" scoped>
+.login {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #0e0e0e;
+}
+
+.particles-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.form {
+  position: relative;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  color: #fff;
+  width: 320px;
+
+  h2 {
+    margin-bottom: 20px;
+  }
+
+  input {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+  }
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    button {
+      width: 40%;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.3);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+  }
+
+  button:hover {
+    background: rgba(255, 255, 255, 0.5);
+  }
+}
 </style>
