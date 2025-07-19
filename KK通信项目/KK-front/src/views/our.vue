@@ -29,17 +29,14 @@
   </div>
 </template>
 
-<script setup name="our">
-import { ref } from 'vue'
-const a = ref('')
-</script>
+<script setup name="our" lang="ts"></script>
 
 <style scoped lang="scss">
 .about-container {
   position: relative;
   height: 110vh;
   width: 100%;
-  background-image: url('../pic/R-C.jpg');
+  background-image: url('../assets/R-C.jpg');
   background-size: cover;
   background-position: center;
   display: flex;

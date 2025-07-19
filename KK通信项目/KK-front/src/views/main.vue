@@ -1,5 +1,9 @@
 <template>
   <div class="main">
+    <div class="top">
+      <el-switch v-model="night" @click="changeLight" /><span class="search"></span>
+    </div>
+    <div class="left"></div>
     <div class="chat">
       <div
         v-for="item in historyMessage"
@@ -23,6 +27,10 @@
 <script lang="ts" setup name="">
 import { ref } from 'vue'
 const input = ref('')
+const night = ref(false)
+const changeLight = () => {
+  night.value = !night.value
+}
 const message = ref({
   content: '',
   time: new Date().toLocaleString([], { hour: '2-digit', minute: '2-digit' }),
@@ -70,13 +78,21 @@ const historyMessage = ref([
   width: 100vw;
   height: 100vh;
   position: relative;
+  .top {
+    width: 100%;
+    height: 7vh;
+    background: rgb(31, 184, 250);
+  }
+  .left {
+    width: 15vw;
+  }
   .chat {
     width: 85vw;
     height: 93vh;
     position: absolute;
     left: 15vw;
     top: 7vh;
-    background: linear-gradient(135deg, #f49f01, #0ceb69);
+
     animation: back 15s ease infinite;
     background-size: 400% 400%;
     padding: 20px;

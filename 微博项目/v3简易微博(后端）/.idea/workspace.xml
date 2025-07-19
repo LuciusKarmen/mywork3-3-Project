@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="007ac0c1-688c-444d-84e9-f272ad0a04ec" name="更改" comment="5">
-      <change beforePath="$PROJECT_DIR$/../../星辰购物网/系统前端/src/views/mains/head.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../星辰购物网/系统前端/src/views/mains/head.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../KK通信项目/KK-front/components.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../KK通信项目/KK-front/components.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../KK通信项目/KK-front/src/views/face.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../KK通信项目/KK-front/src/views/face.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../KK通信项目/KK-front/src/views/main.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../KK通信项目/KK-front/src/views/main.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../KK通信项目/KK-front/src/views/our.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../KK通信项目/KK-front/src/views/our.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../星辰购物网项目/星辰购物网-b/系统后端/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../星辰购物网项目/星辰购物网-b/系统后端/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +27,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="GoLibraries">
+    <option name="indexEntireGoPath" value="true" />
   </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
@@ -48,8 +55,11 @@
     &quot;Notification.DisplayName-DoNotAsk-Vcs Important Messages&quot;: &quot;VCS 重要消息&quot;,
     &quot;Notification.DoNotAsk-Vcs Important Messages&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/HP/Desktop/仓库3 (练习项目）/mywork3/微博项目/v3简易微博(后端）&quot;,
     &quot;mysql-explain.enableMySQLExplain&quot;: &quot;true&quot;,
@@ -158,6 +168,8 @@
       <workItem from="1748855082587" duration="1663000" />
       <workItem from="1748868437604" duration="2000" />
       <workItem from="1748916635119" duration="8000" />
+      <workItem from="1752674189680" duration="48000" />
+      <workItem from="1752674291303" duration="80000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <option name="closed" value="true" />
@@ -232,5 +244,9 @@
     <MESSAGE value="3" />
     <MESSAGE value="5" />
     <option name="LAST_COMMIT_MESSAGE" value="5" />
+  </component>
+  <component name="VgoProject">
+    <integration-enabled>false</integration-enabled>
+    <settings-migrated>true</settings-migrated>
   </component>
 </project>
