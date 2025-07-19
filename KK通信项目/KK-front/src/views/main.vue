@@ -101,13 +101,13 @@ const f=()=>{
   router.push('/main/home')
 }
 const add=()=>{
-  router.push('/main/home')
+  router.push('/main/add')
 }
 const s=()=>{
-  router.push('/main/home')
+  router.push('/main/server')
 }
 const about=()=>{
-  router.push('/main/home')
+  router.push('/main/about')
 }
 
 </script>
