@@ -1,9 +1,17 @@
 <template>
   <div class="main">
     <div class="top">
-      <el-switch v-model="night" @click="changeLight" /><span class="search"></span>
+      <div>头像</div>
+      <div>命数如织，当如磐石</div>
+      <el-switch v-model="night" @click="changeLight" /><span>切换模式</span>
+
     </div>
-    <div class="left"></div>
+    <div class="title">
+
+    </div>
+    <div class="left">
+        <router-view></router-view>
+    </div>
     <div class="chat">
       <div
         v-for="item in historyMessage"
@@ -81,18 +89,35 @@ const historyMessage = ref([
   .top {
     width: 100%;
     height: 7vh;
-    background: rgb(31, 184, 250);
+    background: rgb(43, 43, 43);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
   }
-  .left {
-    width: 15vw;
-  }
-  .chat {
-    width: 85vw;
+  .title {
+    background: rgb(55, 55, 55);
+    width:3vw;
     height: 93vh;
     position: absolute;
-    left: 15vw;
-    top: 7vh;
+    left: 0vw;
+    top:7vh;
 
+  }
+  .left {
+    width: 17vw;
+    height: 93vh;
+    position: absolute;
+    left: 3vw;
+    top: 7vh;
+    background: rgb(60, 60, 60);
+  }
+  .chat {
+    width: 80vw;
+    height: 93vh;
+    position: absolute;
+    left: 20vw;
+    top: 7vh;
+    background: #000;
     animation: back 15s ease infinite;
     background-size: 400% 400%;
     padding: 20px;
@@ -113,7 +138,7 @@ const historyMessage = ref([
         border-bottom-right-radius: 3px;
         .message-content-text {
           color: #000;
-          background: #26f706;
+          background: #eaeaea;
           border-radius: 10px;
           padding: 10px;
           word-break: break-all;
@@ -124,7 +149,7 @@ const historyMessage = ref([
         align-self: flex-start;
         border-bottom-left-radius: 3px;
         .message-content-text {
-          background: #8be2ff;
+          background: #aaaaaa;
           color: #000;
           border-radius: 10px;
           padding: 10px;
@@ -145,7 +170,7 @@ const historyMessage = ref([
       display: flex;
       align-items: center;
       justify-content: space-around;
-      position: absolute;
+      position: fixed;
       bottom: 0;
       padding: 0;
       .input-text {
