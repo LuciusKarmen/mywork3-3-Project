@@ -16,5 +16,6 @@ declare module 'vue' {
     Friendlist: typeof import('./src/components/title/friendlist.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Server: typeof import('./src/components/title/server.vue')['default']
   }
 }

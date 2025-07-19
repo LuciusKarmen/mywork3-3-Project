@@ -32,6 +32,28 @@ const router = createRouter({
       path: '/main',
       name: 'main',
       component: () => import('../views/main.vue'),
+      children: [
+        {
+          path: '/main',
+          name: 'home',
+          component: () => import('../components/title/friendlist.vue'),
+        },
+        {
+          path: '/main/add',
+          name: 'user',
+          component: () => import('../components/title/friendadd.vue'),
+        },
+        {
+          path: '/main/about',
+          name: 'message',
+          component: () => import('../components/title/about.vue'),
+        },
+        {
+          path: '/main/server',
+          name: 'message',
+          component: () => import('../components/title/server.vue'),
+        }
+      ]
     },
   ],
 })

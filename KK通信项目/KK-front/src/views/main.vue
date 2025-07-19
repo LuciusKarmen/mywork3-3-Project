@@ -7,7 +7,21 @@
 
     </div>
     <div class="title">
-
+      <div class="title-text" @click="f">
+        <img src="../assets/用户.png" alt="好友">
+        好友</div>
+      <div class="title-text" @click="add">
+        <img src="../assets/添加.png" alt="">
+        添加</div>
+      <div class="title-text" @click="s">
+        <img src="../assets/更多服务、功能.png" alt="">
+        服务</div>
+      <div class="title-text" @click="about">
+        <img src="../assets/提示.png" alt="">
+        关于</div>
+      <div class="title-foot" @click="out">
+        <img src="../assets/退出.png" alt="">
+        退出</div>
     </div>
     <div class="left">
         <router-view></router-view>
@@ -26,16 +40,18 @@
         </div>
       </div>
       <div class="input">
-        <input placeholder="请输入内容" v-model="input" @keyup.enter="send" class="input-text" />
-        <button class="btn" @click="send">发送</button>
+
       </div>
     </div>
   </div>
 </template>
 <script lang="ts" setup name="">
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+
 const input = ref('')
 const night = ref(false)
+const router = useRouter()
 const changeLight = () => {
   night.value = !night.value
 }
@@ -80,6 +96,20 @@ const historyMessage = ref([
     id: '1',
   },
 ])
+
+const f=()=>{
+  router.push('/main/home')
+}
+const add=()=>{
+  router.push('/main/home')
+}
+const s=()=>{
+  router.push('/main/home')
+}
+const about=()=>{
+  router.push('/main/home')
+}
+
 </script>
 <style lang="scss" scoped>
 .main {
@@ -101,6 +131,33 @@ const historyMessage = ref([
     position: absolute;
     left: 0vw;
     top:7vh;
+    .title-text {
+      font-size: 1vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-top: 5px;
+      img{
+        width: 2vw;
+        height: 2vw;
+      }
+    }
+    .title-foot {
+      font-size: 1vw;
+      border-bottom: #000 1px solid;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      img{
+        width: 2vw;
+        height: 2vw;
+      }
+    }
 
   }
   .left {
@@ -113,7 +170,7 @@ const historyMessage = ref([
   }
   .chat {
     width: 80vw;
-    height: 93vh;
+    height: 73vh;
     position: absolute;
     left: 20vw;
     top: 7vh;
@@ -165,34 +222,7 @@ const historyMessage = ref([
       }
     }
     .input {
-      width: 100%;
-      height: 10vh;
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
-      position: fixed;
-      bottom: 0;
-      padding: 0;
-      .input-text {
-        width: 80%;
-        height: 80%;
-        border-radius: 10px;
-        padding: 2px;
-        font-size: 14px;
-        outline: none;
-      }
-      .btn {
-        width: 7%;
-        height: 60%;
-        border-radius: 5px;
-        background-color: #f6729e;
-        color: white;
-        font-size: 14px;
-        cursor: pointer;
-        &:hover {
-          background-color: #fad1df;
-        }
-      }
+
     }
     .question {
       width: 100%;
