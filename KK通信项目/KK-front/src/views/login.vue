@@ -21,7 +21,7 @@
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import getLogin from '../api/login/index'
+import { getLogin } from '../api/login/index'
 import type { User } from '@/types/user'
 
 const particleCanvas = ref<HTMLCanvasElement | null>(null)
@@ -130,7 +130,13 @@ const user = ref<User>({
   pic: '',
 })
 function handleLogin() {
-  getLogin(user)
+  const user1: User = {
+    id: user.value.id,
+    name: user.value.name,
+    password: user.value.password,
+    pic: user.value.pic,
+  }
+  getLogin(user1)
     .then(() => {
       alert('登录成功')
       router.push('/main')

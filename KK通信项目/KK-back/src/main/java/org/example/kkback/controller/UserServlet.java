@@ -1,7 +1,9 @@
 package org.example.kkback.controller;
 
+import org.example.kkback.dao.User;
 import org.example.kkback.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,9 +19,11 @@ public class UserServlet {
 
     }
     @RequestMapping("/login")
-    public void login()
+    public void login(@RequestBody User user)
     {
-        userService.login("admin","admin");
+        String username = user.getName();
+        String password = user.getPassword();
+        userService.login(username,password);
 
     }
 
