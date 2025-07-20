@@ -46,6 +46,7 @@
   </div>
 </template>
 <script lang="ts" setup name="">
+import { a } from 'vitest/dist/chunks/suite.d.FvehnV49.js'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 
@@ -98,7 +99,7 @@ const historyMessage = ref([
 ])
 
 const f=()=>{
-  router.push('/main/home')
+  router.push('/main')
 }
 const add=()=>{
   router.push('/main/add')
@@ -108,6 +109,10 @@ const s=()=>{
 }
 const about=()=>{
   router.push('/main/about')
+}
+const out=()=>{
+  //居中弹出提示框
+  router.push('/login')
 }
 
 </script>

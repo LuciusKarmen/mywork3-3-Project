@@ -32,6 +32,13 @@ const router = createRouter({
           path: '/main',
           name: 'home',
           component: () => import('../components/title/friendlist.vue'),
+          children: [
+            {
+              path: '/main/{id}',
+              name: 'add',
+              component: () => import('../components/title/add.vue'),
+            },
+          ],
         },
         {
           path: '/main/add',

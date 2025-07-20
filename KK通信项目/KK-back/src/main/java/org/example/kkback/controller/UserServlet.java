@@ -14,7 +14,13 @@ public class UserServlet {
     @RequestMapping("/selectAll")
     public void selectAll()
     {
-        userService.selectAll();
+
+    }
+    @RequestMapping("/login")
+    public void login()
+    {
+        userService.login("admin","admin");
+
     }
 
 }
