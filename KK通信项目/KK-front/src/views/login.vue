@@ -6,8 +6,8 @@
     <!-- 登录表单 -->
     <div class="form">
       <h2>KK Comm</h2>
-      <input type="text" placeholder="用户名" />
-      <input type="password" placeholder="密码" />
+      <input type="text" placeholder="用户名" v-model="user.name" />
+      <input type="password" placeholder="密码" v-model="user.password" />
       <div class="buttons">
         <el-button @click="handleRegister">注册</el-button>
         <el-button @click="handleLogin">登录</el-button>
@@ -21,6 +21,8 @@
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
+import getLogin from '../api/login/index'
+import type { User } from '@/types/user'
 
 const particleCanvas = ref<HTMLCanvasElement | null>(null)
 
@@ -121,8 +123,21 @@ const router = useRouter()
 function show() {
   router.push('/our')
 }
+const user = ref<User>({
+  id: 1,
+  name: '',
+  password: '',
+  pic: '',
+})
 function handleLogin() {
-  alert('登录按钮被点击')
+  getLogin(user)
+    .then(() => {
+      alert('登录成功')
+      router.push('/main')
+    })
+    .catch(() => {
+      alert('登录失败')
+    })
 }
 function handleRegister() {
   alert('注册按钮被点击')

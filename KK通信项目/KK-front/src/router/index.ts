@@ -34,9 +34,9 @@ const router = createRouter({
           component: () => import('../components/title/friendlist.vue'),
           children: [
             {
-              path: '/main/{id}',
+              path: '/main/1',
               name: 'add',
-              component: () => import('../components/title/add.vue'),
+              component: () => import('../components/title/friendlist.vue'),
             },
           ],
         },
@@ -54,8 +54,8 @@ const router = createRouter({
           path: '/main/server',
           name: 'server',
           component: () => import('../components/title/server.vue'),
-        }
-      ]
+        },
+      ],
     },
   ],
 })
