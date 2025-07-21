@@ -4,27 +4,31 @@
       <div>头像</div>
       <div>命数如织，当如磐石</div>
       <el-switch v-model="night" @click="changeLight" /><span>切换模式</span>
-
     </div>
     <div class="title">
-      <div class="title-text" @click="f">
-        <img src="../assets/用户.png" alt="好友">
-        好友</div>
-      <div class="title-text" @click="add">
-        <img src="../assets/添加.png" alt="">
-        添加</div>
-      <div class="title-text" @click="s">
-        <img src="../assets/更多服务、功能.png" alt="">
-        服务</div>
-      <div class="title-text" @click="about">
-        <img src="../assets/提示.png" alt="">
-        关于</div>
+      <div class="title-text" :class="{ active: current === 'friends' }" @click="f">
+        <img src="../assets/用户.png" alt="好友" />
+        好友
+      </div>
+      <div class="title-text" :class="{ active: current === 'add' }" @click="add">
+        <img src="../assets/添加.png" alt="" />
+        添加
+      </div>
+      <div class="title-text" :class="{ active: current === 'server' }" @click="s">
+        <img src="../assets/更多服务、功能.png" alt="" />
+        服务
+      </div>
+      <div class="title-text" :class="{ active: current === 'about' }" @click="about">
+        <img src="../assets/提示.png" alt="" />
+        关于
+      </div>
       <div class="title-foot" @click="out">
-        <img src="../assets/退出.png" alt="">
-        退出</div>
+        <img src="../assets/退出.png" alt="" />
+        退出
+      </div>
     </div>
     <div class="left">
-        <router-view></router-view>
+      <router-view></router-view>
     </div>
     <div class="chat">
       <div
@@ -39,46 +43,28 @@
           {{ item.time }}
         </div>
       </div>
-      <div class="input">
-
-      </div>
+      <div class="input"></div>
     </div>
   </div>
 </template>
 <script lang="ts" setup name="">
 import { a } from 'vitest/dist/chunks/suite.d.FvehnV49.js'
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 
-const input = ref('')
 const night = ref(false)
 const router = useRouter()
+const storedUser = localStorage.getItem('user')
+if (storedUser) {
+  const user = JSON.parse(storedUser)
+  console.log('用户ID:', user.id)
+  console.log('用户名:', user.name)
+  console.log('用户头像地址:', user.pic)
+}
 const changeLight = () => {
   night.value = !night.value
 }
-const message = ref({
-  content: '',
-  time: new Date().toLocaleString([], { hour: '2-digit', minute: '2-digit' }),
-  is: true,
-  from: 'me',
-  to: 'you',
-  id: Math.random().toString(36).substring(3, 8),
-})
-const send = () => {
-  message.value.content = input.value
-  if (message.value.content) {
-    historyMessage.value.push(message.value)
 
-    message.value = {
-      content: '',
-      time: new Date().toLocaleString([], { hour: '2-digit', minute: '2-digit' }),
-      is: true,
-      from: 'me',
-      to: 'you',
-      id: Math.random().toString(36).substring(3, 8),
-    }
-  }
-}
 const historyMessage = ref([
   {
     content: 'hello world',
@@ -97,24 +83,31 @@ const historyMessage = ref([
     id: '1',
   },
 ])
+const current = ref('friends')
+const setActive = (tab: string) => {
+  current.value = tab
+}
 
-const f=()=>{
+const f = () => {
+  setActive('friends')
   router.push('/main')
 }
-const add=()=>{
+const add = () => {
+  setActive('add')
   router.push('/main/add')
 }
-const s=()=>{
+const s = () => {
+  setActive('server')
   router.push('/main/server')
 }
-const about=()=>{
+const about = () => {
+  setActive('about')
   router.push('/main/about')
 }
-const out=()=>{
+const out = () => {
   //居中弹出提示框
   router.push('/login')
 }
-
 </script>
 <style lang="scss" scoped>
 .main {
@@ -131,11 +124,11 @@ const out=()=>{
   }
   .title {
     background: rgb(55, 55, 55);
-    width:3vw;
+    width: 3vw;
     height: 93vh;
     position: absolute;
     left: 0vw;
-    top:7vh;
+    top: 7vh;
     .title-text {
       font-size: 1vw;
       display: flex;
@@ -143,9 +136,21 @@ const out=()=>{
       justify-content: center;
       align-items: center;
       margin-top: 5px;
-      img{
+      img {
         width: 2vw;
         height: 2vw;
+      }
+      &.active {
+        background: #000;
+        color: #fff;
+        border-radius: 5px;
+      }
+      &:hover {
+        background: #000;
+        color: #888888;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s;
       }
     }
     .title-foot {
@@ -158,12 +163,21 @@ const out=()=>{
       position: absolute;
       bottom: 0;
       width: 100%;
-      img{
+      img {
         width: 2vw;
         height: 2vw;
       }
+      &:active {
+        background: #000;
+        color: #fff;
+        border-radius: 5px;
+      }
+      &:hover {
+        background: #000;
+        color: #858585;
+        border-radius: 5px;
+      }
     }
-
   }
   .left {
     width: 17vw;
@@ -227,7 +241,6 @@ const out=()=>{
       }
     }
     .input {
-
     }
     .question {
       width: 100%;
