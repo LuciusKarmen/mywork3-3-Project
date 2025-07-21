@@ -1,12 +1,18 @@
 <template>
-  <div class="friend-add">
-    <div>世界不是一座座孤岛</div>
-    <div>你我一起</div>
-    <div>改变世界</div>
+  <div>
+    <SearchInput></SearchInput>
+    <div class="friend-add">
+      <br />
+      <br />
+      <br />
+      <div>世界不是一座座孤岛</div>
+      <div>你我一起</div>
+      <div>改变世界</div>
+    </div>
   </div>
 </template>
 <script lang="ts" setup name="">
-import { ref } from 'vue'
+import SearchInput from '../search.vue'
 </script>
 <style lang="scss" scoped>
 .friend-add {

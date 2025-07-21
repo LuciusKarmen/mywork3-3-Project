@@ -43,7 +43,16 @@
           {{ item.time }}
         </div>
       </div>
-      <div class="input"></div>
+    </div>
+    <div class="input">
+      <el-input
+        v-model="textarea"
+        style="width: 80vw; height: 20vh; background-color: #ff7979; margin: 0; padding: 0"
+        :rows="6"
+        type="textarea"
+        placeholder="Please input"
+      />
+      <el-button type="primary" @click="sendMessage" class="send-button">发送</el-button>
     </div>
   </div>
 </template>
@@ -52,6 +61,11 @@ import { a } from 'vitest/dist/chunks/suite.d.FvehnV49.js'
 import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 
+const textarea = ref('')
+const sendMessage = () => {
+  console.log(textarea.value)
+  textarea.value = ''
+}
 const night = ref(false)
 const router = useRouter()
 const storedUser = localStorage.getItem('user')
@@ -84,6 +98,7 @@ const historyMessage = ref([
   },
 ])
 const current = ref('friends')
+const inputValue = ref('')
 const setActive = (tab: string) => {
   current.value = tab
 }
@@ -114,6 +129,7 @@ const out = () => {
   width: 100vw;
   height: 100vh;
   position: relative;
+  overflow: hidden;
   .top {
     width: 100%;
     height: 7vh;
@@ -240,15 +256,21 @@ const out = () => {
         text-align: right;
       }
     }
-    .input {
-    }
-    .question {
-      width: 100%;
-      height: 10vh;
+  }
+  .input {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 80vw;
+    height: 20vh;
+    background-color: #ffffff;
+    box-sizing: border-box;
+    .send-button {
       position: absolute;
-      bottom: 0;
-      right: 0;
-      background-color: aqua;
+      right: 10px;
+      bottom: 10px;
+      width: 80px;
+      height: 40px;
     }
   }
 }
