@@ -1,10 +1,12 @@
 <template>
   <SearchInput />
   <div class="friend-list">
-    <div v-for="(friend, index) in 10" :key="index" class="friend-item">
+    <div v-for="(friend, index) in 15" :key="index" class="friend-item">
       <div class="friend-item-pic">
-        <img src="../../assets/圆添加.png" alt="" class="friend-item-pic-img" />
+        <img src="../../assets/R-C.jpg" alt="" />
       </div>
+      <div class="name">Karmen</div>
+      <div class="live"></div>
     </div>
   </div>
 </template>
@@ -28,15 +30,34 @@ import SearchInput from '../search.vue'
     width: 100%;
     padding: 0.5rem;
     border-bottom: 1px solid #ccc;
+    &:last-child {
+      border-bottom: none;
+    }
+    &:hover {
+      background-color: #fafafa;
+      cursor: pointer;
+    }
     .friend-item-pic {
-      width: 40px;
-      height: 40px;
+      width: 30px;
+      height: 30px;
       margin-right: 1rem;
-      .friend-item-pic-img {
+      img {
         width: 100%;
         height: 100%;
         border-radius: 50%;
       }
+    }
+    .name {
+      font-size: 1rem;
+      font-weight: 500;
+    }
+    .live {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background-color: rgb(0, 123, 255);
+      margin-left: auto;
+      margin-top: -20px;
     }
   }
 }

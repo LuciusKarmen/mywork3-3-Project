@@ -1,169 +1,237 @@
 <template>
   <div class="login">
-    <div class="tit">登录<span class="title">欢迎加入KSDN</span></div>
-    <label for="name" class="label">用户名：</label>
-    <nut-input v-model="name" placeholder="姓名" id="name" class="a" />
-    <label for="password" class="label">密 码：</label>
-    <nut-input v-model="password" placeholder="密码" id="password" class="a" type="password" />
-    <div class="btn">
-      <nut-button type="success" @click="login" class="btn1">登录</nut-button>
-      <nut-button type="warning" @click="clear">清空</nut-button>
+    <!-- 粒子背景 canvas -->
+    <canvas ref="particleCanvas" class="particles-canvas"></canvas>
+
+    <!-- 登录表单 -->
+    <div class="form">
+      <h2>星辰论坛</h2>
+      <input type="text" placeholder="用户名" v-model="user.name" />
+      <input type="password" placeholder="密码" v-model="user.password" />
+      <div class="buttons">
+        <el-button @click="handleRegister">注册</el-button>
+        <el-button @click="handleLogin">登录</el-button>
+      </div>
+      <br />
+      <footer class="footer" @click="show">StellarNet Studio</footer>
     </div>
-    <br />
-    <div class="tip">还没有账号?<span @click="reg">点击注册</span></div>
-    <div class="h" @click="go">关于我们</div>
   </div>
-  <footer>
-    <hr />
-    <div class="footer">©解释权Lucius.John.Karmen(许光明)</div>
-  </footer>
 </template>
 
-<script setup lang="ts" name="face">
-import request from '../util/request'
-import { ref } from 'vue'
+<script lang="ts" setup>
+import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
+import type { User } from '../api/user'
 
+const particleCanvas = ref<HTMLCanvasElement | null>(null)
+
+// 粒子配置项
+const config = {
+  number: 100,
+  color: '#000000',
+  opacity: 0.5,
+  size: 2,
+  lineColor: '#000000',
+  lineOpacity: 0.3,
+  lineWidth: 1,
+  linkDistance: 150,
+  velocity: 1.5,
+}
+
+interface Particle {
+  x: number
+  y: number
+  vx: number
+  vy: number
+}
+
+const particles: Particle[] = []
+
+function initParticles() {
+  const canvas = particleCanvas.value
+  if (!canvas) return
+
+  const ctx = canvas.getContext('2d')
+  if (!ctx) return
+
+  // 设置 canvas 大小
+  function resize() {
+    if (!canvas) return
+    canvas.width = window.innerWidth
+    canvas.height = window.innerHeight
+  }
+
+  window.addEventListener('resize', resize)
+  resize()
+
+  // 初始化粒子
+  for (let i = 0; i < config.number; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      vx: (Math.random() - 0.5) * config.velocity,
+      vy: (Math.random() - 0.5) * config.velocity,
+    })
+  }
+
+  // 绘制粒子
+  function draw() {
+    if (!ctx || !canvas) return
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    ctx.fillStyle = config.color
+    ctx.globalAlpha = config.opacity
+
+    for (const p of particles) {
+      ctx.beginPath()
+      ctx.arc(p.x, p.y, config.size, 0, Math.PI * 2)
+      ctx.fill()
+
+      // 更新位置
+      p.x += p.vx
+      p.y += p.vy
+
+      if (p.x <= 0 || p.x >= canvas.width) p.vx *= -1
+      if (p.y <= 0 || p.y >= canvas.height) p.vy *= -1
+    }
+
+    // 连线
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x
+        const dy = particles[i].y - particles[j].y
+        const dist = Math.sqrt(dx * dx + dy * dy)
+
+        if (dist < config.linkDistance) {
+          ctx.strokeStyle = config.lineColor
+          ctx.globalAlpha = config.lineOpacity
+          ctx.beginPath()
+          ctx.moveTo(particles[i].x, particles[i].y)
+          ctx.lineTo(particles[j].x, particles[j].y)
+          ctx.stroke()
+        }
+      }
+    }
+
+    requestAnimationFrame(draw)
+  }
+
+  draw()
+}
 const router = useRouter()
-const go = () => {
+function show() {
   router.push('/our')
 }
-const reg = () => {
-  router.push('/reg')
-}
-const name = ref('')
-const password = ref('')
-
-const login = () => {
-  if (name.value === '' || password.value === '') {
-    alert('用户名或密码不能为空！')
+const user = ref<User>({
+  id: '1',
+  name: '',
+  password: '',
+  pic: '',
+})
+function handleLogin() {
+  const user1: User = {
+    id: user.value.id,
+    name: user.value.name,
+    password: user.value.password,
+    pic: user.value.pic,
+  }
+  if (!user1.name || !user1.password) {
+    alert('用户名和密码不能为空')
     return
   }
-  const formdata = new FormData()
-  formdata.append('name', name.value)
-  formdata.append('password', password.value)
-  request({
-    url: '/user/login',
-    method: 'POST',
-    data: formdata,
-  })
-    .then(() => {
-      // 能进到 then 说明 code == 200,这个才是统一接口的妙处
-      alert('登录成功！')
-      router.push('/main')
-      localStorage.setItem('name', name.value)
-      alert('登录成功"+name.value+"欢迎回来！')
-    })
-    .catch(() => {
-      alert('登录失败，请检查用户名或密码')
-    })
+}
+function handleRegister() {
+  alert('注册按钮被点击')
 }
 
-const clear = () => {
-  name.value = ''
-  password.value = ''
-}
+onMounted(() => {
+  initParticles()
+})
 </script>
 
 <style lang="scss" scoped>
 .login {
-  width: 30%;
-  margin: 0 auto;
-  padding: 20px;
-  height: 60vh;
-  border: 1px solid #ffffff;
-  border-radius: 20px;
-  background-color: rgba(122, 244, 251, 0.467);
-  position: fixed;
-  left: 50%;
-  transform: translateX(-50%);
-  top: 15vh;
-  blur: 5px;
-  box-shadow: 0 0 30px rgba(244, 244, 244, 0.5);
-
-  .btn {
-    display: flex;
-    position: absolute;
-    left: 20%;
-    bottom: 10%;
-    .btn1 {
-      margin-right: 100px;
-    }
-  }
-  .tit {
-    font-size: 24px;
-    color: rgb(0, 46, 248);
-    font-weight: 600;
-    .title {
-      font-size: 20px;
-      color: #f7bd2a;
-      margin-left: 20%;
-      font-style: italic;
-    }
-  }
-  .h {
-    font-size: 18px;
-    position: fixed;
-    left: 48%;
-    transform: translate(-50%, 0);
-    color: rgb(0, 46, 248);
-    bottom: 1%;
-    .h1 {
-      text-decoration: none;
-      &:hover {
-        color: rgb(255, 255, 255);
-        background-color: #c3ff00;
-      }
-    }
-  }
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f6f6f6;
 }
-.footer {
-  position: fixed;
-  bottom: 0;
+
+.particles-canvas {
+  position: absolute;
+  top: 0;
   left: 0;
-  right: 0;
-  text-align: center;
-}
-.label {
-  font-size: 15px;
-  font-weight: 400;
-  color: #27aef7;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
 }
 
-@media (max-width: 768px) {
-  .login {
-    width: 68%;
-    height: 50vh;
-    position: fixed;
-    left: 50%;
-    transform: translateX(-50%);
-    .label {
-      font-size: 15px;
-      font-weight: 500;
-      color: #1980fd;
+.form {
+  position: relative;
+  z-index: 2;
+  background: rgba(83, 83, 83, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  color: #fff;
+  width: 320px;
+  position: relative;
+
+  h2 {
+    margin-bottom: 20px;
+  }
+
+  input {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+  }
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    button {
+      width: 45%;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.3);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
     }
-    .tit {
-      margin-bottom: 40px;
-    }
-    .btn {
-      display: flex;
-      position: absolute;
-      left: 20%;
-      bottom: 10%;
-      .btn1 {
-        margin-right: 35%;
-      }
-    }
+  }
+
+  button:hover {
+    background: rgba(255, 255, 255, 0.5);
   }
   .footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    text-align: center;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #919191;
+    cursor: pointer;
+    &:hover {
+      color: #fff;
+    }
   }
-  .a {
-    margin-bottom: 30px;
+}
+@media (max-width: 768px) {
+  .form {
+    width: 80%;
   }
 }
 </style>
