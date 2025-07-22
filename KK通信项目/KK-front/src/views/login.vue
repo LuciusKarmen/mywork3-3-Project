@@ -139,6 +139,7 @@ function handleLogin() {
   getLogin(user1)
     .then(() => {
       alert('登录成功')
+      localStorage.setItem('user', JSON.stringify(user1))
       router.push('/main')
     })
     .catch(() => {

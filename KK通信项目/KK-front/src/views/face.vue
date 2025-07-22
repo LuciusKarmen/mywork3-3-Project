@@ -1,6 +1,6 @@
 <template>
   <section class="welcome">
-    <header class="title">欢迎体验 KK Comm</header>
+    <header class="title">欢迎体验 星辰通讯</header>
     <article class="subtitle">即时通信 · 简洁高效 · 安全可靠</article>
     <button @click="a" class="enter">立即体验</button>
   </section>
