@@ -36,8 +36,6 @@ public class TipServlert {
             @RequestParam Integer tmessage,
             @RequestParam String tclass,
             @RequestParam MultipartFile file
-
-
             ) throws IOException {
         Tip tip = new Tip();
         tip.setTid(tid);

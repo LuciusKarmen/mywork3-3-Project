@@ -22,24 +22,14 @@ import Bar from '../components/bar.vue'
 import { Search, HorizontalN, Right } from '@nutui/icons-vue'
 import { ref, computed, watch, onMounted } from 'vue'
 import { type Tip } from '../api/tip'
-import request from '../util/request'
+import { getTips } from '../api/main'
 
 const tips = ref<Tip[]>([])
 
-const getTip = () =>
-  request<Tip>({
-    method: 'get',
-    url: '/tip/getTips',
-  })
-    .then((data) => {
-      tips.value = Array.isArray(data) ? data : [data]
-      console.log('请求成功:', data)
-    })
-    .catch((error) => {
-      console.error('请求失败:', error)
-    })
 onMounted(() => {
-  getTip()
+  getTips().then((data) => {
+    tips.value = data
+  })
 })
 </script>
 

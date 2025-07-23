@@ -1,8 +1,7 @@
 import type { Tip } from '../tip'
 import request from '../../util/request'
-
-export const getTips = () =>
-  request<Tip[]>({
+export const getTip = (id: string) =>
+  request<Tip>({
     method: 'get',
-    url: '/tip/getTips',
+    url: `/tip/getTip/${id}`,
   })

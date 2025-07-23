@@ -24,8 +24,8 @@ public class UserService {
     public String getPic(String name) {
         return userMapper.getUserPic(name);
     }
-    public Boolean login(String name, String password) {
-        return userMapper.login(name,password) != null;
+    public User login(String name, String password) {
+        return userMapper.login(name,password);
     }
     public void register(String name, String password, MultipartFile pic) throws IOException {
         String id= UUID.randomUUID().toString() ;

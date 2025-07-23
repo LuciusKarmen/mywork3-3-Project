@@ -18,18 +18,21 @@ public class UserServlet {
     @Autowired
     private UserService userService;
 
+
+
     @RequestMapping("/getUserPic")
     public Result<String> getUserPic(String name)
     {
         return Result.ok(userService.getPic(name));
     }
     @RequestMapping("/login")
-    public Result<User> login(@RequestParam String name,
+    public Result<User> login(@RequestParam String username,
                               @RequestParam String password
     ){
-        if(userService.login(name,password))
+        if(userService.login(username,password)!=null)
         {
-            return Result.ok();
+            User user=userService.login(username,password);
+            return Result.ok(user);
         }
         return Result.error(400,"用户名或密码错误");
 
@@ -37,22 +40,22 @@ public class UserServlet {
     }
     @RequestMapping("/register")
     public Result<String> register(
-            @RequestParam String name,
+            @RequestParam String username,
             @RequestParam String password,
             @RequestParam MultipartFile pic
     ) throws IOException {
 
 
-        if(userService.getUser(name)!=null) {
+        if(userService.getUser(username)!=null) {
             return Result.error(400, "用户已存在");
-        }else if(name.length()>10||password.length()>20){
+        }else if(username.length()>10||password.length()>20){
             return Result.error(400, "用户名或密码过长");
-        }else if(name.length()<4||password.length()<6){
+        }else if(username.length()<4||password.length()<6){
             return Result.error(400, "用户名或密码过短");
 
         }
         else{
-            userService.register(name,password,pic);
+            userService.register(username,password,pic);
             return Result.ok();
         }
 

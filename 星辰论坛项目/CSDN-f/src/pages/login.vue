@@ -10,7 +10,7 @@
       <input type="password" placeholder="密码" v-model="user.password" />
       <div class="buttons">
         <el-button @click="handleRegister">注册</el-button>
-        <el-button @click="handleLogin">登录</el-button>
+        <el-button @click="Login">登录</el-button>
       </div>
       <br />
       <footer class="footer" @click="show">StellarNet Studio</footer>
@@ -22,6 +22,7 @@
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import type { User } from '../api/user'
+import { getLogin } from '../api/login'
 
 const particleCanvas = ref<HTMLCanvasElement | null>(null)
 
@@ -128,16 +129,18 @@ const user = ref<User>({
   password: '',
   pic: '',
 })
-function handleLogin() {
-  const user1: User = {
-    id: user.value.id,
-    name: user.value.name,
-    password: user.value.password,
-    pic: user.value.pic,
-  }
-  if (!user1.name || !user1.password) {
-    alert('用户名和密码不能为空')
-    return
+async function Login() {
+  try {
+    const userInfo = await getLogin(user.value.name, user.value.password)
+    if (userInfo) {
+      console.log('登录成功:', userInfo)
+      localStorage.setItem('user', JSON.stringify(userInfo))
+      router.push('/our')
+    } else {
+      alert('用户名或密码错误')
+    }
+  } catch (error) {
+    console.error('登录失败:', error)
   }
 }
 function handleRegister() {

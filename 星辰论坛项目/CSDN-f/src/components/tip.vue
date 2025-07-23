@@ -29,8 +29,8 @@ const props = defineProps<{
 }>()
 const ok = ref(false)
 
-const preview = () => {
-  router.push(`/pre/${props.tip.tid}`)
+const preview = async () => {
+  await router.push('/pre/' + props.tip.tid)
 }
 const OK = () => {
   ok.value = !ok.value
