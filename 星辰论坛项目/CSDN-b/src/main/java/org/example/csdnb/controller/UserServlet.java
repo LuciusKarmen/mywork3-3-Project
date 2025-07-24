@@ -4,6 +4,7 @@ import org.example.csdnb.dao.User;
 import org.example.csdnb.service.UserService;
 import org.example.csdnb.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,10 +21,11 @@ public class UserServlet {
 
 
 
-    @RequestMapping("/getUserPic")
-    public Result<String> getUserPic(String name)
+    @RequestMapping("/getUserPic/{name}")
+    public Result<User> getUserPic(@PathVariable String name)
     {
-        return Result.ok(userService.getPic(name));
+        User user= userService.getUser(name);
+        return Result.ok(user);
     }
     @RequestMapping("/login")
     public Result<User> login(@RequestParam String username,

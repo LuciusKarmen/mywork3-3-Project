@@ -1,15 +1,14 @@
 <template>
   <div class="login">
-    <!-- 粒子背景 canvas -->
+    <!-- 粒子背景 canvas，个人特色 -->
     <canvas ref="particleCanvas" class="particles-canvas"></canvas>
 
-    <!-- 登录表单 -->
     <div class="form">
       <h2>星辰论坛</h2>
       <input type="text" placeholder="用户名" v-model="user.name" />
       <input type="password" placeholder="密码" v-model="user.password" />
       <div class="buttons">
-        <el-button @click="handleRegister">注册</el-button>
+        <el-button @click="handleRegister">前去注册</el-button>
         <el-button @click="Login">登录</el-button>
       </div>
       <br />
@@ -134,8 +133,10 @@ async function Login() {
     const userInfo = await getLogin(user.value.name, user.value.password)
     if (userInfo) {
       console.log('登录成功:', userInfo)
-      localStorage.setItem('user', JSON.stringify(userInfo))
-      router.push('/our')
+      localStorage.setItem('username', userInfo.name)
+      localStorage.setItem('userid', userInfo.id)
+      localStorage.setItem('userpic', userInfo.pic)
+      router.push('/main')
     } else {
       alert('用户名或密码错误')
     }

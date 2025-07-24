@@ -7,6 +7,8 @@
     <div v-for="(item, index) in tips" :key="index">
       <TipComponent ref="tip" :tip="item"></TipComponent>
     </div>
+    <br />
+    <br />
   </div>
   <div class="footer">
     <Bar></Bar>

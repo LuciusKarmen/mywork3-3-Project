@@ -1,7 +1,10 @@
 <template>
   <div class="title">
-    <div class="logo">
-      <img src="../pic/KK.png" alt="图片" />
+    <div class="show">
+      <div class="logo">
+        <img :src="picture" alt="用户头像" />
+      </div>
+      <div class="name">{{ username }}</div>
     </div>
     <div class="search">
       <Search class="iconfont"></Search>
@@ -30,6 +33,7 @@ import { ref, computed } from 'vue'
 const menu = () => {
   ok1.value = !ok1.value
 }
+const username = ref(localStorage.getItem('username') || '匿名用户')
 const classify = ref([
   '全部',
   '学习',
@@ -46,7 +50,10 @@ const classify = ref([
   '美食',
   '旅游',
 ])
-
+const avatar = ref(localStorage.getItem('userpic') || '../pic/KK.png')
+const picture = computed(() => {
+  return `http://localhost:8080/${avatar.value}`
+})
 const ok1 = ref(true)
 </script>
 
@@ -61,110 +68,209 @@ const ok1 = ref(true)
   justify-content: space-between;
   align-items: center;
   padding: 1% 5%;
-  background-color: rgb(208, 208, 208);
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
   height: 6vh;
-  border-bottom: 2px solid paleturquoise;
-  margin-bottom: 1vh;
-  .logo {
-    width: 4%;
-    height: 5vh;
-    img {
-      width: 100%;
-      height: 100%;
-      border-radius: 30%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-bottom: 2px solid rgba(0, 188, 212, 0.3);
+  transition: background 0.3s ease;
+
+  &:hover {
+    background: linear-gradient(135deg, #e8f5e9 0%, #fce4ec 100%);
+  }
+
+  .show {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: bold;
+    color: #333;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+    .logo {
+      height: 5vh;
+      width: 5vh;
+      border-radius: 50%;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
     }
   }
+
   .search {
+    position: relative;
+    width: 35%;
+    height: 5vh;
+
     .search2 {
       width: 100%;
-      height: 5vh;
-      background-color: rgb(255, 255, 255);
-      border-radius: 20px;
-      border: 2px solid paleturquoise;
-      padding-left: 10px;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 25px;
+      border: 2px solid rgba(0, 188, 212, 0.5);
+      padding-left: 40px;
       font-size: 1.2rem;
+      outline: none;
+      transition: all 0.3s ease;
+
+      &:focus {
+        border-color: #00bcd4;
+        box-shadow: 0 0 5px rgba(0, 188, 212, 0.5);
+      }
     }
+
     .iconfont {
       position: absolute;
-      right: 10px;
+      left: 12px;
       top: 50%;
       transform: translateY(-50%);
-      font-size: 1.5rem;
-      color: #7d7e80;
+      font-size: 1.3rem;
+      color: #999;
+      transition: color 0.3s ease;
     }
-    .iconfont2 {
+
+    &:focus-within .iconfont {
+      color: #00bcd4;
     }
-    width: 50%;
-    height: 5vh;
-    position: relative;
   }
+
   .pic {
-    background-color: rgb(255, 255, 255);
-    width: 5%;
-    padding: 5px;
+    background-color: rgba(255, 255, 255, 0.9);
+    width: 4%;
+    padding: 6px;
     border-radius: 10%;
-    &:hover {
-      background-color: rgb(123, 123, 123);
-    }
     text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: rgba(123, 123, 123, 0.2);
+      transform: rotate(90deg);
+    }
+
+    .iconfont3 {
+      font-size: 1.5rem;
+      color: #333;
+    }
   }
+
   .menu {
     position: absolute;
     top: 6vh;
-    right: 0%;
-    width: 22%;
-    height: 50vh;
-    overflow-y: scroll;
-    background-color: rgb(255, 255, 255);
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    right: 5%;
+    width: 20%;
+    max-height: 50vh;
+    background: linear-gradient(135deg, #ffffff 0%, #f9f9f9 100%);
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
     z-index: 1001;
+    overflow-y: auto;
+    animation: fadeIn 0.3s ease forwards;
+    padding: 10px 0;
+
     h1 {
       text-align: center;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       color: #333;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
+      font-weight: bold;
     }
+
     .menu1 {
-      padding: 5px;
+      padding: 4px 10px;
+
       .menu2 {
         display: flex;
         justify-content: space-between;
-        padding: 5px;
+        align-items: center;
+        padding: 8px 12px;
         cursor: pointer;
-        border-bottom: 2px solid #c2c2c2;
+        border-radius: 8px;
+        transition: background 0.2s ease;
+
         &:hover {
-          background-color: #f0f0f0;
+          background-color: #e0f7fa;
         }
+
         span {
           font-size: 1rem;
           color: #555;
         }
+
+        .iconfont2 {
+          font-size: 1rem;
+          color: #999;
+          transition: transform 0.2s ease;
+        }
+
+        &:hover .iconfont2 {
+          transform: translateX(4px);
+        }
       }
+    }
+
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: rgba(0, 0, 0, 0.2);
+      border-radius: 3px;
     }
   }
 }
+
+// 动画
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// 响应式适配
 @media (max-width: 768px) {
   .title {
     height: 7vh;
+    padding: 1% 3%;
+
     .logo {
-      width: 12%;
-      height: 5vh;
-      img {
-        width: 100%;
-        height: 100%;
-        border-radius: 30%;
+      width: 10%;
+      height: 4vh;
+    }
+
+    .search {
+      width: 40%;
+      .search2 {
+        font-size: 1rem;
+        padding-left: 35px;
+      }
+      .iconfont {
+        left: 10px;
+        font-size: 1.1rem;
       }
     }
+
     .pic {
-      background-color: rgb(255, 255, 255);
-      width: 10%;
+      width: 8%;
       padding: 4px;
-      border-radius: 10%;
-      &:hover {
-        background-color: rgb(123, 123, 123);
-      }
-      text-align: center;
+    }
+
+    .menu {
+      right: 3%;
+      width: 40%;
     }
   }
 }

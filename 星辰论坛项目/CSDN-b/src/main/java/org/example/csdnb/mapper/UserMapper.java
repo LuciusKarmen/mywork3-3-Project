@@ -16,6 +16,7 @@ public interface UserMapper {
     @Insert("INSERT into user (id,name,password,pic) values (#{id},#{name},#{password},#{pic})")
     void register(String id,String name,String password,String pic);
 
+
 }
 
 

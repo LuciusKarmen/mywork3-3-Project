@@ -12,3 +12,11 @@ export const getTipComments = (id: string) =>
     method: 'get',
     url: `/message/getTipMessages/${id}`,
   })
+
+export const sendComment = (data: FormData) =>
+  request({
+    method: 'post',
+    url: '/message/addMessage',
+    data,
+    headers: { 'Content-Type': 'application/json' },
+  })

@@ -1,6 +1,6 @@
 interface Message {
   mid: string
-  mname: string //这里的mname是回复的帖子的id(tid)不然后面人看不懂
+  mname: string //依然觉得当时把这个名字设置成发帖者的头像就觉得不知道当时是怎么想的
   mget: string
   msend: string
   mtime: string

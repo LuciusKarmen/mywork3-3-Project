@@ -21,23 +21,24 @@ import Message from '../components/message.vue'
 import { onMounted, ref } from 'vue'
 import request from '../util/request'
 import { type Message as MessageType } from '../api/message'
+import { getMessages } from '../api/message/index'
 
 const messages = ref<MessageType[]>([])
-const getMessages = () =>
-  request<MessageType[]>({
-    method: 'get',
-    url: '/message/getMessages',
-  })
-    .then((data) => {
+const user = ref<string>(localStorage.getItem('username') || '')
+const fetchMessages = (name: string) => {
+  getMessages(name)
+    .then((data: MessageType[]) => {
       messages.value = Array.isArray(data) ? data : [data]
       console.log('请求成功:', data)
     })
-    .catch((error) => {
+    .catch(() => {
       messages.value = []
-      console.error('请求失败:', error)
+      console.error('请求失败')
     })
+}
+
 onMounted(() => {
-  getMessages()
+  fetchMessages(user.value)
 })
 </script>
 

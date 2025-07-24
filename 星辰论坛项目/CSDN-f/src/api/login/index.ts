@@ -7,3 +7,9 @@ export const getLogin = (username: string, password: string) =>
     url: '/user/login',
     params: { username, password },
   })
+
+export const getPic = (name: string) =>
+  request<User | null>({
+    method: 'get',
+    url: `/user/getUserPic/${name}`,
+  })

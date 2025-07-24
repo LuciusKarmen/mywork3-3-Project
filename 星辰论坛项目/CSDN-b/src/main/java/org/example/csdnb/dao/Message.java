@@ -73,6 +73,5 @@ public class Message {
     private String  mtime    ;
     private String  mcontent ;
     private  Boolean mread    ;
-    private String  mtipid    ;
-
+    private String  mtipid   ;
 }
