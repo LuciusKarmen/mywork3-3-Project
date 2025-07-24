@@ -1,7 +1,6 @@
 import type { Tip } from '../tip'
 import request from '../../util/request'
-
-export const sendTip = (data: Tip) =>
+export const sendTip = (data: FormData) =>
   request({
     method: 'post',
     url: '/tip/addTip',

@@ -21,4 +21,10 @@ public class MessageServlet {
         List<Message> messages =messageService.getMessage();
         return Result.ok(messages);
     }
+    @RequestMapping ("/getTipMessages/{tid}")
+    public Result<List<Message>> getTipMessages (String tid) {
+
+        List<Message> messages =messageService.getTipMessages(tid);
+        return Result.ok(messages);
+    }
 }

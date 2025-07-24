@@ -1,6 +1,6 @@
 <template>
   <section class="welcome">
-    <header class="title">欢迎来到 KSDN 论坛</header>
+    <header class="title">欢迎来到 星辰 论坛</header>
     <article class="subtitle">技术交流 · 开源共享 · 极客精神</article>
     <a href="/login" class="enter">立即进入</a>
   </section>

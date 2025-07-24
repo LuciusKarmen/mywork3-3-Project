@@ -14,5 +14,8 @@ public class MessageService {
     public List<Message> getMessage(){
         return messageMapper.getMessage();
     }
+    public List<Message> getTipMessages(String tid){
+        return messageMapper.getTipMessages(tid);
+    }
 
 }

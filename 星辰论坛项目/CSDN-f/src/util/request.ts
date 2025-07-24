@@ -13,7 +13,7 @@ const service = axios.create({
   baseURL: '/api',
 })
 
-// 请求拦截器（可选）
+// 请求拦截器（说实话写了没什么用）
 service.interceptors.request.use(
   (config) => {
     return config

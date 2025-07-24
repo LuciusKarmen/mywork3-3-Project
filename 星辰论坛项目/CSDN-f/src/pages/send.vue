@@ -58,8 +58,13 @@
 <script setup lang="ts" name="face">
 import Bar from '../components/bar.vue'
 import { ref } from 'vue'
-import { type Tip } from '../api/tip'
+import type { Tip } from '../api/tip'
 import request from '../util/request'
+import { sendTip } from '../api/send'
+
+// 重命名组件导入
+import TipComponent from '@/components/tip.vue'
+
 const file = ref<File | null>(null)
 const avatarUrl = ref<string | null>(null)
 
@@ -103,7 +108,7 @@ const options = [
 //这里是我的提交数据功能
 const tipTip = ref<Tip>({
   tid: '',
-  tname: '', //没错，这是分类
+  tname: '',
   tcontent: '',
   ttime: '',
   tuser: '',
@@ -113,10 +118,10 @@ const tipTip = ref<Tip>({
   tclass: '',
 })
 
-const Send = () => {
+const Send = async () => {
   tipTip.value.tid = ''
   tipTip.value.tname = tipTip.value.tname || '无标题'
-  tipTip.value.tuser = localStorage.getItem('user') || '匿名用户'
+  tipTip.value.tuser = localStorage.getItem('username') || '匿名用户'
   tipTip.value.ttime = new Date().toLocaleString()
   tipTip.value.tclass = tipTip.value.tclass || '全部'
   tipTip.value.tcontent = tipTip.value.tcontent || '无内容'
@@ -140,23 +145,14 @@ const Send = () => {
   if (file.value) {
     formdata.append('file', file.value)
   }
-  request({
-    url: '/tip/addTip',
-    method: 'POST',
-    data: formdata,
-    headers: {},
-  })
+  // 将FormData转换为Tip类型
+
+  await sendTip(formdata)
     .then(() => {
       alert('发布成功！')
-
-      tipTip.value.tcontent = ''
-      tipTip.value.tname = ''
-      tipTip.value.tclass = ''
-      avatarUrl.value = null
     })
     .catch(() => {
-      console.error('请求失败')
-      alert('发布失败，请稍后再试！')
+      alert('发布失败！')
     })
 }
 </script>

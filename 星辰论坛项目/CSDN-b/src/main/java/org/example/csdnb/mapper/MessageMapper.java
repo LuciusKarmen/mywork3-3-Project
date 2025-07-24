@@ -12,4 +12,7 @@ public interface  MessageMapper {
     @Select("SELECT * FROM message")
     List<Message> getMessage();
 
+    @Select("SELECT * FROM message WHERE mtipid= #{tid}")
+    List<Message> getTipMessages(String tid);
+
 }
