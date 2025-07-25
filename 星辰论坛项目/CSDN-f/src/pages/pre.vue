@@ -22,9 +22,12 @@
     <div style="white-space: pre-wrap; word-break: break-word; overflow-wrap: break-word">
       {{ tip?.tcontent }}
     </div>
-    <div>
-      <div>
-        <el-icon><ThumbUp /></el-icon>
+    <div class="good">
+      <div class="info2">
+        <div class="icon">
+          <img src="../pic/点赞(1).png" alt="" />
+        </div>
+        <p>获赞数：{{ tip?.tgood }}</p>
       </div>
     </div>
   </div>
@@ -65,6 +68,7 @@ function formatToFriendly(date = new Date()) {
   const pad = (n: any) => String(n).padStart(2, '0')
   return `${date.getFullYear()}年${pad(date.getMonth() + 1)}月${pad(date.getDate())}日 ${pad(date.getHours())}:${pad(date.getMinutes())}`
 }
+const Good = {}
 const submitComment = () => {
   const formData = new FormData()
   formData.append('mid', '')
@@ -78,6 +82,8 @@ const submitComment = () => {
   sendComment(formData)
     .then(() => {
       console.log('评论提交成功')
+      // 评论数增加
+
       textarea.value = ''
       getComments()
     })
