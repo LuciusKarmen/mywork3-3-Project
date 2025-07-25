@@ -65,6 +65,9 @@ import { sendTip } from '../api/send'
 // 重命名组件导入
 import TipComponent from '@/components/tip.vue'
 
+import { useRouter } from 'vue-router'
+const router = useRouter()
+
 const file = ref<File | null>(null)
 const avatarUrl = ref<string | null>(null)
 
@@ -150,6 +153,7 @@ const Send = async () => {
   await sendTip(formdata)
     .then(() => {
       alert('发布成功！')
+      router.push('/main')
     })
     .catch(() => {
       alert('发布失败！')

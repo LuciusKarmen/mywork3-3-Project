@@ -28,7 +28,8 @@ const user = ref<string>(localStorage.getItem('username') || '')
 const fetchMessages = (name: string) => {
   getMessages(name)
     .then((data: MessageType[]) => {
-      messages.value = Array.isArray(data) ? data : [data]
+      // 自下而上遍历
+      messages.value = Array.isArray(data) ? data.reverse() : [data]
       console.log('请求成功:', data)
     })
     .catch(() => {

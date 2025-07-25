@@ -7,7 +7,7 @@
       </template>
     </nut-tabbar-item>
 
-    <nut-tabbar-item tab-title="Find" :value="1" @click="handleClick2">
+    <nut-tabbar-item tab-title="Find" @click="handleClick2">
       <template #icon="{ active }">
         <Find :style="{ fill: active ? '#1989fa' : '#7d7e80' }" />
       </template>

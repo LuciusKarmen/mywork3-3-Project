@@ -1,8 +1,8 @@
 <template>
   <div class="my">
     <div class="t">
-      <div class="pic"><img src="/src/pic/IMG_20250312_172314.jpg" alt="" class="p" /></div>
-      <div class="name">Karmen</div>
+      <div class="pic"><img :src="picture" alt="头像" class="p" /></div>
+      <div class="name">{{ username }}</div>
     </div>
     <div class="m">
       <div class="li">我的发帖</div>
@@ -10,6 +10,9 @@
     <div class="b">
       <div class="li" @click="about">关于网站</div>
       <div class="li" @click="our">联系我们</div>
+      <br />
+      <br />
+      <div class="li" @click="logout">注销登录</div>
     </div>
     <br />
     <br />
@@ -22,12 +25,29 @@
 <script setup lang="ts" name="My">
 import router from '../router/index'
 import Bar from '../components/bar.vue'
-
+import { ref, computed } from 'vue'
+const avatar = ref(localStorage.getItem('userpic') || '../pic/KK.png')
+const picture = computed(() => {
+  return `http://localhost:8080/${avatar.value}`
+})
+const username = localStorage.getItem('username')
 const our = () => {
   router.push('/our')
 }
 const about = () => {
   router.push('/about')
+}
+const logout = () => {
+  // 询问是否退出
+  const confirmLogout = confirm('确定要注销登录吗？')
+  if (!confirmLogout) return
+  localStorage.removeItem('username')
+  localStorage.removeItem('userpic')
+
+  // 刷新页面
+  router.push('/login').then(() => {
+    location.reload()
+  })
 }
 </script>
 

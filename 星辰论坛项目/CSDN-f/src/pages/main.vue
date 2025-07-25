@@ -4,7 +4,7 @@
     <br />
     <br />
     <br />
-    <div v-for="(item, index) in tips" :key="index">
+    <div v-for="(item, index) in selectclasslist" :key="index">
       <TipComponent ref="tip" :tip="item"></TipComponent>
     </div>
     <br />
@@ -22,11 +22,17 @@ import TipComponent from '../components/tip.vue'
 import Title from '../components/title.vue'
 import Bar from '../components/bar.vue'
 import { Search, HorizontalN, Right } from '@nutui/icons-vue'
-import { ref, computed, watch, onMounted } from 'vue'
+import { ref, computed, watch, onMounted, onBeforeUnmount } from 'vue'
 import { type Tip } from '../api/tip'
 import { getTips } from '../api/main'
 
 const tips = ref<Tip[]>([])
+const classify = ref(localStorage.getItem('classify') || '全部')
+const selectclasslist = computed(() => {
+  const currentClassify = classify.value
+  if (currentClassify === '全部') return tips.value
+  return tips.value.filter((item) => item.tclass === currentClassify)
+})
 
 onMounted(() => {
   getTips().then((data) => {

@@ -23,7 +23,7 @@
       {{ tip?.tcontent }}
     </div>
     <div class="good">
-      <div class="info2" @click="GoodsFill">
+      <div class="info2" @click="GoodsFill" :class="{ disabled: isLiking }">
         <div class="icon" v-if="!Good">
           <img src="../pic/点赞 (1).png" alt="" />
         </div>
@@ -75,16 +75,23 @@ function formatToFriendly(date = new Date()) {
 const Good = ref(false)
 const isLiking = ref(false) //锁死，非常good吧
 const GoodsFill = () => {
-  if (isLiking.value) return // 如果正在点赞，直接返回
+  if (isLiking.value) {
+    return
+  }
+  if (!tip.value) {
+    isLiking.value = false
+    return
+  }
+
   isLiking.value = true
-  Good.value = !Good.value
-  addTipGood(tip.value!.tid)
+
+  addTipGood(tip.value.tid)
     .then(() => {
       tip.value!.tgood++
-      console.log('点赞成功')
+      Good.value = !Good.value
     })
-    .finally(() => {
-      isLiking.value = false
+    .catch((err) => {
+      console.error('点赞失败:', err)
     })
 }
 const submitComment = () => {
@@ -158,7 +165,9 @@ const back = () => {
   background: white;
   min-height: 95vh;
   padding: 30px;
-  width: 100vw;
+  width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
   .title {
     display: flex;
     justify-content: space-between;
@@ -167,6 +176,10 @@ const back = () => {
   }
   .info2 {
     color: gray;
+    .disabled {
+      pointer-events: none;
+      opacity: 0.6;
+    }
   }
 }
 .comment {

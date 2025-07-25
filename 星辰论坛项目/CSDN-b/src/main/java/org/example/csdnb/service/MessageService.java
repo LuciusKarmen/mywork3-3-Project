@@ -24,7 +24,7 @@ public class MessageService {
         String mid= UUID.randomUUID().toString();
         message.setMid(mid);
         String mtipid=message.getMtipid();
-        String mget=tipService.getTip(mtipid).getTname();
+        String mget=tipService.getTip(mtipid).getTuser();
         message.setMget(mget);
         messageMapper.addMessage(message);
 

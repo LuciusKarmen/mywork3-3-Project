@@ -1,4 +1,4 @@
-import { createRouter } from 'vue-router'
+import { createRouter, type NavigationGuardWithThis } from 'vue-router'
 import { createWebHistory } from 'vue-router'
 
 const router = createRouter({
@@ -56,4 +56,24 @@ const router = createRouter({
     },
   ],
 })
+
+const authPages = ['/main', '/my', '/message', '/our', '/send', '/pre']
+
+// 路由守卫！！！
+const beforeEach: NavigationGuardWithThis<undefined> = (to, from, next) => {
+  const username = localStorage.getItem('username')
+
+  if (authPages.includes(to.path)) {
+    if (username) {
+      next()
+    } else {
+      alert('请先登录')
+      next('/login')
+    }
+  } else {
+    next()
+  }
+}
+
+router.beforeEach(beforeEach)
 export default router

@@ -15,9 +15,9 @@
     </div>
     <div class="menu" v-show="ok1">
       <h1>选择主题</h1>
-      <div class="menu1" v-for="(item, index) in classify" :key="index">
+      <div class="menu1" v-for="(item, index) in classify" :key="index" @click="select(item)">
         <div class="menu2" @click="ok1 = false">
-          <span @click="selectClassify(item)">{{ item }}</span>
+          <span>{{ item }}</span>
           <Right class="iconfont2"></Right>
         </div>
       </div>
@@ -29,13 +29,19 @@
 import { indexOf } from 'lodash'
 import { Search, HorizontalN, Right } from '@nutui/icons-vue'
 import { ref, computed } from 'vue'
+import { useRouter } from 'vue-router'
+const router = useRouter()
 
+const select = (item: string) => {
+  ok1.value = false
+  console.log(item)
+  localStorage.setItem('classify', item)
+  window.location.reload()
+}
 const menu = () => {
   ok1.value = !ok1.value
 }
-const selectClassify = (item: string) => {
-  localStorage.setItem('classify', item)
-}
+
 const username = ref(localStorage.getItem('username') || '匿名用户')
 const classify = ref([
   '全部',
