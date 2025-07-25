@@ -23,9 +23,12 @@
       {{ tip?.tcontent }}
     </div>
     <div class="good">
-      <div class="info2">
-        <div class="icon">
-          <img src="../pic/点赞(1).png" alt="" />
+      <div class="info2" @click="GoodsFill">
+        <div class="icon" v-if="!Good">
+          <img src="../pic/点赞 (1).png" alt="" />
+        </div>
+        <div v-if="Good" class="icon1">
+          <img src="../pic/点赞.png" alt="" />
         </div>
         <p>获赞数：{{ tip?.tgood }}</p>
       </div>
@@ -53,11 +56,12 @@
 import { ref, onMounted, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import request from '../util/request'
-import { getTip, getTipComments, sendComment } from '../api/pre'
+import { getTip, getTipComments, sendComment, addTipGood, addTipMessage } from '../api/pre'
 import { type Tip } from '../../src/api/tip'
 import router from '../router'
 import type { Message as MyMessage } from '../api/message'
 import MessageComponent from '../components/message.vue'
+import { GoodsFilled } from '@element-plus/icons-vue'
 
 const route = useRoute()
 const tid = route.params.tid
@@ -68,7 +72,21 @@ function formatToFriendly(date = new Date()) {
   const pad = (n: any) => String(n).padStart(2, '0')
   return `${date.getFullYear()}年${pad(date.getMonth() + 1)}月${pad(date.getDate())}日 ${pad(date.getHours())}:${pad(date.getMinutes())}`
 }
-const Good = {}
+const Good = ref(false)
+const isLiking = ref(false) //锁死，非常good吧
+const GoodsFill = () => {
+  if (isLiking.value) return // 如果正在点赞，直接返回
+  isLiking.value = true
+  Good.value = !Good.value
+  addTipGood(tip.value!.tid)
+    .then(() => {
+      tip.value!.tgood++
+      console.log('点赞成功')
+    })
+    .finally(() => {
+      isLiking.value = false
+    })
+}
 const submitComment = () => {
   const formData = new FormData()
   formData.append('mid', '')
@@ -83,7 +101,7 @@ const submitComment = () => {
     .then(() => {
       console.log('评论提交成功')
       // 评论数增加
-
+      addTipMessage(tid as string)
       textarea.value = ''
       getComments()
     })
@@ -175,5 +193,35 @@ const back = () => {
   flex-direction: column;
   align-items: flex-start;
   margin-top: 10px;
+}
+.good {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5vh;
+  .icon {
+    width: 9vh;
+    height: 9vh;
+    border: 2px solid #000000;
+    padding: 10px;
+    border-radius: 50%;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .icon1 {
+    width: 9vh;
+    height: 9vh;
+    border: 2px solid #fb0314;
+    padding: 10px;
+    border-radius: 50%;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
 }
 </style>

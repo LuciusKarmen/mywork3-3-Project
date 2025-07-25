@@ -20,6 +20,20 @@ public class TipServlert {
         Tip tip = tipService.getTip(tid);
         return Result.ok(tip);
     }
+    @RequestMapping("/addTipGood")
+    public Result<String> addTipGood(@RequestParam("id")  String tid) {
+        tipService.addTipGood(tid);
+        return Result.ok();
+    }
+    @RequestMapping("/getTipGood")
+    public Result<Integer> getTipGood(@RequestParam("id") String tid) {
+        return Result.ok(tipService.getTipGood(tid));
+    }
+    @RequestMapping("/addTipMessage")
+    public Result<String> addTipMessage(@RequestParam("id") String tid) {
+        tipService.addTipMessage(tid);
+        return Result.ok();
+    }
     @RequestMapping ("/getTips")
     public Result<List<Tip>> getTips() {
         List<Tip> tips = tipService.getTips();

@@ -22,6 +22,19 @@ public class TipService {
     {
         return tipMapper.getTips();
     }
+    public void addTipGood(String tid)
+    {
+        tipMapper.addTipGood(tid);
+    }
+    public void addTipMessage(String tid)
+    {
+        tipMapper.addTipMessage(tid);
+    }
+    public int getTipGood(String tid)
+    {
+        return tipMapper.getTipGood(tid);
+    }
+
     public void addTip(Tip tip, MultipartFile file) throws IOException {
         String id= UUID.randomUUID().toString() ;
         tip.setTid(id);

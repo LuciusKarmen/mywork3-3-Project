@@ -20,3 +20,15 @@ export const sendComment = (data: FormData) =>
     data,
     headers: { 'Content-Type': 'application/json' },
   })
+export const addTipGood = (id: string) =>
+  request({
+    method: 'post',
+    url: `/tip/addTipGood`,
+    params: { id },
+  })
+export const addTipMessage = (id: string) =>
+  request({
+    method: 'post',
+    url: '/tip/addTipMessage',
+    params: { id },
+  })

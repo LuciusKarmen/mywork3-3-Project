@@ -8,7 +8,7 @@
       <div class="li">我的发帖</div>
     </div>
     <div class="b">
-      <div class="li">关于网站</div>
+      <div class="li" @click="about">关于网站</div>
       <div class="li" @click="our">联系我们</div>
     </div>
     <br />
@@ -25,6 +25,9 @@ import Bar from '../components/bar.vue'
 
 const our = () => {
   router.push('/our')
+}
+const about = () => {
+  router.push('/about')
 }
 </script>
 
@@ -69,6 +72,9 @@ const our = () => {
   line-height: 50px;
   text-align: center;
   background-color: rgb(250, 250, 250);
+  &:hover {
+    background-color: rgb(149, 147, 147);
+  }
 }
 .footer {
   position: fixed;

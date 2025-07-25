@@ -17,7 +17,7 @@
     </div>
 
     <div class="foot">
-      <div class="tg">点赞:{{ tip.tgood }}<Heart class="tc"></Heart></div>
+      <div class="tg">获赞:{{ tip.tgood }}</div>
       <div>评论:{{ tip.tmessage }}<Comment class="tc"></Comment></div>
     </div>
   </div>
