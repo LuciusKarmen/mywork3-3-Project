@@ -17,7 +17,7 @@
       <h1>选择主题</h1>
       <div class="menu1" v-for="(item, index) in classify" :key="index">
         <div class="menu2" @click="ok1 = false">
-          <span>{{ item }}</span>
+          <span @click="selectClassify(item)">{{ item }}</span>
           <Right class="iconfont2"></Right>
         </div>
       </div>
@@ -32,6 +32,9 @@ import { ref, computed } from 'vue'
 
 const menu = () => {
   ok1.value = !ok1.value
+}
+const selectClassify = (item: string) => {
+  localStorage.setItem('classify', item)
 }
 const username = ref(localStorage.getItem('username') || '匿名用户')
 const classify = ref([
@@ -54,7 +57,7 @@ const avatar = ref(localStorage.getItem('userpic') || '../pic/KK.png')
 const picture = computed(() => {
   return `http://localhost:8080/${avatar.value}`
 })
-const ok1 = ref(true)
+const ok1 = ref(false)
 </script>
 
 <style lang="scss" scoped>

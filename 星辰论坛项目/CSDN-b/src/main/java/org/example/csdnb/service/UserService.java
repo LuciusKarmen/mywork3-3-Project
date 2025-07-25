@@ -44,7 +44,7 @@ public class UserService {
         pic.transferTo(filePath.toFile());
 
 
-        userMapper.register(id, name, password, pic.getOriginalFilename());
+        userMapper.register(id, name, password, dbPath);
     }
 
 }

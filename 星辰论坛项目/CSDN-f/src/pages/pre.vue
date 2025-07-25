@@ -1,7 +1,7 @@
 <template>
   <div class="tip-detail">
     <div>
-      <el-icon @click="back"><Back /></el-icon>
+      <el-icon @click="back" size="40"><Back /></el-icon>
     </div>
     <h1>{{ tip?.tname }}</h1>
     <br />
@@ -21,6 +21,11 @@
     <br />
     <div style="white-space: pre-wrap; word-break: break-word; overflow-wrap: break-word">
       {{ tip?.tcontent }}
+    </div>
+    <div>
+      <div>
+        <el-icon><ThumbUp /></el-icon>
+      </div>
     </div>
   </div>
   <hr />

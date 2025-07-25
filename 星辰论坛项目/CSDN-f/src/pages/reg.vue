@@ -1,178 +1,267 @@
 <template>
-  <Transition name="slide-in" appear>
-    <div class="login">
-      <div class="tit">注册<span class="title"></span></div>
-      <label for="name" class="label">用户名：</label>
-      <nut-input v-model="name" placeholder="姓名" id="name" class="a" />
-      <label for="password" class="label">密 码：</label>
-      <nut-input v-model="password" placeholder="密码" id="password" class="a" type="password" />
-      <label for="password" class="label">确认密码：</label>
-      <nut-input
-        v-model="passwordConfirm"
-        placeholder="确认密码"
-        id="password"
-        class="a"
-        type="password"
-      />
-      <label for="pic" class="label">选择头像：</label>
-      <input type="file" accept="image/*" @change="handleUpload" />
-      <div class="btn">
-        <nut-button type="success" @click="Upload">登录</nut-button>
-        <nut-button type="warning" @click="clean">清空</nut-button>
+  <div class="login">
+    <canvas ref="particleCanvas" class="particles-canvas"></canvas>
+
+    <div class="form">
+      <h2>星辰论坛</h2>
+      <input type="text" placeholder="用户名" v-model="user.name" />
+      <input type="password" placeholder="密码" v-model="user.password" />
+      <input type="password" placeholder="确认密码" v-model="PasswordConfirm" />
+      <input type="file" @change="handleFileChange" />
+      <div class="buttons">
+        <el-button @click="handleRegister">清空</el-button>
+        <el-button @click="Reg">注册</el-button>
       </div>
+      <br />
+      <footer class="footer" @click="show">StellarNet Studio</footer>
     </div>
-  </Transition>
-  <footer>
-    <hr />
-    <div class="footer">©解释权Lucius.John.Karmen(许光明)</div>
-  </footer>
-  <!-- 算了还是加一个返回登录吧 -->
-  <div class="back" @click="back">
-    <el-icon size="10"><Back /><span>返回登录</span></el-icon>
   </div>
 </template>
 
-<script setup lang="ts" name="reg">
-import { ref } from 'vue'
+<script lang="ts" setup>
+import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import { ElIcon } from 'element-plus'
-import { Back } from '@element-plus/icons-vue'
-import request from '../util/request'
+import type { User } from '../api/user'
+import { registerUser } from '../api/reg'
 
-const router = useRouter()
-const name = ref('')
-const password = ref('')
-const passwordConfirm = ref('')
+const particleCanvas = ref<HTMLCanvasElement | null>(null)
 
-const pic = ref<File | null>(null)
-const handleUpload = (e: Event) => {
-  const file = (e.target as HTMLInputElement).files?.[0]
-  pic.value = file || null
+// 粒子配置项
+const config = {
+  number: 100,
+  color: '#000000',
+  opacity: 0.5,
+  size: 2,
+  lineColor: '#000000',
+  lineOpacity: 0.3,
+  lineWidth: 1,
+  linkDistance: 150,
+  velocity: 1.5,
 }
-const Upload = () => {
-  if (password.value !== passwordConfirm.value) {
-    alert('两次输入的密码不一致，请重新输入！')
-    return
+
+interface Particle {
+  x: number
+  y: number
+  vx: number
+  vy: number
+}
+
+const particles: Particle[] = []
+
+function initParticles() {
+  const canvas = particleCanvas.value
+  if (!canvas) return
+
+  const ctx = canvas.getContext('2d')
+  if (!ctx) return
+
+  // 设置 canvas 大小
+  function resize() {
+    if (!canvas) return
+    canvas.width = window.innerWidth
+    canvas.height = window.innerHeight
   }
-  const formData = new FormData()
-  formData.append('name', name.value)
-  formData.append('password', password.value)
-  formData.append('pic', pic.value!)
-  request({
-    method: 'post',
-    url: '/user/register',
-    data: formData,
-    headers: {
-      'Content-Type': 'multipart/form-data',
-    },
-  })
-    .then(() => {
-      console.log(1)
-      alert('注册成功！')
-      router.push('/login')
-    })
 
-    .catch(() => {
-      console.error('请求失败')
+  window.addEventListener('resize', resize)
+  resize()
+
+  // 初始化粒子
+  for (let i = 0; i < config.number; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      vx: (Math.random() - 0.5) * config.velocity,
+      vy: (Math.random() - 0.5) * config.velocity,
     })
+  }
+
+  // 绘制粒子
+  function draw() {
+    if (!ctx || !canvas) return
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    ctx.fillStyle = config.color
+    ctx.globalAlpha = config.opacity
+
+    for (const p of particles) {
+      ctx.beginPath()
+      ctx.arc(p.x, p.y, config.size, 0, Math.PI * 2)
+      ctx.fill()
+
+      // 更新位置
+      p.x += p.vx
+      p.y += p.vy
+
+      if (p.x <= 0 || p.x >= canvas.width) p.vx *= -1
+      if (p.y <= 0 || p.y >= canvas.height) p.vy *= -1
+    }
+
+    // 连线
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x
+        const dy = particles[i].y - particles[j].y
+        const dist = Math.sqrt(dx * dx + dy * dy)
+
+        if (dist < config.linkDistance) {
+          ctx.strokeStyle = config.lineColor
+          ctx.globalAlpha = config.lineOpacity
+          ctx.beginPath()
+          ctx.moveTo(particles[i].x, particles[i].y)
+          ctx.lineTo(particles[j].x, particles[j].y)
+          ctx.stroke()
+        }
+      }
+    }
+
+    requestAnimationFrame(draw)
+  }
+
+  draw()
 }
-const clean = () => {
-  name.value = ''
-  password.value = ''
-  passwordConfirm.value = ''
-  pic.value = null
+const router = useRouter()
+function show() {
+  router.push('/our')
 }
-const back = () => {
-  router.push('/login')
+const user = ref<User>({
+  id: '1',
+  name: '',
+  password: '',
+  pic: '',
+})
+
+const file = ref<File | null>(null)
+// 预览 头像
+const previewImage = ref<string | null>(null)
+function handleFileChange(event: Event) {
+  const target = event.target as HTMLInputElement
+  if (target.files && target.files.length > 0) {
+    file.value = target.files[0]
+    const reader = new FileReader()
+    reader.onload = (e) => {
+      previewImage.value = e.target?.result as string
+    }
+    reader.readAsDataURL(file.value)
+  } else {
+    file.value = null
+    previewImage.value = null
+  }
 }
+const PasswordConfirm = ref('')
+async function Reg() {
+  try {
+    if (user.value.password !== PasswordConfirm.value) {
+      alert('密码不一致')
+      return
+    }
+    const formData = new FormData()
+    formData.append('username', user.value.name)
+    formData.append('password', user.value.password)
+    if (file.value) {
+      formData.append('pic', file.value)
+    }
+    console.log(formData)
+    await registerUser(formData)
+
+    console.log('注册成功')
+    router.push('/login')
+  } catch (error) {
+    console.error('注册失败:', error)
+  }
+}
+function handleRegister() {
+  alert('注册按钮被点击')
+}
+
+onMounted(() => {
+  initParticles()
+})
 </script>
 
 <style lang="scss" scoped>
 .login {
-  width: 30%;
-  margin: 0 auto;
-  padding: 20px;
-  height: 70vh;
-  border: 1px solid #ffffff;
-  border-radius: 20px;
-  background-color: rgba(122, 244, 251, 0.467);
-  position: fixed;
-  left: 50%;
-  transform: translateX(-50%);
-  top: 15vh;
-  blur: 5px;
-  box-shadow: 0 0 30px rgba(244, 244, 244, 0.5);
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f6f6f6;
+}
 
-  .btn {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 20px;
-  }
-  .tit {
-    font-size: 24px;
-    color: rgb(0, 46, 248);
-    font-weight: 600;
-    .title {
-      font-size: 20px;
-      color: #f69116;
-      margin-left: 20%;
-      font-style: italic;
-    }
-  }
-}
-.footer {
-  position: fixed;
-  bottom: 0;
+.particles-canvas {
+  position: absolute;
+  top: 0;
   left: 0;
-  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.form {
+  position: relative;
+  z-index: 2;
+  background: rgba(83, 83, 83, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   text-align: center;
-}
-.label {
-  font-size: 15px;
-  font-weight: 400;
-  color: #27aef7;
-}
-.back {
-  color: #1980fd;
-  position: fixed;
-  top: 10px;
-  left: 10px;
-}
-@media (max-width: 768px) {
-  .login {
-    width: 68%;
-    height: 50vh;
-    position: fixed;
-    left: 50%;
-    transform: translateX(-50%);
-    .label {
-      font-size: 15px;
-      font-weight: 500;
-      color: #1980fd;
+  color: #fff;
+  width: 320px;
+  position: relative;
+
+  h2 {
+    margin-bottom: 20px;
+  }
+
+  input {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+  }
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    button {
+      width: 45%;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.3);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
     }
-    .tit {
-    }
+  }
+
+  button:hover {
+    background: rgba(255, 255, 255, 0.5);
   }
   .footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    text-align: center;
-  }
-  .a {
-    margin-bottom: 30px;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #919191;
+    cursor: pointer;
+    &:hover {
+      color: #fff;
+    }
   }
 }
 
-.slide-in-enter-active {
-  transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
-  opacity: 0;
-  transform: translateY(40px);
-}
-
-.slide-in-enter-to {
-  opacity: 1;
-  transform: translateY(0);
+@media (max-width: 768px) {
+  .form {
+    width: 80%;
+  }
 }
 </style>

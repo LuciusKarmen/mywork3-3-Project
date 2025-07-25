@@ -145,7 +145,7 @@ async function Login() {
   }
 }
 function handleRegister() {
-  alert('注册按钮被点击')
+  router.push('/reg')
 }
 
 onMounted(() => {

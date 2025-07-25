@@ -87,6 +87,14 @@ onMounted(() => {
     transform: translateY(-4px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   }
+  .tt2 {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+  }
 
   .t2 {
     display: flex;
@@ -116,11 +124,6 @@ onMounted(() => {
       .tt1 {
         display: flex;
         justify-content: space-between;
-        .tt2 {
-          display: flex;
-          justify-content: center;
-          flex-direction: column;
-        }
       }
 
       .tn {
