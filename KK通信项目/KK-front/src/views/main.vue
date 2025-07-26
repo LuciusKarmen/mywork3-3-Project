@@ -45,19 +45,12 @@
       </div>
     </div>
     <div class="input">
-      <el-input
-        v-model="textarea"
-        style="width: 80vw; height: 20vh; background-color: #ff7979; margin: 0; padding: 0"
-        :rows="6"
-        type="textarea"
-        placeholder="Please input"
-      />
+      <el-input v-model="textarea" :rows="7" type="textarea" placeholder="Please input" />
       <el-button type="primary" @click="sendMessage" class="send-button">发送</el-button>
     </div>
   </div>
 </template>
 <script lang="ts" setup name="">
-import { a } from 'vitest/dist/chunks/suite.d.FvehnV49.js'
 import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 

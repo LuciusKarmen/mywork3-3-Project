@@ -19,5 +19,4 @@ public interface  MessageMapper {
     @Insert("INSERT INTO message(mid,mname,mget,msend,mtime,mcontent,mread,mtipid) VALUES(#{mid},#{mname},#{mget},#{msend},#{mtime},#{mcontent},#{mread},#{mtipid})")
     void addMessage(Message message);
 
-
 }
