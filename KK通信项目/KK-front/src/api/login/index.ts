@@ -7,3 +7,15 @@ export const getLogin = (data: User) =>
     method: 'post',
     data,
   })
+export const getRegister = (data: User) =>
+  service({
+    url: '/api/user/register',
+    method: 'post',
+    data,
+  })
+
+export const getUserInfo = (name: string) =>
+  service({
+    url: `/api/user/${name}`,
+    method: 'get',
+  })

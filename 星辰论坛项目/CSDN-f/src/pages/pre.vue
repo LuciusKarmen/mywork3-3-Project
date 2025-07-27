@@ -76,7 +76,7 @@ const Good = ref(false)
 const isLiking = ref(false) //锁死，非常good吧
 const GoodsFill = () => {
   if (isLiking.value) {
-    return
+    return 
   }
   if (!tip.value) {
     isLiking.value = false
