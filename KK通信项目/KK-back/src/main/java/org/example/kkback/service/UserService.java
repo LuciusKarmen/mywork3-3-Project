@@ -1,7 +1,6 @@
 package org.example.kkback.service;
 
 
-import lombok.Data;
 import org.example.kkback.dao.User;
 import org.example.kkback.mapper.UserMapper;
 import org.example.kkback.utils.Result;
@@ -10,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -29,7 +27,7 @@ public class UserService {
 
 
 
-    public Result<User> login(String username,String password)
+    public Result<User> login(String username, String password)
     {
         User user = userMapper.login(username,password);
         if(user==null)

@@ -20,15 +20,11 @@ public class UserServlet {
 
     }
     @RequestMapping("/login")
-    public Result<Object> login(@RequestBody User user)
+    public Result<User> login(@RequestBody User user)
     {
-        String username = user.getName();
+        String username = user.getUsername();
         String password = user.getPassword();
-        if(userService.login(username,password)!=null){
-            return Result.ok();
-        }
-
-        return null;
+        return userService.login(username,password);
     }
 
 }

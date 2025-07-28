@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <div class="top">
-      <div>头像</div>
+      <div>{{ username }}</div>
       <div>命数如织，当如磐石</div>
       <el-switch v-model="night" @click="changeLight" /><span>切换模式</span>
     </div>
@@ -51,23 +51,20 @@
   </div>
 </template>
 <script lang="ts" setup name="">
-import { onMounted, ref } from 'vue'
+import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 
 const textarea = ref('')
+const username = ref(localStorage.getItem('username'))
+const userid = ref(localStorage.getItem('userid'))
+const userpic = ref(localStorage.getItem('userpic'))
+
 const sendMessage = () => {
   console.log(textarea.value)
   textarea.value = ''
 }
 const night = ref(false)
 const router = useRouter()
-const storedUser = localStorage.getItem('user')
-if (storedUser) {
-  const user = JSON.parse(storedUser)
-  console.log('用户ID:', user.id)
-  console.log('用户名:', user.name)
-  console.log('用户头像地址:', user.pic)
-}
 const changeLight = () => {
   night.value = !night.value
 }
@@ -91,7 +88,6 @@ const historyMessage = ref([
   },
 ])
 const current = ref('friends')
-const inputValue = ref('')
 const setActive = (tab: string) => {
   current.value = tab
 }

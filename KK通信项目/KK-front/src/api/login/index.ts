@@ -1,21 +1,19 @@
 import type { User } from '@/types/user'
-import service from '../axios'
+import request from '../../utils/request'
 
-export const getLogin = (data: User) =>
-  service({
-    url: '/api/user/login',
+export const getLogin = (username: string, password: string) =>
+  request<User>({
+    method: 'post',
+    url: '/user/login',
+    data: {
+      username,
+      password,
+    },
+  })
+export function getRegister(data: FormData) {
+  return request({
+    url: '/user/register',
     method: 'post',
     data,
   })
-export const getRegister = (data: User) =>
-  service({
-    url: '/api/user/register',
-    method: 'post',
-    data,
-  })
-
-export const getUserInfo = (name: string) =>
-  service({
-    url: `/api/user/${name}`,
-    method: 'get',
-  })
+}

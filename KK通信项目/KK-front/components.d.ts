@@ -12,6 +12,7 @@ declare module 'vue' {
     ElButton: typeof import('element-plus/es')['ElButton']
     ElInput: typeof import('element-plus/es')['ElInput']
     ElSwitch: typeof import('element-plus/es')['ElSwitch']
+    Friend: typeof import('./src/components/friend/friend.vue')['default']
     Friendadd: typeof import('./src/components/title/friendadd.vue')['default']
     Friendlist: typeof import('./src/components/title/friendlist.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

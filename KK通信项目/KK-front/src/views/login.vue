@@ -22,7 +22,7 @@
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { getLogin } from '../api/login/index'
-import type { User } from '@/types/user'
+import type { User } from '../types/user'
 
 const particleCanvas = ref<HTMLCanvasElement | null>(null)
 
@@ -124,22 +124,18 @@ function show() {
   router.push('/our')
 }
 const user = ref<User>({
-  id: 1,
+  id: '1',
   name: '',
   password: '',
   pic: '',
 })
 function handleLogin() {
-  const user1: User = {
-    id: user.value.id,
-    name: user.value.name,
-    password: user.value.password,
-    pic: user.value.pic,
-  }
-  getLogin(user1)
-    .then(() => {
+  getLogin(user.value.name, user.value.password)
+    .then((data) => {
       alert('登录成功')
-      localStorage.setItem('user', JSON.stringify(user1))
+      localStorage.setItem('username', data.name)
+      localStorage.setItem('userid', data.id)
+      localStorage.setItem('userpic', data.pic)
       router.push('/main')
     })
     .catch(() => {
