@@ -1,7 +1,9 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { XcButton } from 'xingchengnet-ui'
+</script>
 
 <template>
-  <xc-button type="primary">发布成功！</xc-button>
+  <xc-button type="danger">发布成功！</xc-button>
 </template>
 
 <style scoped></style>
