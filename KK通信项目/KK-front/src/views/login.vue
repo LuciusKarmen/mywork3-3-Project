@@ -1,9 +1,7 @@
 <template>
   <div class="login">
-    <!-- 粒子背景 canvas -->
     <canvas ref="particleCanvas" class="particles-canvas"></canvas>
 
-    <!-- 登录表单 -->
     <div class="form">
       <h2>KK Comm</h2>
       <input type="text" placeholder="用户名" v-model="user.name" />
