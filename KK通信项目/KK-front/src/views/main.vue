@@ -122,13 +122,13 @@ const out = () => {
   .top {
     width: 100%;
     height: 7vh;
-    background: rgb(43, 43, 43);
+    background: rgb(217, 217, 217);
     display: flex;
     justify-content: space-around;
     align-items: center;
   }
   .title {
-    background: rgb(55, 55, 55);
+    background: rgb(51, 51, 51);
     width: 3vw;
     height: 93vh;
     position: absolute;
@@ -146,12 +146,12 @@ const out = () => {
         height: 2vw;
       }
       &.active {
-        background: #000;
+        background: #1a8300;
         color: #fff;
         border-radius: 5px;
       }
       &:hover {
-        background: #000;
+        background: #00823a;
         color: #888888;
         border-radius: 5px;
         cursor: pointer;
@@ -190,7 +190,7 @@ const out = () => {
     position: absolute;
     left: 3vw;
     top: 7vh;
-    background: rgb(60, 60, 60);
+    background: rgb(167, 167, 167);
   }
   .chat {
     width: 80vw;
@@ -198,7 +198,7 @@ const out = () => {
     position: absolute;
     left: 20vw;
     top: 7vh;
-    background: #000;
+    background: #ffffff;
     animation: back 15s ease infinite;
     background-size: 400% 400%;
     padding: 20px;
@@ -219,7 +219,7 @@ const out = () => {
         border-bottom-right-radius: 3px;
         .message-content-text {
           color: #000;
-          background: #eaeaea;
+          background: rgb(149, 236, 105);
           border-radius: 10px;
           padding: 10px;
           word-break: break-all;
@@ -230,7 +230,7 @@ const out = () => {
         align-self: flex-start;
         border-bottom-left-radius: 3px;
         .message-content-text {
-          background: #aaaaaa;
+          background: #eaeaea;
           color: #000;
           border-radius: 10px;
           padding: 10px;
@@ -260,6 +260,9 @@ const out = () => {
       bottom: 10px;
       width: 80px;
       height: 40px;
+      background-color: #00823a;
+      color: #fff;
+      border: 1px solid #adffd2;
     }
   }
 }

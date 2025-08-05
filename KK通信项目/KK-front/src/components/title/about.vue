@@ -54,7 +54,7 @@ const notes = ref([
 
 .desc p {
   font-size: 0.95rem;
-  color: #b7b7b7;
+  color: #4b4b4b;
   margin-bottom: 1rem;
 }
 
@@ -66,16 +66,9 @@ const notes = ref([
 
 .notes li {
   font-size: 0.9rem;
-  color: #9a9a9a;
+  color: #404040;
   margin-bottom: 0.4rem;
   position: relative;
   padding-left: 1rem;
-}
-
-.notes li::before {
-  content: '•';
-  position: absolute;
-  left: 0;
-  color: #999;
 }
 </style>
