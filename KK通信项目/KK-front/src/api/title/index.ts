@@ -3,7 +3,7 @@ import request from '../../utils/request'
 
 export function getFriendList(id: string) {
   return request<Friends[]>({
-    url: '/friends/get',
+    url: '/friends/selectFriends',
     method: 'get',
   })
 }

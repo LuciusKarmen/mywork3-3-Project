@@ -4,7 +4,7 @@
 
     <div class="form">
       <h2>KK Comm</h2>
-      <input type="text" placeholder="用户名" v-model="user.name" />
+      <input type="text" placeholder="用户名" v-model="user.username" />
       <input type="password" placeholder="密码" v-model="user.password" />
       <div class="buttons">
         <el-button @click="handleRegister">注册</el-button>
@@ -21,6 +21,7 @@ import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { getLogin } from '../api/login/index'
 import type { User } from '../types/user'
+// import CryptoJS from 'crypto-js'
 
 const particleCanvas = ref<HTMLCanvasElement | null>(null)
 
@@ -123,15 +124,15 @@ function show() {
 }
 const user = ref<User>({
   id: '1',
-  name: '',
+  username: '',
   password: '',
   pic: '',
 })
 function handleLogin() {
-  getLogin(user.value.name, user.value.password)
+  getLogin(user.value.username, user.value.password)
     .then((data) => {
       alert('登录成功')
-      localStorage.setItem('username', data.name)
+      localStorage.setItem('username', data.username)
       localStorage.setItem('userid', data.id)
       localStorage.setItem('userpic', data.pic)
       router.push('/main')

@@ -1,7 +1,7 @@
 <template>
   <SearchInput />
   <div class="friend-list">
-    <div v-for="(friend, index) in 15" :key="index" class="friend-item">
+    <div v-for="friend in friendlist" :key="index" class="friend-item">
       <div class="friend-item-pic">
         <img src="../../assets/R-C.jpg" alt="" />
       </div>
@@ -10,11 +10,11 @@
     </div>
   </div>
 </template>
-<script lang="ts" setup name="">
+<script lang="ts" setup>
 import { ref, onMounted } from 'vue'
 import SearchInput from '../search.vue'
 import { getFriendList } from '../../api/title/index'
-const friendlist = ref()
+const friendlist = ref([])
 onMounted(() => {
   const id = localStorage.getItem('userid')
   if (id) {

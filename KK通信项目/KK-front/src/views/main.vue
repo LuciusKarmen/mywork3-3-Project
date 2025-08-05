@@ -51,9 +51,9 @@
   </div>
 </template>
 <script lang="ts" setup name="">
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
-
+import { getFriendList } from '../api/title'
 const textarea = ref('')
 const username = ref(localStorage.getItem('username'))
 const userid = ref(localStorage.getItem('userid'))
@@ -149,6 +149,7 @@ const out = () => {
         background: #1a8300;
         color: #fff;
         border-radius: 5px;
+        cursor: pointer;
       }
       &:hover {
         background: #00823a;
