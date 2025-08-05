@@ -1,24 +1,28 @@
 <template>
   <SearchInput />
   <div class="friend-list">
-    <div v-for="friend in friendlist" :key="index" class="friend-item">
+    <!-- <div v-for="friend in friendlist" :key="index" class="friend-item">
       <div class="friend-item-pic">
         <img src="../../assets/R-C.jpg" alt="" />
       </div>
       <div class="name">Karmen</div>
       <div class="live"></div>
-    </div>
+    </div> -->
   </div>
 </template>
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
 import SearchInput from '../search.vue'
 import { getFriendList } from '../../api/title/index'
-const friendlist = ref([])
+import type { Friends } from '../../types/friends'
+const friendlist = ref<Friends[]>()
 onMounted(() => {
   const id = localStorage.getItem('userid')
   if (id) {
-    friendlist.value = getFriendList(id)
+    getFriendList(id).then((data) => {
+      friendlist.value = data
+      console.log(data)
+    })
   }
 })
 </script>
