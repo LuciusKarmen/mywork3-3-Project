@@ -11,12 +11,15 @@
 </template>
 <script lang="ts" setup name="SearchInput">
 import { ref } from 'vue'
-import { DefineProps } from 'vue'
+import { defineOptions } from 'vue'
 // import { useRouter } from 'vue-router'
 // const router = useRouter()
 const searchQuery = ref('')
 
 const placeholderText = ref('寻找那个合适的TA')
+defineOptions({
+  name: 'SearchInput',
+})
 </script>
 <style lang="scss" scoped>
 .search-container {

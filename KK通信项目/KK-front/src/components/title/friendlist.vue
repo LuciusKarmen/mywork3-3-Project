@@ -11,8 +11,16 @@
   </div>
 </template>
 <script lang="ts" setup name="">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import SearchInput from '../search.vue'
+import { getFriendList } from '../../api/title/index'
+const friendlist = ref()
+onMounted(() => {
+  const id = localStorage.getItem('userid')
+  if (id) {
+    friendlist.value = getFriendList(id)
+  }
+})
 </script>
 <style lang="scss" scoped>
 .friend-list {

@@ -1,8 +1,12 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { XcButton } from 'xingchengnet-ui'
+console.log('🔧 手动导入 XcButton:', XcButton)
+console.log('🔧 XcButton.name:', XcButton.name)
+</script>
 
 <template>
-  <XcButton type="danger">发布成功！</XcButton>
-  <xc-input type="danger">1</xc-input>
+  <XcButton size="large">发布成功！</XcButton>
+  <XcInput type="danger">1</XcInput>
 </template>
 
 <style scoped></style>
