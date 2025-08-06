@@ -35,20 +35,7 @@
     <div class="left">
       <router-view></router-view>
     </div>
-    <div class="chat">
-      <div
-        v-for="item in historyMessage"
-        :key="item.id"
-        :class="['message', item.is ? 'message-right' : 'message-left']"
-      >
-        <div class="message-content-text">
-          {{ item.content }}
-        </div>
-        <div class="message-content-time">
-          {{ item.time }}
-        </div>
-      </div>
-    </div>
+    <Chat />
     <div class="input">
       <el-input v-model="textarea" :rows="7" type="textarea" placeholder="Please input" />
       <el-button type="primary" @click="sendMessage" class="send-button">发送</el-button>
@@ -76,24 +63,6 @@ const changeLight = () => {
   night.value = !night.value
 }
 
-const historyMessage = ref([
-  {
-    content: 'hello world',
-    time: '10:10',
-    is: true,
-    from: 'Karmen',
-    to: 'xgm',
-    id: '0',
-  },
-  {
-    content: 'hello world too',
-    time: '10:11',
-    is: false,
-    from: 'xgm',
-    to: 'Karmen',
-    id: '1',
-  },
-])
 const current = ref('friends')
 const setActive = (tab: string) => {
   current.value = tab
@@ -224,53 +193,8 @@ const out = () => {
     position: absolute;
     left: 20vw;
     top: 7vh;
-    background: #ffffff;
-    animation: back 15s ease infinite;
-    background-size: 400% 400%;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
     overflow-y: scroll;
     overflow-x: hidden;
-    .message {
-      max-width: 50%;
-      padding: 10px;
-      border-radius: 10px;
-      display: flex;
-      flex-direction: column;
-
-      &.message-right {
-        align-self: flex-end;
-        border-bottom-right-radius: 3px;
-        .message-content-text {
-          color: #000;
-          background: rgb(149, 236, 105);
-          border-radius: 10px;
-          padding: 10px;
-          word-break: break-all;
-          border-bottom-right-radius: 1px;
-        }
-      }
-      &.message-left {
-        align-self: flex-start;
-        border-bottom-left-radius: 3px;
-        .message-content-text {
-          background: #eaeaea;
-          color: #000;
-          border-radius: 10px;
-          padding: 10px;
-          word-break: break-all;
-          border-bottom-left-radius: 1px;
-        }
-      }
-      .message-content-time {
-        font-size: 12px;
-        color: #999;
-        margin-top: 4px;
-        text-align: right;
-      }
-    }
   }
   .input {
     position: absolute;
