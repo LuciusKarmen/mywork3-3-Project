@@ -35,28 +35,26 @@
     <div class="left">
       <router-view></router-view>
     </div>
-    <Chat />
-    <div class="input">
-      <el-input v-model="textarea" :rows="7" type="textarea" placeholder="Please input" />
-      <el-button type="primary" @click="sendMessage" class="send-button">发送</el-button>
+    <div class="right">
+      <Chat :Messages="historyMessage"></Chat>
     </div>
   </div>
 </template>
 <script lang="ts" setup name="">
-import { onMounted, ref, computed } from 'vue'
+import { onMounted, ref, computed, watch, onUpdated } from 'vue'
 import { useRouter } from 'vue-router'
+import Chat from '../components/chat.vue'
 import { getFriendList } from '../api/title'
-const textarea = ref('')
+import { getMessage } from '@/api/main/chat'
+import type { Message } from '../types/message'
+
 const username = ref(localStorage.getItem('username'))
 const userid = ref(localStorage.getItem('userid'))
 const userpic = ref(localStorage.getItem('userpic'))
 const file = computed(() => {
   return `http://localhost:8080/${userpic.value}`
 })
-const sendMessage = () => {
-  console.log(textarea.value)
-  textarea.value = ''
-}
+
 const night = ref(false)
 const router = useRouter()
 const changeLight = () => {
@@ -87,6 +85,26 @@ const about = () => {
 const out = () => {
   router.push('/login')
 }
+
+const historyMessage = ref([])
+const friendid = computed(() => localStorage.getItem('friendid'))
+watch(
+  friendid,
+  async (newId) => {
+    if (!newId || !userid.value) {
+      historyMessage.value = []
+      return
+    }
+    try {
+      const messages: Message[] = await getMessage(userid.value, newId)
+      historyMessage.value = messages
+    } catch (err) {
+      console.error('加载聊天记录失败', err)
+      historyMessage.value = []
+    }
+  },
+  { immediate: true },
+)
 </script>
 <style lang="scss" scoped>
 .main {
@@ -187,33 +205,13 @@ const out = () => {
     top: 7vh;
     background: rgb(167, 167, 167);
   }
-  .chat {
+  .right {
     width: 80vw;
-    height: 73vh;
+    height: 93vh;
     position: absolute;
     left: 20vw;
     top: 7vh;
-    overflow-y: scroll;
     overflow-x: hidden;
-  }
-  .input {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    width: 80vw;
-    height: 20vh;
-    background-color: #ffffff;
-    box-sizing: border-box;
-    .send-button {
-      position: absolute;
-      right: 10px;
-      bottom: 10px;
-      width: 80px;
-      height: 40px;
-      background-color: #00823a;
-      color: #fff;
-      border: 1px solid #adffd2;
-    }
   }
 }
 @keyframes back {

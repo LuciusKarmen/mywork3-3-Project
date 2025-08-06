@@ -29,29 +29,27 @@ const router = createRouter({
       component: () => import('../views/main.vue'),
       children: [
         {
-          path: '/main',
+          path: '',
           name: 'home',
           component: () => import('../components/title/friendlist.vue'),
-          children: [
-            {
-              path: '/main/1',
-              name: 'add',
-              component: () => import('../components/title/friendlist.vue'),
-            },
-          ],
         },
         {
-          path: '/main/add',
-          name: 'user',
+          path: 'chat',
+          name: 'chat',
+          component: () => import('../components/title/friendlist.vue'),
+        },
+        {
+          path: 'add',
+          name: 'add',
           component: () => import('../components/title/friendadd.vue'),
         },
         {
-          path: '/main/about',
-          name: 'message',
+          path: 'about',
+          name: 'about',
           component: () => import('../components/title/about.vue'),
         },
         {
-          path: '/main/server',
+          path: 'server',
           name: 'server',
           component: () => import('../components/title/server.vue'),
         },

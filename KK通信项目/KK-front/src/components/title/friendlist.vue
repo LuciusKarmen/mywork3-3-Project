@@ -21,6 +21,9 @@ import { ref, onMounted, computed } from 'vue'
 import SearchInput from '../search.vue'
 import { getFriendList } from '../../api/title/index'
 import type { Friends } from '../../types/friends'
+import { useRouter } from 'vue-router'
+const router = useRouter()
+
 const friendlist = ref<Friends[]>()
 const selectedFriendId = ref('')
 const choose = (item: Friends) => {
