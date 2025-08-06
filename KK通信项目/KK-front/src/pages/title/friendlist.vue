@@ -1,7 +1,13 @@
 <template>
   <SearchInput />
   <div class="friend-list">
-    <div v-for="item in friendlist" :key="item.id" class="friend-item" @click="choose">
+    <div
+      v-for="item in friendlist"
+      :key="item.id"
+      class="friend-item"
+      @click="choose(item)"
+      :class="{ active: selectedFriendId === item.id }"
+    >
       <div class="friend-item-pic">
         <img :src="`http://localhost:8080/${item.pic}`" alt="头像" />
       </div>
@@ -16,10 +22,12 @@ import SearchInput from '../search.vue'
 import { getFriendList } from '../../api/title/index'
 import type { Friends } from '../../types/friends'
 const friendlist = ref<Friends[]>()
+const selectedFriendId = ref('')
 const choose = (item: Friends) => {
   localStorage.setItem('friendid', item.id)
   localStorage.setItem('friendname', item.username)
   console.log(localStorage.getItem('friendid'), localStorage.getItem('friendname'))
+  selectedFriendId.value = item.id
 }
 onMounted(() => {
   const id = localStorage.getItem('userid')
@@ -54,8 +62,8 @@ onMounted(() => {
       background-color: #fafafa;
       cursor: pointer;
     }
-    &:active {
-      background-color: #dddddd;
+    &.active {
+      background-color: #dedede;
     }
     .friend-item-pic {
       width: 6vh;
