@@ -7,7 +7,7 @@
         </div>
         <div>{{ username }}</div>
       </div>
-      <div>当前对话名</div>
+      <div>{{ a }}</div>
       <div><span>切换模式</span><el-switch v-model="night" @click="changeLight" /></div>
     </div>
     <div class="title">
@@ -41,7 +41,7 @@
   </div>
 </template>
 <script lang="ts" setup name="">
-import { onMounted, ref, computed, watch, onUpdated } from 'vue'
+import { onMounted, ref, computed, watch, onUpdated, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
 import Chat from '../components/chat.vue'
 import { getFriendList } from '../api/title'
@@ -54,7 +54,7 @@ const userpic = ref(localStorage.getItem('userpic'))
 const file = computed(() => {
   return `http://localhost:8080/${userpic.value}`
 })
-
+const a = computed(() => localStorage.getItem('friendname'))
 const night = ref(false)
 const router = useRouter()
 const changeLight = () => {
@@ -88,23 +88,33 @@ const out = () => {
 
 const historyMessage = ref([])
 const friendid = computed(() => localStorage.getItem('friendid'))
-watch(
-  friendid,
-  async (newId) => {
-    if (!newId || !userid.value) {
-      historyMessage.value = []
-      return
-    }
-    try {
-      const messages: Message[] = await getMessage(userid.value, newId)
-      historyMessage.value = messages
-    } catch (err) {
-      console.error('加载聊天记录失败', err)
-      historyMessage.value = []
-    }
-  },
-  { immediate: true },
-)
+const loadMessages = async () => {
+  const id = localStorage.getItem('friendid')
+  const uid = userid.value
+
+  if (!id || !uid) {
+    historyMessage.value = []
+    return
+  }
+
+  try {
+    const messages: Message[] = await getMessage(uid, id)
+    console.log('✅ 加载聊天记录:', messages)
+    historyMessage.value = messages
+  } catch (err) {
+    console.error('❌ 加载失败', err)
+    historyMessage.value = []
+  }
+}
+
+onMounted(() => {
+  loadMessages()
+  window.addEventListener('storage', loadMessages)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('storage', loadMessages)
+})
 </script>
 <style lang="scss" scoped>
 .main {

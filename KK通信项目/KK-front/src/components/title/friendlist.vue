@@ -31,6 +31,7 @@ const choose = (item: Friends) => {
   localStorage.setItem('friendname', item.username)
   console.log(localStorage.getItem('friendid'), localStorage.getItem('friendname'))
   selectedFriendId.value = item.id
+  window.dispatchEvent(new Event('storage'))
 }
 onMounted(() => {
   const id = localStorage.getItem('userid')
