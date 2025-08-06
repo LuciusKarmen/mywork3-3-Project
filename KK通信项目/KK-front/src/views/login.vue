@@ -138,11 +138,12 @@ function handleLogin() {
       router.push('/main')
     })
     .catch(() => {
+      console.log(user)
       alert('登录失败')
     })
 }
 function handleRegister() {
-  alert('注册按钮被点击')
+  router.push('/reg')
 }
 
 onMounted(() => {

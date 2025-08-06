@@ -1,9 +1,14 @@
 <template>
   <div class="main">
     <div class="top">
-      <div>{{ username }}</div>
-      <div>命数如织，当如磐石</div>
-      <el-switch v-model="night" @click="changeLight" /><span>切换模式</span>
+      <div class="user-info">
+        <div class="user">
+          <img :src="file" alt="user" />
+        </div>
+        <div>{{ username }}</div>
+      </div>
+      <div>当前对话名</div>
+      <div><span>切换模式</span><el-switch v-model="night" @click="changeLight" /></div>
     </div>
     <div class="title">
       <div class="title-text" :class="{ active: current === 'friends' }" @click="f">
@@ -51,14 +56,16 @@
   </div>
 </template>
 <script lang="ts" setup name="">
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { getFriendList } from '../api/title'
 const textarea = ref('')
 const username = ref(localStorage.getItem('username'))
 const userid = ref(localStorage.getItem('userid'))
 const userpic = ref(localStorage.getItem('userpic'))
-
+const file = computed(() => {
+  return `http://localhost:8080/${userpic.value}`
+})
 const sendMessage = () => {
   console.log(textarea.value)
   textarea.value = ''
@@ -109,7 +116,6 @@ const about = () => {
   router.push('/main/about')
 }
 const out = () => {
-  //居中弹出提示框
   router.push('/login')
 }
 </script>
@@ -124,8 +130,27 @@ const out = () => {
     height: 7vh;
     background: rgb(217, 217, 217);
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin: 0 20px;
+      .user {
+        width: 3vw;
+        height: 3vw;
+        background: #00823a;
+        border-radius: 50%;
+        border: 2px solid rgb(161, 255, 206);
+        img {
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+        }
+      }
+    }
   }
   .title {
     background: rgb(51, 51, 51);

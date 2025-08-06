@@ -1,21 +1,26 @@
 <template>
   <SearchInput />
   <div class="friend-list">
-    <!-- <div v-for="friend in friendlist" :key="index" class="friend-item">
+    <div v-for="item in friendlist" :key="item.id" class="friend-item" @click="choose">
       <div class="friend-item-pic">
-        <img src="../../assets/R-C.jpg" alt="" />
+        <img :src="`http://localhost:8080/${item.pic}`" alt="头像" />
       </div>
-      <div class="name">Karmen</div>
+      <div class="name">{{ item.username }}</div>
       <div class="live"></div>
-    </div> -->
+    </div>
   </div>
 </template>
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import SearchInput from '../search.vue'
 import { getFriendList } from '../../api/title/index'
 import type { Friends } from '../../types/friends'
 const friendlist = ref<Friends[]>()
+const choose = (item: Friends) => {
+  localStorage.setItem('friendid', item.id)
+  localStorage.setItem('friendname', item.username)
+  console.log(localStorage.getItem('friendid'), localStorage.getItem('friendname'))
+}
 onMounted(() => {
   const id = localStorage.getItem('userid')
   if (id) {
@@ -31,7 +36,6 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1rem;
   height: 83vh;
   overflow-y: auto;
   scrollbar-width: none;
@@ -41,6 +45,7 @@ onMounted(() => {
     align-items: center;
     width: 100%;
     padding: 0.5rem;
+    height: 8vh;
     border-bottom: 1px solid #ccc;
     &:last-child {
       border-bottom: none;
@@ -49,14 +54,16 @@ onMounted(() => {
       background-color: #fafafa;
       cursor: pointer;
     }
+    &:active {
+      background-color: #dddddd;
+    }
     .friend-item-pic {
-      width: 30px;
-      height: 30px;
+      width: 6vh;
+      height: 6vh;
       margin-right: 1rem;
       img {
         width: 100%;
         height: 100%;
-        border-radius: 50%;
       }
     }
     .name {

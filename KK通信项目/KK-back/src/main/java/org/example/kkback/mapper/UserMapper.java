@@ -20,8 +20,6 @@ public interface UserMapper  {
     @Insert("insert into user(id,username,password,pic) values(#{id},#{username},#{password},#{pic})")
     boolean reg(String id,String username,String password,String pic);
 
-
-
-
-
+    @Select("select * from user where id=#{id}")
+    User selectById(String id);
 }

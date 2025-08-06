@@ -3,13 +3,13 @@
     <canvas ref="particleCanvas" class="particles-canvas"></canvas>
 
     <div class="form">
-      <h2>星辰论坛</h2>
-      <input type="text" placeholder="用户名" v-model="user.name" />
+      <h2>KK Comm</h2>
+      <input type="text" placeholder="用户名" v-model="user.username" />
       <input type="password" placeholder="密码" v-model="user.password" />
       <input type="password" placeholder="确认密码" v-model="PasswordConfirm" />
       <input type="file" @change="handleFileChange" />
       <div class="buttons">
-        <el-button @click="handleRegister">清空</el-button>
+        <el-button @click="Clean">清空</el-button>
         <el-button @click="Reg">注册</el-button>
       </div>
       <br />
@@ -21,18 +21,18 @@
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import type { User } from '../api/user'
-import { registerUser } from '../api/reg'
+import type { User } from '../types/user'
+import { getRegister } from '../api/reg'
 
 const particleCanvas = ref<HTMLCanvasElement | null>(null)
 
 // 粒子配置项
 const config = {
   number: 100,
-  color: '#000000',
+  color: '#ffffff',
   opacity: 0.5,
   size: 2,
-  lineColor: '#000000',
+  lineColor: '#ffffff',
   lineOpacity: 0.3,
   lineWidth: 1,
   linkDistance: 150,
@@ -125,7 +125,7 @@ function show() {
 }
 const user = ref<User>({
   id: '1',
-  name: '',
+  username: '',
   password: '',
   pic: '',
 })
@@ -155,13 +155,13 @@ async function Reg() {
       return
     }
     const formData = new FormData()
-    formData.append('username', user.value.name)
+    formData.append('name', user.value.username)
     formData.append('password', user.value.password)
     if (file.value) {
       formData.append('pic', file.value)
     }
     console.log(formData)
-    await registerUser(formData)
+    await getRegister(formData)
 
     console.log('注册成功')
     router.push('/login')
@@ -169,8 +169,12 @@ async function Reg() {
     console.error('注册失败:', error)
   }
 }
-function handleRegister() {
-  alert('注册按钮被点击')
+const Clean = () => {
+  user.value.username = ''
+  user.value.password = ''
+  PasswordConfirm.value = ''
+  file.value = null
+  previewImage.value = null
 }
 
 onMounted(() => {
@@ -187,7 +191,7 @@ onMounted(() => {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f6f6f6;
+  background-color: #101010;
 }
 
 .particles-canvas {
@@ -265,4 +269,3 @@ onMounted(() => {
   }
 }
 </style>
-

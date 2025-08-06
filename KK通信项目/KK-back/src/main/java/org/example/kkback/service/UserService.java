@@ -24,9 +24,10 @@ public class UserService {
     {
         return userMapper.selectAll();
     }
-
-
-
+    public User selectById(String id)
+    {
+        return userMapper.selectById(id);
+    }
     public Result<User> login(String username, String password)
     {
         User user = userMapper.login(username,password);

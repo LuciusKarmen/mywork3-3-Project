@@ -6,7 +6,9 @@ import org.example.kkback.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/user")
@@ -20,11 +22,21 @@ public class UserServlet {
 
     }
     @RequestMapping("/login")
-    public Result<User> login(@RequestBody User user)
+    public Result<User> login(@RequestParam String username,
+                              @RequestParam String password)
     {
-        String username = user.getUsername();
-        String password = user.getPassword();
+        System.out.println(username+" "+password);
         return userService.login(username,password);
     }
+    @RequestMapping("/reg")
+    public Result<String> reg(@RequestParam String name,
+                      @RequestParam String password,
+                      @RequestParam MultipartFile pic
+    ) throws Exception
+    {
+        userService.register(name,password,pic);
+        return Result.ok();
+    }
+
 
 }
