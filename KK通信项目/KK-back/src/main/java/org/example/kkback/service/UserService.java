@@ -56,5 +56,9 @@ public class UserService {
 
         userMapper.reg(id, name, password, dbPath);
     }
+    public User selectnew(String name)
+    {
+        return userMapper.selectnew(name);
+    }
 
 }

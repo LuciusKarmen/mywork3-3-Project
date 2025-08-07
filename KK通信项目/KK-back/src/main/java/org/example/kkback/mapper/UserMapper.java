@@ -22,4 +22,7 @@ public interface UserMapper  {
 
     @Select("select * from user where id=#{id}")
     User selectById(String id);
+
+    @Select("select * from user where username=#{name}")
+    User selectnew(String name);
 }

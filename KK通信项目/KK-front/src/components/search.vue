@@ -1,7 +1,7 @@
 <template>
-  <div class="search-container">
+  <div class="search-container" @click="go">
     <input type="text" v-model="searchQuery" :placeholder="placeholderText" class="search-input" />
-    <div class="eye">
+    <div class="eye" @click="find">
       <img src="../assets/搜索.png" alt="" />
     </div>
     <div class="add">
@@ -11,10 +11,22 @@
 </template>
 <script lang="ts" setup name="SearchInput">
 import { ref } from 'vue'
-// import { useRouter } from 'vue-router'
-// const router = useRouter()
-const searchQuery = ref('')
+import { useRouter } from 'vue-router'
+import { getNewFriend } from '../api/main/add'
+import type { User } from '@/types/user'
+const router = useRouter()
+const go = () => {
+  router.push('/main/add')
+}
 
+const searchQuery = ref('')
+const newfriend = ref<User>()
+const find = () => {
+  getNewFriend(searchQuery.value).then((res) => {
+    newfriend.value = res
+    console.log(res)
+  })
+}
 const placeholderText = ref('寻找那个合适的TA')
 </script>
 <script lang="ts">

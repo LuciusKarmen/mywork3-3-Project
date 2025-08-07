@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/user")
 public class UserServlet {
@@ -17,9 +19,9 @@ public class UserServlet {
     private UserService userService;
 
     @RequestMapping("/selectAll")
-    public void selectAll()
+    public Result<List<User>> selectAll()
     {
-
+        return Result.ok(userService.selectAll());
     }
     @RequestMapping("/login")
     public Result<User> login(@RequestParam String username,
@@ -36,6 +38,11 @@ public class UserServlet {
     {
         userService.register(name,password,pic);
         return Result.ok();
+    }
+    @RequestMapping("/selectnew")
+    public Result<User> selectnew(@RequestParam String name)
+    {
+        return Result.ok(userService.selectnew(name));
     }
 
 
