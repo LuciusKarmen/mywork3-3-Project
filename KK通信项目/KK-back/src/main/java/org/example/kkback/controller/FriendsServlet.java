@@ -31,4 +31,15 @@ public class FriendsServlet {
         System.out.println(friendInfo);
         return Result.ok(friendInfo);
     }
+    @RequestMapping("/sendnew")
+    public Result<String> sendnew(String id, String friend_id) {
+        friendsService.sendnew(id, friend_id);
+        return Result.ok("发送成功");
+    }
+    @RequestMapping("/acceptnew")
+    public Result<String> acceptnew(String id, String friend_id) {
+        friendsService.acceptnew(id, friend_id);
+        return Result.ok("接受成功");
+    }
+
 }

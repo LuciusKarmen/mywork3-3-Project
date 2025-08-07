@@ -16,6 +16,14 @@ public class MessageService {
         //区分哪个是我发的
         return messageMapper.select(user_id, friend_id);
     }
+    public boolean add(Message message) {
+        String id=java.util.UUID.randomUUID().toString();
+        message.setId(id);
+
+        message.setTime(new java.util.Date().toString());
+        message.setRead(false);
+        return messageMapper.add(message);
+    }
 
 
 }

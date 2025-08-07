@@ -3,6 +3,8 @@ package org.example.kkback.websocket;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.example.kkback.dao.Message;
 import org.example.kkback.dao.Session;
+import org.example.kkback.mapper.MessageMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
@@ -21,6 +23,9 @@ public class PrivateChatHandler extends TextWebSocketHandler {
 
     // 用于消息序列化/反序列化
     private static final ObjectMapper objectMapper = new ObjectMapper();
+    
+    @Autowired
+    private MessageMapper messageMapper;
 
     /**
      * 当用户连接时
@@ -50,8 +55,8 @@ public class PrivateChatHandler extends TextWebSocketHandler {
         String payload = message.getPayload();
         Message msg = objectMapper.readValue(payload, Message.class);
 
-        // 设置发送时间（示例）
-        msg.setTime(new Date().toString());
+        // 设置统一格式的时间
+        msg.setTime(new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
 
         // 查找接收方是否在线
         Session receiverSession = onlineSessions.get(msg.getTo_id());
@@ -68,6 +73,11 @@ public class PrivateChatHandler extends TextWebSocketHandler {
             // todo: 保存到数据库作为离线消息
         }
 
+        // 为消息设置唯一ID
+        msg.setId(java.util.UUID.randomUUID().toString());
+        // 保存消息到数据库
+        messageMapper.add(msg);
+        
         // 可以回传消息给自己（确认发送成功）
         session.sendMessage(new TextMessage("[已发送] " + msg.getContent()));
     }

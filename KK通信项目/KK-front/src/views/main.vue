@@ -97,6 +97,12 @@ const out = () => {
 }
 
 const historyMessage = ref([])
+// 格式化时间为 HH:mm 格式
+const formatTime = (timeStr: string): string => {
+  const date = new Date(timeStr)
+  return date.toTimeString().slice(0, 5)
+}
+
 const loadMessages = async () => {
   const id = localStorage.getItem('friendid')
   friendname.value = localStorage.getItem('friendname')
@@ -110,7 +116,14 @@ const loadMessages = async () => {
   try {
     const messages: Message[] = await getMessage(uid, id)
     console.log('!!!加载聊天记录:', messages)
-    historyMessage.value = messages
+
+    // 格式化所有消息的时间
+    const formattedMessages = messages.map(msg => ({
+      ...msg,
+      time: formatTime(msg.time)
+    }))
+
+    historyMessage.value = formattedMessages
   } catch (err) {
     console.error('加载失败', err)
     historyMessage.value = []

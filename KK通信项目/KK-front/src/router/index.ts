@@ -56,7 +56,7 @@ const router = createRouter({
         {
           path: 'server',
           name: 'server',
-          component: () => import('../components/server.vue'),
+          component: () => import('../components/title/server.vue'),
         },
       ],
     },

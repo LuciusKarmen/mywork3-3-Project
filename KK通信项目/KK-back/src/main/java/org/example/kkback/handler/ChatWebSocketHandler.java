@@ -2,11 +2,14 @@ package org.example.kkback.handler;
 
 import org.example.kkback.dao.Message;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.example.kkback.mapper.MessageMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.*;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -15,6 +18,9 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
 
     private final Map<String, WebSocketSession> userSessions = new ConcurrentHashMap<>();
     private final ObjectMapper objectMapper = new ObjectMapper();
+    
+    @Autowired
+    private MessageMapper messageMapper;
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
@@ -46,6 +52,13 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
             } else {
                 sendError(session, "Recipient is not online");
             }
+            
+            // 设置统一格式的时间
+            msg.setTime(new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+            // 为消息设置唯一ID
+            msg.setId(java.util.UUID.randomUUID().toString());
+            // 保存消息到数据库
+            messageMapper.add(msg);
 
         } catch (Exception e) {
             sendError(session, "Message processing failed: " + e.getMessage());

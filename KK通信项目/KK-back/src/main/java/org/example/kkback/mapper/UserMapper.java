@@ -25,4 +25,5 @@ public interface UserMapper  {
 
     @Select("select * from user where username=#{name}")
     User selectnew(String name);
+
 }

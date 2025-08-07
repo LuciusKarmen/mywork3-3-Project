@@ -19,4 +19,9 @@ public class MessageServlet {
     {
         return Result.ok(messageService.select(user_id, friend_id));
     }
+    @RequestMapping("/add")
+    public Result<String> add(Message message)
+    {
+        return messageService.add(message) ? Result.ok() : Result.error(500,"添加失败");
+    }
 }

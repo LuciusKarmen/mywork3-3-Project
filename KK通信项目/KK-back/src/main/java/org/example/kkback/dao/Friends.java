@@ -35,6 +35,14 @@ public class Friends {
     public void setCreated_at(String created_at) {
         this.created_at = created_at;
     }
+    
+    public String getStatus() {
+        return status;
+    }
+    
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     @Override
     public String toString() {
@@ -43,6 +51,7 @@ public class Friends {
                 ", user_id='" + user_id + '\'' +
                 ", friend_id='" + friend_id + '\'' +
                 ", created_at='" + created_at + '\'' +
+                ", status='" + status + '\'' +
                 '}';
     }
 
@@ -50,6 +59,7 @@ public class Friends {
     private String user_id;
     private String friend_id;
     private String created_at;
+    private String status;
 
 
 }

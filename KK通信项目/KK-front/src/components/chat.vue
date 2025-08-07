@@ -30,7 +30,7 @@
 
 <script lang="ts" setup>
 import type { Message } from '../types/message'
-import { ref, onMounted, onUnmounted, nextTick, defineProps, defineEmits, onUpdated } from 'vue'
+import { ref, onMounted, onUnmounted, nextTick, defineProps, defineEmits, onUpdated, watch } from 'vue'
 
 const userid = localStorage.getItem('userid')
 const friendid = ref<string | null>(null)
@@ -38,6 +38,13 @@ const friendid = ref<string | null>(null)
 const props = defineProps<{
   Messages: Message[]
 }>()
+
+// 监听消息列表变化并滚动到底部
+watch(() => props.Messages, () => {
+  nextTick(() => {
+    scrollToBottom()
+  })
+}, { deep: true })
 
 const emit = defineEmits(['newMessage'])
 
@@ -58,7 +65,11 @@ const sendMessage = () => {
   }
 
   const content = textarea.value.trim()
-  const time = new Date().toTimeString().slice(0, 5)
+  // 格式化时间为 HH:mm 格式
+  const formatTime = (date: Date): string => {
+    return date.toTimeString().slice(0, 5)
+  }
+  const time = formatTime(new Date())
 
   const message: Message = {
     id: '',
