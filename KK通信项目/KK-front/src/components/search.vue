@@ -1,5 +1,5 @@
 <template>
-  <div class="search-container" @click="go">
+  <div class="search-container" @click="click">
     <input type="text" v-model="searchQuery" :placeholder="placeholderText" class="search-input" />
     <div class="eye" @click="find">
       <img src="../assets/搜索.png" alt="" />
@@ -10,21 +10,27 @@
   </div>
 </template>
 <script lang="ts" setup name="SearchInput">
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { getNewFriend } from '../api/main/add'
 import type { User } from '@/types/user'
 const router = useRouter()
-const go = () => {
-  router.push('/main/add')
-}
-
 const searchQuery = ref('')
 const newfriend = ref<User>()
+//子向父
+const emit = defineEmits(['new_friend'])
+
+const click = () => {
+  router.push({
+    path: '/main/add',
+  })
+}
 const find = () => {
   getNewFriend(searchQuery.value).then((res) => {
     newfriend.value = res
-    console.log(res)
+    console.log(newfriend.value)
+    emit('new_friend', newfriend.value)
+    searchQuery.value = ''
   })
 }
 const placeholderText = ref('寻找那个合适的TA')

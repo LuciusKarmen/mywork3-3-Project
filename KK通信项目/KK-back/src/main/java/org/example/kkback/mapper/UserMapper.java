@@ -13,7 +13,7 @@ public interface UserMapper  {
 
     @Select("select * from user")
     List<User> selectAll();
-//    登录
+
     @Select("select * from user where username=#{username} and password=#{password}")
     User login(String username,String password);
 

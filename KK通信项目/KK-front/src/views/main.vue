@@ -23,10 +23,15 @@
         <img src="../assets/更多服务、功能.png" alt="" />
         服务
       </div>
+      <div class="title-text" :class="{ active: current === 'control' }" @click="control">
+        <img src="../assets/通知.png" alt="" />
+        通知
+      </div>
       <div class="title-text" :class="{ active: current === 'about' }" @click="about">
         <img src="../assets/提示.png" alt="" />
         关于
       </div>
+
       <div class="title-foot" @click="out">
         <img src="../assets/退出.png" alt="" />
         退出
@@ -78,6 +83,10 @@ const s = () => {
   setActive('server')
   router.push('/main/server')
 }
+const control = () => {
+  setActive('control')
+  router.push('/main/control')
+}
 const about = () => {
   setActive('about')
   router.push('/main/about')
@@ -87,7 +96,6 @@ const out = () => {
 }
 
 const historyMessage = ref([])
-const friendid = computed(() => localStorage.getItem('friendid'))
 const loadMessages = async () => {
   const id = localStorage.getItem('friendid')
   const uid = userid.value

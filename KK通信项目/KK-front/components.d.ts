@@ -11,6 +11,7 @@ declare module 'vue' {
     About: typeof import('./src/components/title/about.vue')['default']
     Blank: typeof import('./src/components/blank.vue')['default']
     Chat: typeof import('./src/components/chat.vue')['default']
+    Control: typeof import('./src/components/title/control.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElInput: typeof import('element-plus/es')['ElInput']
     ElSwitch: typeof import('element-plus/es')['ElSwitch']
