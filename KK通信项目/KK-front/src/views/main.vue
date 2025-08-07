@@ -7,7 +7,7 @@
         </div>
         <div>{{ username }}</div>
       </div>
-      <div>{{ a }}</div>
+      <div>{{ friendname }}</div>
       <div><span>切换模式</span><el-switch v-model="night" @click="changeLight" /></div>
     </div>
     <div class="title">
@@ -56,10 +56,11 @@ import type { Message } from '../types/message'
 const username = ref(localStorage.getItem('username'))
 const userid = ref(localStorage.getItem('userid'))
 const userpic = ref(localStorage.getItem('userpic'))
+const friendname = ref(localStorage.getItem('friendname'))
 const file = computed(() => {
   return `http://localhost:8080/${userpic.value}`
 })
-const a = computed(() => localStorage.getItem('friendname'))
+
 const night = ref(false)
 const router = useRouter()
 const changeLight = () => {
@@ -98,6 +99,7 @@ const out = () => {
 const historyMessage = ref([])
 const loadMessages = async () => {
   const id = localStorage.getItem('friendid')
+  friendname.value = localStorage.getItem('friendname')
   const uid = userid.value
 
   if (!id || !uid) {
@@ -107,10 +109,10 @@ const loadMessages = async () => {
 
   try {
     const messages: Message[] = await getMessage(uid, id)
-    console.log('✅ 加载聊天记录:', messages)
+    console.log('!!!加载聊天记录:', messages)
     historyMessage.value = messages
   } catch (err) {
-    console.error('❌ 加载失败', err)
+    console.error('加载失败', err)
     historyMessage.value = []
   }
 }

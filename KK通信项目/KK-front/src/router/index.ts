@@ -44,6 +44,11 @@ const router = createRouter({
           component: () => import('../components/title/friendadd.vue'),
         },
         {
+          path: 'control',
+          name: 'control',
+          component: () => import('../components/title/control.vue'),
+        },
+        {
           path: 'about',
           name: 'about',
           component: () => import('../components/title/about.vue'),
@@ -51,7 +56,7 @@ const router = createRouter({
         {
           path: 'server',
           name: 'server',
-          component: () => import('../components/title/server.vue'),
+          component: () => import('../components/server.vue'),
         },
       ],
     },

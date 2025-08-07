@@ -1,6 +1,6 @@
 <template>
   <div class="all">
-    <div class="chat">
+    <div ref="chatContainer" class="chat">
       <div
         v-for="item in props.Messages"
         :key="item.id"
@@ -14,32 +14,145 @@
         </div>
       </div>
     </div>
+
     <div class="input">
-      <el-input v-model="textarea" :rows="7" type="textarea" placeholder="Please input" />
+      <el-input
+        v-model="textarea"
+        :rows="7"
+        type="textarea"
+        placeholder="请输入消息"
+        @keydown.enter="handleEnter"
+      />
       <el-button type="primary" @click="sendMessage" class="send-button">发送</el-button>
     </div>
   </div>
 </template>
 
-<script lang="ts" setup name="Chat">
+<script lang="ts" setup>
 import type { Message } from '../types/message'
-import { ref, onUpdated, nextTick } from 'vue'
+import { ref, onMounted, onUnmounted, nextTick, defineProps, defineEmits, onUpdated } from 'vue'
 
 const userid = localStorage.getItem('userid')
+const friendid = ref<string | null>(null)
+
 const props = defineProps<{
   Messages: Message[]
 }>()
-const sendMessage = async () => {
-  console.log(userid)
-}
+
+const emit = defineEmits(['newMessage'])
 
 const textarea = ref('')
 const chatContainer = ref<HTMLElement | null>(null)
-onUpdated(async () => {
-  await nextTick()
+const ws = ref<WebSocket | null>(null)
+
+const WS_URL = 'ws://localhost:8080/ws/chat'
+
+const sendMessage = () => {
+  if (
+    !textarea.value.trim() ||
+    !friendid.value ||
+    !ws.value ||
+    ws.value.readyState !== WebSocket.OPEN
+  ) {
+    return
+  }
+
+  const content = textarea.value.trim()
+  const time = new Date().toTimeString().slice(0, 5)
+
+  const message: Message = {
+    id: '',
+    from_id: userid!,
+    to_id: friendid.value,
+    content,
+    time,
+    read: false,
+  }
+
+  ws.value.send(JSON.stringify(message))
+  emit('newMessage', message)
+  textarea.value = ''
+
+  nextTick(() => {
+    scrollToBottom()
+  })
+}
+
+const handleEnter = (e: KeyboardEvent) => {
+  if (!e.shiftKey) {
+    e.preventDefault()
+    sendMessage()
+  }
+}
+
+const scrollToBottom = () => {
   if (chatContainer.value) {
     chatContainer.value.scrollTop = chatContainer.value.scrollHeight
   }
+}
+
+const handleStorageChange = (e: StorageEvent) => {
+  if (e.key === 'friendid') {
+    friendid.value = e.newValue
+
+    if (ws.value) {
+      ws.value.close()
+    }
+
+    if (friendid.value) {
+      connectWebSocket()
+    }
+  }
+}
+
+const connectWebSocket = () => {
+  if (!userid || !friendid.value) return
+
+  const url = `${WS_URL}?userid=${userid}&friendid=${friendid.value}`
+  ws.value = new WebSocket(url)
+
+  ws.value.onopen = () => {
+    console.log('WebSocket connected to friend:', friendid.value)
+  }
+
+  ws.value.onmessage = (event) => {
+    try {
+      const msg: Message = JSON.parse(event.data)
+      emit('newMessage', msg)
+    } catch (err) {
+      console.error('Message parse error:', err)
+    }
+  }
+
+  ws.value.onclose = () => {
+    console.log('WebSocket closed')
+  }
+
+  ws.value.onerror = (err) => {
+    console.error('WebSocket error:', err)
+  }
+}
+
+onMounted(() => {
+  friendid.value = localStorage.getItem('friendid')
+  window.addEventListener('storage', handleStorageChange)
+
+  if (friendid.value) {
+    connectWebSocket()
+  }
+})
+
+onUnmounted(() => {
+  if (ws.value) {
+    ws.value.close()
+  }
+  window.removeEventListener('storage', handleStorageChange)
+})
+
+onUpdated(() => {
+  nextTick(() => {
+    scrollToBottom()
+  })
 })
 </script>
 
@@ -76,7 +189,6 @@ onUpdated(async () => {
           border-radius: 10px;
           padding: 10px;
           word-break: break-all;
-          // ✅ 删除 border-bottom-right-radius
         }
 
         .message-content-time {

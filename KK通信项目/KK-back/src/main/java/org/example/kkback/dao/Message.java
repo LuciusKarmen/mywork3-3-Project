@@ -4,6 +4,11 @@ import lombok.Data;
 
 
 public class Message {
+    public Message() {
+        this.id = java.util.UUID.randomUUID().toString();
+        this.time = java.time.LocalTime.now().format(java.time.format.DateTimeFormatter.ofPattern("HH:mm"));
+        this.read = false;
+    }
     public Boolean getRead() {
         return read;
     }
