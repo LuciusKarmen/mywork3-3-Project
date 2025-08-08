@@ -12,7 +12,6 @@
         <img :src="`http://localhost:8080/${item.pic}`" alt="头像" />
       </div>
       <div class="name">{{ item.username }}</div>
-      <div class="live"></div>
     </div>
   </div>
 </template>
@@ -62,11 +61,11 @@ onMounted(() => {
       border-bottom: none;
     }
     &:hover {
-      background-color: #fafafa;
+      background-color: #bcbcbc;
       cursor: pointer;
     }
     &.active {
-      background-color: #dedede;
+      background-color: #fefefe;
     }
     .friend-item-pic {
       width: 6vh;

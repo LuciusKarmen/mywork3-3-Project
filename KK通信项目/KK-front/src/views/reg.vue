@@ -163,10 +163,10 @@ async function Reg() {
     console.log(formData)
     await getRegister(formData)
 
-    console.log('注册成功')
+    alert('注册成功')
     router.push('/login')
   } catch (error) {
-    console.error('注册失败:', error)
+    alert('注册失败: ' + error)
   }
 }
 const Clean = () => {

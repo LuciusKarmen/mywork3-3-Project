@@ -18,7 +18,7 @@ public interface FriendsMapper {
             "UNION " +
             "SELECT user_id AS id " +
             "FROM friends WHERE friend_id = #{userId} AND status = 'accepted'")
-    List<Long> selectFriends(@Param("userId") String id);
+    List<String> selectFriends(@Param("userId") String id);
     //查询用户收到的所有申请
 // FriendsMapper.java
     @Select("SELECT id, user_id, friend_id, created_at, status " +

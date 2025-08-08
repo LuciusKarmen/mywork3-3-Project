@@ -28,8 +28,6 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
         if (userid != null) {
             userSessions.put(userid, session);
             System.out.println("用户 " + userid + " 已连接");
-        } else {
-            session.close(CloseStatus.NOT_ACCEPTABLE.withReason("Missing userid parameter"));
         }
     }
 
@@ -50,7 +48,9 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
                 toSession.sendMessage(new TextMessage(response));
                 System.out.println("消息已发送: " + msg.getFrom_id() + " -> " + msg.getTo_id());
             } else {
-                sendError(session, "Recipient is not online");
+//               不回内容
+                sendError(session, "");
+
             }
 
             // 设置统一格式的时间

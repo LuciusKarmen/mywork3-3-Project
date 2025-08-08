@@ -30,16 +30,7 @@
 
 <script lang="ts" setup>
 import type { Message } from '../types/message'
-import {
-  ref,
-  onMounted,
-  onUnmounted,
-  nextTick,
-  defineProps,
-  defineEmits,
-  onUpdated,
-  watch,
-} from 'vue'
+import { ref, onMounted, onUnmounted, nextTick, defineProps, defineEmits, watch } from 'vue'
 
 const userid = localStorage.getItem('userid')
 const friendid = ref<string | null>(null)
@@ -47,17 +38,6 @@ const friendid = ref<string | null>(null)
 const props = defineProps<{
   Messages: Message[]
 }>()
-
-// 监听消息列表变化并滚动到底部
-watch(
-  () => props.Messages,
-  () => {
-    nextTick(() => {
-      scrollToBottom()
-    })
-  },
-  { deep: true },
-)
 
 const emit = defineEmits(['newMessage'])
 
@@ -67,39 +47,38 @@ const ws = ref<WebSocket | null>(null)
 
 const WS_URL = 'ws://localhost:8080/ws/chat'
 
+// 格式化时间为 HH:mm
+const formatTime = (date: Date): string => {
+  return date.toTimeString().slice(0, 5)
+}
+
 const sendMessage = () => {
-  if (
-    !textarea.value.trim() ||
-    !friendid.value ||
-    !ws.value ||
-    ws.value.readyState !== WebSocket.OPEN
-  ) {
-    return
-  }
-
   const content = textarea.value.trim()
-  // 格式化时间为 HH:mm 格式
-  const formatTime = (date: Date): string => {
-    return date.toTimeString().slice(0, 5)
-  }
-  const time = formatTime(new Date())
+  const toId = localStorage.getItem('friendid')
 
+  // 基本校验
+  if (!content || !toId || !userid) return
+
+  // 构造消息（前端临时 ID，后端会覆盖）
   const message: Message = {
-    id: '',
-    from_id: userid!,
-    to_id: friendid.value,
+    id: '', // 后端生成
+    from_id: userid,
+    to_id: toId,
     content,
-    time,
+    time: formatTime(new Date()),
     read: false,
   }
 
-  ws.value.send(JSON.stringify(message))
-  emit('newMessage', message)
-  textarea.value = ''
-
-  nextTick(() => {
-    scrollToBottom()
-  })
+  // 只要 WebSocket 是 OPEN 状态，就尝试发送
+  if (ws.value && ws.value.readyState === WebSocket.OPEN) {
+    ws.value.send(JSON.stringify(message))
+    // 立即更新聊天界面（乐观更新）
+    emit('newMessage', message)
+    textarea.value = ''
+    nextTick(scrollToBottom)
+  }
+  // 如果 WebSocket 未连接，也**不提示**，静默失败（或可选：存草稿）
+  // 当前需求是“不提示”，所以什么都不做
 }
 
 const handleEnter = (e: KeyboardEvent) => {
@@ -115,12 +94,15 @@ const scrollToBottom = () => {
   }
 }
 
+// 监听 friendid 变化
 const handleStorageChange = (e: StorageEvent) => {
-  if (e.key === 'friendid') {
+  if (e.key === 'friendid' && e.newValue !== e.oldValue) {
     friendid.value = e.newValue
 
+    // 关闭旧连接
     if (ws.value) {
       ws.value.close()
+      ws.value = null
     }
 
     if (friendid.value) {
@@ -132,30 +114,46 @@ const handleStorageChange = (e: StorageEvent) => {
 const connectWebSocket = () => {
   if (!userid || !friendid.value) return
 
-  const url = `${WS_URL}?userid=${userid}&friendid=${friendid.value}`
+  const url = `${WS_URL}?userid=${userid}`
   ws.value = new WebSocket(url)
 
   ws.value.onopen = () => {
-    console.log('WebSocket connected to friend:', friendid.value)
+    console.log('✅ WebSocket connected:', userid)
   }
 
   ws.value.onmessage = (event) => {
     try {
       const msg: Message = JSON.parse(event.data)
-      emit('newMessage', msg)
+      // 确保是当前聊天对象的消息才显示
+      if (
+        msg.to_id === localStorage.getItem('friendid') ||
+        msg.from_id === localStorage.getItem('friendid')
+      ) {
+        emit('newMessage', msg)
+      }
     } catch (err) {
-      console.error('Message parse error:', err)
+      console.error('解析消息失败:', err)
     }
   }
 
   ws.value.onclose = () => {
-    console.log('WebSocket closed')
+    console.log('❌ WebSocket closed')
   }
 
   ws.value.onerror = (err) => {
-    console.error('WebSocket error:', err)
+    console.error('WebSocket 错误:', err)
+    // 不弹窗提示
   }
 }
+
+// 监听消息变化滚动到底部
+watch(
+  () => props.Messages,
+  () => {
+    nextTick(scrollToBottom)
+  },
+  { deep: true },
+)
 
 onMounted(() => {
   friendid.value = localStorage.getItem('friendid')
@@ -171,12 +169,6 @@ onUnmounted(() => {
     ws.value.close()
   }
   window.removeEventListener('storage', handleStorageChange)
-})
-
-onUpdated(() => {
-  nextTick(() => {
-    scrollToBottom()
-  })
 })
 </script>
 

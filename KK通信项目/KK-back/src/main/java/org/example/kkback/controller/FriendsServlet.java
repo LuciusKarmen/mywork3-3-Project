@@ -24,11 +24,11 @@ public class FriendsServlet {
     private UserService userService;
     @RequestMapping("/selectFriends")
     public Result<List<User>> selectFriends(String id) {
-        List<Long> friends = friendsService.selectFriends(id);
+        List<String> friends = friendsService.selectFriends(id);
         System.out.println(friends);
         //遍历id，获取好友信息，存到列表里
         List<User> friendInfo = new ArrayList<>();
-        for (Long friendId : friends) {
+        for (String friendId : friends) {
             User friend = userService.selectById(friendId.toString());
             friendInfo.add(friend);
         }

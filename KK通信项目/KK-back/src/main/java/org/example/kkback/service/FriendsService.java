@@ -19,7 +19,7 @@ public class FriendsService {
     @Autowired
     private UserMapper userMapper;
     
-    public List<Long> selectFriends(String id) {
+    public List<String> selectFriends(String id) {
         return friendsMapper.selectFriends(id);
     }
     
