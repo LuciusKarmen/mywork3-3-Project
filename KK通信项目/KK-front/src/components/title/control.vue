@@ -30,7 +30,7 @@ import { getFriendRequests, getFriendInfo, updateFriendRequest } from '../../api
 import type { Friends } from '@/types/friends'
 import type { User } from '@/types/user'
 
-const ApplyID = ref([])
+const ApplyID = ref<string[]>([])
 const ApplyUserList = ref<User[]>([])
 const applyList = ref<Friends[]>()
 const accept = (id: string) => {

@@ -8,20 +8,10 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    About: typeof import('./src/components/title/about.vue')['default']
-    Blank: typeof import('./src/components/blank.vue')['default']
-    Chat: typeof import('./src/components/chat.vue')['default']
-    Control: typeof import('./src/components/title/control.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElInput: typeof import('element-plus/es')['ElInput']
     ElSwitch: typeof import('element-plus/es')['ElSwitch']
-    Friend: typeof import('./src/components/friend/friend.vue')['default']
-    Friendadd: typeof import('./src/components/title/friendadd.vue')['default']
-    Friendlist: typeof import('./src/components/title/friendlist.vue')['default']
-    Kuang: typeof import('./src/components/kuang.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    Search: typeof import('./src/components/search.vue')['default']
-    Server: typeof import('./src/components/title/server.vue')['default']
   }
 }

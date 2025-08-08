@@ -31,7 +31,9 @@
 <script lang="ts" setup>
 import type { Message } from '../types/message'
 import { ref, onMounted, onUnmounted, nextTick, defineProps, defineEmits, watch } from 'vue'
-
+defineOptions({
+  name: 'Chat',
+})
 const userid = localStorage.getItem('userid')
 const friendid = ref<string | null>(null)
 
@@ -123,12 +125,21 @@ const connectWebSocket = () => {
 
   ws.value.onmessage = (event) => {
     try {
-      const msg: Message = JSON.parse(event.data)
+      const receivedMsg = JSON.parse(event.data)
       // 确保是当前聊天对象的消息才显示
       if (
-        msg.to_id === localStorage.getItem('friendid') ||
-        msg.from_id === localStorage.getItem('friendid')
+        receivedMsg.to_id === localStorage.getItem('friendid') ||
+        receivedMsg.from_id === localStorage.getItem('friendid')
       ) {
+        // 确保所有字段都是正确的类型
+        const msg: Message = {
+          id: String(receivedMsg.id),
+          from_id: String(receivedMsg.from_id),
+          to_id: String(receivedMsg.to_id),
+          content: String(receivedMsg.content),
+          time: String(receivedMsg.time),
+          read: Boolean(receivedMsg.read),
+        }
         emit('newMessage', msg)
       }
     } catch (err) {

@@ -1,8 +1,8 @@
 export interface Message {
-  id: String
-  from_id: String
-  to_id: String
-  content: String
-  time: String
-  read: Boolean
+  id: string
+  from_id: string
+  to_id: string
+  content: string
+  time: string
+  read: boolean
 }

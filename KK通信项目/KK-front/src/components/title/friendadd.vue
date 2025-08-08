@@ -46,9 +46,15 @@ const handleNewFriend = (friend: User | null) => {
 const addFriendw = () => {
   console.log('添加到通讯录:', receivedFriend.value?.username)
   console.log(userId, receivedFriend.value?.id)
-  addFriend(userId, receivedFriend.value?.id).then(() => {
-    alert('添加中')
-  })
+
+  // 确保 userId 和 friend_id 都存在再调用 addFriend
+  if (userId && receivedFriend.value?.id) {
+    addFriend(userId, receivedFriend.value.id).then(() => {
+      alert('添加中')
+    })
+  } else {
+    alert('用户信息不完整，无法添加好友')
+  }
 }
 </script>
 

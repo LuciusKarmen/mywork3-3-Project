@@ -46,10 +46,9 @@
   </div>
 </template>
 <script lang="ts" setup name="">
-import { onMounted, ref, computed, watch, onUpdated, onUnmounted } from 'vue'
+import { onMounted, ref, computed, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
 import Chat from '../components/chat.vue'
-import { getFriendList } from '../api/title'
 import { getMessage } from '@/api/main/chat'
 import type { Message } from '../types/message'
 
@@ -96,7 +95,7 @@ const out = () => {
   router.push('/login')
 }
 
-const historyMessage = ref([])
+const historyMessage = ref<Message[]>([])
 // 格式化时间为 HH:mm 格式
 const formatTime = (timeStr: string): string => {
   const date = new Date(timeStr)
@@ -120,7 +119,7 @@ const loadMessages = async () => {
     // 格式化所有消息的时间
     const formattedMessages = messages.map((msg) => ({
       ...msg,
-      time: formatTime(msg.time),
+      time: formatTime(msg.time as string),
     }))
 
     historyMessage.value = formattedMessages

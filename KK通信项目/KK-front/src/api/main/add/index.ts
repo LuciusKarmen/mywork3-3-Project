@@ -1,4 +1,3 @@
-import type { Apply } from '@/types/apply'
 import type { Friends } from '@/types/friends'
 import type { User } from '@/types/user'
 import request from '@/utils/request'
