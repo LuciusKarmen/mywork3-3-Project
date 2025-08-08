@@ -52,7 +52,7 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
             } else {
                 sendError(session, "Recipient is not online");
             }
-            
+
             // 设置统一格式的时间
             msg.setTime(new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
             // 为消息设置唯一ID

@@ -17,16 +17,14 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted } from 'vue'
 import SearchInput from '../search.vue'
 import { getFriendList } from '../../api/title/index'
-import type { Friends } from '../../types/friends'
-import { useRouter } from 'vue-router'
-const router = useRouter()
+import type { User } from '@/types/user'
 
-const friendlist = ref<Friends[]>()
+const friendlist = ref<User[]>()
 const selectedFriendId = ref('')
-const choose = (item: Friends) => {
+const choose = (item: User) => {
   localStorage.setItem('friendid', item.id)
   localStorage.setItem('friendname', item.username)
   console.log(localStorage.getItem('friendid'), localStorage.getItem('friendname'))
@@ -39,6 +37,7 @@ onMounted(() => {
     getFriendList(id).then((data) => {
       friendlist.value = data
       console.log(data)
+      console.log('1')
     })
   }
 })

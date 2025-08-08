@@ -44,6 +44,10 @@ public class UserServlet {
     {
         return Result.ok(userService.selectnew(name));
     }
+    @RequestMapping("/select")
+    public Result<User> select(@RequestParam String id){
+        return Result.ok(userService.selectById(id));
+    }
 
 
 }

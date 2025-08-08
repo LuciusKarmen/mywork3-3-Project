@@ -41,7 +41,7 @@
       <router-view></router-view>
     </div>
     <div class="right">
-      <Chat :Messages="historyMessage"></Chat>
+      <Chat :Messages="historyMessage" @newMessage="handleNewMessage" />
     </div>
   </div>
 </template>
@@ -118,9 +118,9 @@ const loadMessages = async () => {
     console.log('!!!加载聊天记录:', messages)
 
     // 格式化所有消息的时间
-    const formattedMessages = messages.map(msg => ({
+    const formattedMessages = messages.map((msg) => ({
       ...msg,
-      time: formatTime(msg.time)
+      time: formatTime(msg.time),
     }))
 
     historyMessage.value = formattedMessages
@@ -129,7 +129,10 @@ const loadMessages = async () => {
     historyMessage.value = []
   }
 }
-
+const handleNewMessage = (msg: Message) => {
+  // 关键：必须创建新数组引用，触发响应式更新
+  historyMessage.value = [...historyMessage.value, msg]
+}
 onMounted(() => {
   loadMessages()
   window.addEventListener('storage', loadMessages)

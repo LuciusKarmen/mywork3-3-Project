@@ -30,7 +30,16 @@
 
 <script lang="ts" setup>
 import type { Message } from '../types/message'
-import { ref, onMounted, onUnmounted, nextTick, defineProps, defineEmits, onUpdated, watch } from 'vue'
+import {
+  ref,
+  onMounted,
+  onUnmounted,
+  nextTick,
+  defineProps,
+  defineEmits,
+  onUpdated,
+  watch,
+} from 'vue'
 
 const userid = localStorage.getItem('userid')
 const friendid = ref<string | null>(null)
@@ -40,11 +49,15 @@ const props = defineProps<{
 }>()
 
 // 监听消息列表变化并滚动到底部
-watch(() => props.Messages, () => {
-  nextTick(() => {
-    scrollToBottom()
-  })
-}, { deep: true })
+watch(
+  () => props.Messages,
+  () => {
+    nextTick(() => {
+      scrollToBottom()
+    })
+  },
+  { deep: true },
+)
 
 const emit = defineEmits(['newMessage'])
 

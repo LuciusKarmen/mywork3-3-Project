@@ -10,7 +10,7 @@
         </p>
       </div>
 
-      <div v-else class="friend-add-item-1" @click="addFriend">
+      <div v-else class="friend-add-item-1" @click="addFriendw">
         <div class="info">
           <div class="pic">
             <img :src="`http://localhost:8080/${receivedFriend.pic}`" alt="头像" />
@@ -29,8 +29,10 @@
 import type { User } from '@/types/user'
 import SearchInput from '../search.vue'
 import { ref } from 'vue'
+import { addFriend } from '@/api/main/add'
 
 const receivedFriend = ref<User | null>(null)
+const userId = localStorage.getItem('userid')
 
 const handleNewFriend = (friend: User | null) => {
   if (friend) {
@@ -41,8 +43,12 @@ const handleNewFriend = (friend: User | null) => {
   }
 }
 
-const addFriend = () => {
+const addFriendw = () => {
   console.log('添加到通讯录:', receivedFriend.value?.username)
+  console.log(userId, receivedFriend.value?.id)
+  addFriend(userId, receivedFriend.value?.id).then(() => {
+    alert('添加中')
+  })
 }
 </script>
 
