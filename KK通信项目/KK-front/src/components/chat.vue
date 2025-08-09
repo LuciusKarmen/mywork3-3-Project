@@ -79,7 +79,7 @@ const sendMessage = () => {
     textarea.value = ''
     nextTick(scrollToBottom)
   }
-  // 如果 WebSocket 未连接，也**不提示**，静默失败（或可选：存草稿）
+  // 如果 WebSocket 未连接，也**不提示**，静默失败
   // 当前需求是“不提示”，所以什么都不做
 }
 
@@ -148,7 +148,7 @@ const connectWebSocket = () => {
   }
 
   ws.value.onclose = () => {
-    console.log('❌ WebSocket closed')
+    console.log('WebSocket closed')
   }
 
   ws.value.onerror = (err) => {

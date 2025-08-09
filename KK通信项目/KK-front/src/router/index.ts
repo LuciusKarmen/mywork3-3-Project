@@ -65,7 +65,7 @@ const router = createRouter({
 
 // 路由守卫！！！
 router.beforeEach((to, from, next) => {
-  const publicPages = ['/login', '/reg', '/face', '/our']
+  const publicPages = ['/login', '/reg', '/', '/our']
 
   const token = localStorage.getItem('token')
 
