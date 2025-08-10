@@ -48,6 +48,11 @@ public class UserServlet {
     public Result<User> select(@RequestParam String id){
         return Result.ok(userService.selectById(id));
     }
+    //检查是否可以调用
+    @RequestMapping("/health")
+    public String health(){
+        return "光明的接口没有问题";
+    }
 
 
 }
