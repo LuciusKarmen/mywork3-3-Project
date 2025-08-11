@@ -3,7 +3,7 @@ import request from '../../utils/request'
 
 export const getLogin = (username: string, password: string) =>
   request<User>({
-    method: 'post',
+    method: 'get',
     url: '/user/login',
     params: {
       username,

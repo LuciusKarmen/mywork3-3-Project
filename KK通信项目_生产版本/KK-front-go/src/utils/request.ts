@@ -9,7 +9,6 @@ interface Result<T = any> {
 
 // 创建 axios 实例
 const service = axios.create({
-  timeout: 5000,
   baseURL: '/api',
 })
 

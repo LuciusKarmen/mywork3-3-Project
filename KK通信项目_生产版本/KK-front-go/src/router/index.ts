@@ -63,23 +63,4 @@ const router = createRouter({
   ],
 })
 
-// 路由守卫！！！
-router.beforeEach((to, from, next) => {
-  const publicPages = ['/login', '/reg', '/face', '/our']
-
-  const inter_token = localStorage.getItem('inter_token')
-
-  const isPublicPage = publicPages.includes(to.path)
-
-  if (isPublicPage) {
-    next()
-  } else {
-    if (inter_token) {
-      next()
-    } else {
-      next('/login')
-    }
-  }
-})
-
 export default router
