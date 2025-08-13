@@ -1,13 +1,14 @@
-import { createBrowserRouter, Navigate } from 'react-router-dom';
+import { createBrowserRouter} from 'react-router-dom';
 import Main from '../view/Main';
 import Login from '../view/Login';
-
+import Face from '../view/Face';
+import Home from '../pages/Home';
 
 // 使用 createBrowserRouter 配置路由
 const router = createBrowserRouter([
   {
     path: '/',
-    element: 
+    element: <Face/>
   },
   {
     path: '/login',
@@ -17,8 +18,8 @@ const router = createBrowserRouter([
     path: '/main',
     element: <Main/>,
     children: [
-      { index: true, element: <div>欢迎进入主页面</div> },
-      { path: 'dashboard', element: <div>仪表盘内容</div> },
+      { index: true, element: <Home/>},
+      { path: 'list', element: <div>仪表盘内容</div> },
       { path: 'users', element: <div>员工管理内容</div> },
       { path: 'settings', element: <div>设置内容</div> },
     ],
