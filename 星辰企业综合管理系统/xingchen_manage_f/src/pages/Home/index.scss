@@ -1,0 +1,21 @@
+.Home{
+    .info{
+        display: flex;
+        width:20vw;
+        height:30vh;
+        background-color: antiquewhite;
+        .pic{
+            width: 50%;
+            //宽高1:1
+            height: 60%;
+            background-color: blue;
+        }
+        .name{
+            width: 50%;
+            background-color: blueviolet;
+        }
+        .soul{
+            
+        }
+    }
+}
