@@ -3,6 +3,7 @@
     width: 100vw;
     height:100vh;
     background-color: rgb(242, 245, 251);
+
     .title{
         height: 10%;
         width: 100%;
@@ -13,6 +14,9 @@
         padding:10px;
         align-items: center;
         font-size: large;
+        position: fixed;
+        left: 0;
+        top: 0;
         .tl{
             font-size: 3vh;
         }
@@ -38,14 +42,19 @@
         }
     }
     .content{
-        position: absolute;
+        position: fixed;
         top: 11%;
         left: 15%;
-        width: 81%;
-        margin: 0 2vw;
-        margin-top: 1vw;
-        background-color: rgb(255, 255, 255);
-        color: rgb(253, 253, 253);
-        gap: 10px;
+        width: 85%;
+        height: 90%;
+        padding:2vw;
+        overflow-y: scroll;
+        background-color: rgb(242, 245, 251);
+        .content-text{ 
+            width: 100%;
+            background-color: rgb(255, 255, 255);
+            color:black;
+            padding:2vh;
+        }
     }
 }

@@ -1,39 +1,96 @@
-import './index.scss'
+// view/Main.tsx
+import './index.scss';
 import { Menu } from 'antd';
-import { HomeFilled ,DatabaseFilled,SettingFilled,
-  GoldFilled,UserOutlined,UserSwitchOutlined,UserAddOutlined,
-  UserDeleteOutlined,ArrowLeftOutlined,MenuUnfoldOutlined } from '@ant-design/icons';
+import {
+  HomeFilled,
+  DatabaseFilled,
+  SettingFilled,
+  GoldFilled,
+  UserOutlined,
+  UserAddOutlined,
+  UserSwitchOutlined,
+  UserDeleteOutlined,
+  ArrowLeftOutlined,
+  MenuUnfoldOutlined,
+} from '@ant-design/icons';
+import { useNavigate, Outlet, useLocation } from 'react-router-dom'; 
+import { useState, useEffect } from 'react';
+import type { JSX } from 'react/jsx-runtime';
 
-const { SubMenu } = Menu;
+const getItem = (label: string, key: string, icon: JSX.Element, children: { key: any; icon: any; children: any; label: any; }[] | undefined) => ({
+  key,
+  icon,
+  children,
+  label,
+});
+
 function Main() {
-  return (
-    <div className="App"> 
-     <div className="title">
-      <div className='tl'><MenuUnfoldOutlined />星辰管理系统</div>
-      <div className='tr'>用户信息<img src='1' alt="logo" /><img/></div>
-     </div>
-     <div className="sidebar">
-              <Menu
-        className='menu'
-        defaultSelectedKeys={['1']}
-        defaultOpenKeys={['sub1']}
-        mode="inline"
-        theme="dark"
+  const navigate = useNavigate();
+  const location = useLocation(); // 获取当前路径
 
-      >
-          <Menu.Item key="1" className='menu-item' icon={<HomeFilled />}>首页</Menu.Item>
-          <Menu.Item key="2" className='menu-item' icon={<GoldFilled />}> 部门管理</Menu.Item>
-          <Menu.Item key="3" className='menu-item' icon={<DatabaseFilled/>}>员工列表</Menu.Item>
-          <SubMenu key="sub1" title="员工管理" icon={<UserOutlined />}>
-            <Menu.Item key="6"  className='menu-item' icon={<UserAddOutlined />}>员工添加</Menu.Item>
-            <Menu.Item key="7"  className='menu-item' icon={<UserSwitchOutlined />}>员工修改</Menu.Item>
-            <Menu.Item key="8"  className='menu-item' icon={<UserDeleteOutlined />}>员工删除</Menu.Item>
-          </SubMenu>
-          <Menu.Item key="4" className='menu-item' icon={<SettingFilled />}> 设置</Menu.Item>
-      </Menu>
-      <div className='leave'><ArrowLeftOutlined />退出</div>
-     </div>
-     <div className="content">11erg1</div>
+  // 根据当前路径设置默认选中的菜单项
+  const [selectedKeys, setSelectedKeys] = useState([location.pathname]);
+
+  // 当路由变化时，更新 selectedKeys
+  useEffect(() => {
+    setSelectedKeys([location.pathname]);
+  }, [location.pathname]);
+
+  const menuItems = [
+    getItem('首页', '/main', <HomeFilled />),
+    getItem('部门管理', '/main/branch', <GoldFilled />),
+    getItem('员工列表', '/main/list', <DatabaseFilled />),
+    getItem(
+      '员工管理',
+      'sub1',
+      <UserOutlined />,
+      [
+        getItem('员工添加', '/main/manage/add', <UserAddOutlined />),
+        getItem('员工修改', '/main/manage/update', <UserSwitchOutlined />),
+        getItem('员工删除', '/main/manage/delete', <UserDeleteOutlined />)
+      ]
+    ),
+    getItem('设置', '/main/setting', <SettingFilled />)
+  ];
+
+  const handleMenuClick = ({ key }) => {
+    if (key.startsWith('/')) {
+      navigate(key);
+    }
+  };
+
+  const handleLogout = () => {
+    navigate('/login');
+  };
+
+  return (
+    <div className="App">
+      <div className="title">
+        <div className="tl">
+          <MenuUnfoldOutlined /> 星辰管理系统
+        </div>
+        <div className="tr">用户信息</div>
+      </div>
+
+      <div className="sidebar">
+        <Menu
+          className="menu"
+          mode="inline"
+          theme="dark"
+          items={menuItems}
+          onClick={handleMenuClick}
+          selectedKeys={selectedKeys} 
+        />
+        <div className="leave" onClick={handleLogout}>
+          <ArrowLeftOutlined /> 退出
+        </div>
+      </div>
+
+      <div className="content">
+        
+        <div className="content-text"><Outlet /></div>
+        
+      </div>
     </div>
   );
 }
