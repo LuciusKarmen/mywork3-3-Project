@@ -2,8 +2,15 @@ import { createBrowserRouter} from 'react-router-dom';
 import Main from '../view/Main';
 import Login from '../view/Login';
 import Face from '../view/Face';
-import Home from '../pages/Home';
 import Register from '../view/Register';
+import Home from '../pages/Home';
+import List from '../pages/List';
+import Branch from '../pages/Branch';
+import Add from '../pages/Manage/add';
+import Del from '../pages/Manage/del';
+import Upd from '../pages/Manage/upd';
+import Setting from '../pages/Setting';
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -22,8 +29,16 @@ const router = createBrowserRouter([
     element: <Main/>,
     children: [
       { index: true, element: <Home/>},
-      { path: 'list', element: },
-      { path: 'setting', element: <div>员工管理内容</div> } 
+      { path: 'branch', element: <Branch/>},
+      { path: 'list', element: <List/>},
+      { path: 'manage', 
+        children: [
+          { path: 'add', element: <Add/>},
+          { path: 'update', element: <Upd/>},
+          { path: 'delete', element: <Del/>}
+        ]
+      },
+      { path: 'setting', element: <Setting/> } 
     ],
   },
   {

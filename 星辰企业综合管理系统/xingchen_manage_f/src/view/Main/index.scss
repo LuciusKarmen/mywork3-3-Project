@@ -1,0 +1,51 @@
+.App{
+    display: flex;
+    width: 100vw;
+    height:100vh;
+    background-color: rgb(242, 245, 251);
+    .title{
+        height: 10%;
+        width: 100%;
+        background-color:rgb(22, 39, 70) ;
+        color: rgb(253, 253, 253);
+        display: flex;
+        justify-content: space-between;
+        padding:10px;
+        align-items: center;
+        font-size: large;
+        .tl{
+            font-size: 3vh;
+        }
+
+    }
+    .sidebar{
+        position: fixed;
+        top: 10%;
+        left: 0;
+        height: 90%;
+        width: 15%;
+        background-color: rgb(255, 255, 255);
+        color: rgb(253, 253, 253);
+        .menu{
+            width:100%;
+            height: 100%;
+        }
+        .leave{
+            color: aliceblue;
+            position: fixed;
+            left: 1vh;
+            bottom:1vh;
+        }
+    }
+    .content{
+        position: absolute;
+        top: 11%;
+        left: 15%;
+        width: 81%;
+        margin: 0 2vw;
+        margin-top: 1vw;
+        background-color: rgb(255, 255, 255);
+        color: rgb(253, 253, 253);
+        gap: 10px;
+    }
+}
