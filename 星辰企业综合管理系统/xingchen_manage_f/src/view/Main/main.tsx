@@ -1,6 +1,4 @@
-// view/Main.tsx
 import './index.scss';
-import { Menu } from 'antd';
 import {
   HomeFilled,
   DatabaseFilled,
@@ -15,42 +13,63 @@ import {
 } from '@ant-design/icons';
 import { useNavigate, Outlet, useLocation } from 'react-router-dom'; 
 import { useState, useEffect } from 'react';
-import type { JSX } from 'react/jsx-runtime';
-
-const getItem = (label: string, key: string, icon: JSX.Element, children: { key: any; icon: any; children: any; label: any; }[] | undefined) => ({
-  key,
-  icon,
-  children,
-  label,
-});
+import { Menu } from 'antd';
 
 function Main() {
   const navigate = useNavigate();
-  const location = useLocation(); // 获取当前路径
+  const location = useLocation();
 
-  // 根据当前路径设置默认选中的菜单项
+
   const [selectedKeys, setSelectedKeys] = useState([location.pathname]);
 
-  // 当路由变化时，更新 selectedKeys
+
   useEffect(() => {
     setSelectedKeys([location.pathname]);
   }, [location.pathname]);
 
   const menuItems = [
-    getItem('首页', '/main', <HomeFilled />),
-    getItem('部门管理', '/main/branch', <GoldFilled />),
-    getItem('员工列表', '/main/list', <DatabaseFilled />),
-    getItem(
-      '员工管理',
-      'sub1',
-      <UserOutlined />,
-      [
-        getItem('员工添加', '/main/manage/add', <UserAddOutlined />),
-        getItem('员工修改', '/main/manage/update', <UserSwitchOutlined />),
-        getItem('员工删除', '/main/manage/delete', <UserDeleteOutlined />)
+    {
+      key: '/main',
+      icon: <HomeFilled />,
+      label: '首页'
+    },
+    {
+      key: '/main/branch',
+      icon: <GoldFilled />,
+      label: '部门管理'
+    },
+    {
+      key: '/main/list',
+      icon: <DatabaseFilled />,
+      label: '员工列表'
+    },
+    {
+      key: 'sub1',
+      icon: <UserOutlined />,
+      label: '员工管理',
+      children: [
+        {
+          key: '/main/manage/add',
+          icon: <UserAddOutlined />,
+          label: '员工添加'
+        },
+        {
+          key: '/main/manage/update',
+          icon: <UserSwitchOutlined />,
+          label: '员工修改'
+        },
+        {
+          key: '/main/manage/delete',
+          icon: <UserDeleteOutlined />,
+          label: '员工删除'
+        }
       ]
-    ),
-    getItem('设置', '/main/setting', <SettingFilled />)
+    },
+    {
+      key: '/main/setting',
+      icon: <SettingFilled />,
+      label: '设置'
+    }
   ];
 
   const handleMenuClick = ({ key }) => {
@@ -65,7 +84,7 @@ function Main() {
 
   return (
     <div className="App">
-      <div className="title">
+      <div className="tit">
         <div className="tl">
           <MenuUnfoldOutlined /> 星辰管理系统
         </div>
@@ -87,9 +106,9 @@ function Main() {
       </div>
 
       <div className="content">
-        
-        <div className="content-text"><Outlet /></div>
-        
+        <div className="content-text">
+          <Outlet />
+        </div>
       </div>
     </div>
   );

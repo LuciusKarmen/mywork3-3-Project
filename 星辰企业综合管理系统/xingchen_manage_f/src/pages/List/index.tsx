@@ -90,7 +90,7 @@ const List: React.FC = () => {
         { text: '无派活', value: '无派活' },
       ],
       onFilter: (value, record) => record.status === value,
-      render: (status) => (
+      render: (status: WorkerTableType['status']) => (
         <Tag color={statusColorMap[status]}>
           {status}
         </Tag>
@@ -101,7 +101,7 @@ const List: React.FC = () => {
       key: 'action',
       width: 150,
       fixed: 'right',
-      render: (_, record) => (
+      render: () => (
         <Space size="middle">
           <a>查看</a>
           <a>编辑</a>
@@ -114,7 +114,7 @@ const List: React.FC = () => {
   return (
     <div className="worker-list">
       <div className="worker-list-header" style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 16 }}>
-        <h2>员工列表</h2>
+        <h2 style={{color:"#242424ff"}}>员工列表</h2>
         <Button type="primary">添加新员工</Button>
       </div>
       <Table<WorkerTableType>

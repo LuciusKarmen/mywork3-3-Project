@@ -1,3 +1,229 @@
-.main{
-    color:red
+
+.login {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #f0f2f5;
+  overflow: hidden;
+
+  .pic {
+    width: 60vw;
+    height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('/1687678759422461.png') center/cover no-repeat;
+      opacity: 0.8;
+      z-index: 1;
+    }
+
+    .i {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      opacity: 0;
+    }
+  }
+
+  .main {
+    width: 40vw;
+    height: 100vh;
+    background: #fff;
+    position: relative;
+    overflow: hidden;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+
+    .form {
+      width: 25vw;
+      max-width: 400px;
+      background-color: rgba(255, 255, 255, 0.95);
+      padding: 40px;
+      position: fixed;
+      top: 15vh;
+      right: 8vw;
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transform: translateY(0);
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: translateY(-5px);
+      }
+
+      .title1 {
+        font-size: 2.2rem;
+        font-weight: 800;
+        color: #1890ff;
+        text-align: center;
+        margin-bottom: 8px;
+        background: linear-gradient(45deg, #1890ff, #40a9ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .title2 {
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: #4096ff;
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .ant-row {
+        margin-bottom: 20px;
+      }
+
+      .ant-form-item-label > label {
+        font-size: 1rem;
+        color: #333;
+        font-weight: 500;
+      }
+
+      .ant-input-affix-wrapper {
+        border-radius: 8px;
+        border: 1px solid #d9d9d9;
+        transition: all 0.3s;
+      }
+
+      .ant-input-affix-wrapper:focus,
+      .ant-input-affix-wrapper-focused {
+        border-color: #1890ff;
+        box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+      }
+
+      .btn {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+
+        .ant-btn {
+          flex: 1;
+          margin: 0 8px;
+          height: 48px;
+          font-size: 16px;
+          font-weight: 500;
+          border-radius: 8px;
+          transition: all 0.3s;
+        }
+
+        .reg {
+          background-color: #fff;
+          color: #1890ff;
+          border: 2px solid #1890ff;
+
+          &:hover {
+            background-color: #e6f7ff;
+            color: #4096ff;
+            border-color: #40a9ff;
+          }
+        }
+
+        .enter {
+          background-color: #1890ff;
+          color: #fff;
+          border: none;
+
+          &:hover {
+            background-color: #40a9ff;
+          }
+
+          &.ant-btn-loading {
+            background-color: #1890ff;
+          }
+        }
+      }
+    }
+  }
+}
+
+.particles-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.footer {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #999;
+  cursor: pointer;
+  z-index: 2;
+  font-size: 14px;
+  text-decoration: none;
+  transition: all 0.3s;
+
+  &:hover {
+    color: #666;
+    text-decoration: underline;
+    transform: translateX(-50%) scale(1.05);
+  }
+}
+
+// 响应式设计
+@media (max-width: 1200px) {
+  .login {
+    .main {
+      .form {
+        width: 30vw;
+        right: 10vw;
+        padding: 30px;
+      }
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  .login {
+    flex-direction: column;
+
+    .pic {
+      width: 100%;
+      height: 40vh;
+    }
+
+    .main {
+      width: 100%;
+      height: 60vh;
+
+      .form {
+        width: 80vw;
+        max-width: 500px;
+        top: 10vh;
+        right: 10vw;
+      }
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .login {
+    .main {
+      .form {
+        width: 90vw;
+        right: 5vw;
+        padding: 20px;
+      }
+    }
+  }
 }
