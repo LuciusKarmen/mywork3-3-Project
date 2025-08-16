@@ -72,7 +72,7 @@ function Main() {
     }
   ];
 
-  const handleMenuClick = ({ key }) => {
+  const handleMenuClick = ({ key }: { key: string }) => {
     if (key.startsWith('/')) {
       navigate(key);
     }

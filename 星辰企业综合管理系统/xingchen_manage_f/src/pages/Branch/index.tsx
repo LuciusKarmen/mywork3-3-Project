@@ -67,7 +67,7 @@ const Branch: React.FC = () => {
     {
       title: '操作',
       key: 'action',
-      render: (_, record) => (
+      render: () => (
         <Space size="middle">
           <a>查看</a>
           <a>编辑</a>
