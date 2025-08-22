@@ -28,7 +28,7 @@ import Bar from '../components/bar.vue'
 import { ref, computed } from 'vue'
 const avatar = ref(localStorage.getItem('userpic') || '../pic/KK.png')
 const picture = computed(() => {
-  return `http://118.195.143.104/${avatar.value}`
+  return `http://118.195.143.104:8809/${avatar.value}`
 })
 const username = localStorage.getItem('username')
 const our = () => {

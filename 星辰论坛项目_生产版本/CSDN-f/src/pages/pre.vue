@@ -155,7 +155,7 @@ const formattedTime = computed(() => {
 })
 const imagePath = computed(() => {
   if (!tip.value || !tip.value.tpic) return ''
-  return `http://118.195.143.104//${tip.value.tpic}`
+  return `http://118.195.143.104:8809/${tip.value.tpic}`
 })
 const back = () => {
   router.back()

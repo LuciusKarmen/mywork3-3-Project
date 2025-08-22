@@ -52,7 +52,7 @@ const Picture = async (name: string) => {
   })
 }
 const picture = computed(() => {
-  return `http://118.195.143.104/${pic.value?.pic}`
+  return `http://118.195.143.104:8809/${pic.value?.pic}`
 })
 watch(
   () => props.tip,

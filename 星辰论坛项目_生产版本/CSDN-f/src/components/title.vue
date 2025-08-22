@@ -61,7 +61,7 @@ const classify = ref([
 ])
 const avatar = ref(localStorage.getItem('userpic') || '../pic/KK.png')
 const picture = computed(() => {
-  return `http://118.195.143.104/${avatar.value}`
+  return `http://118.195.143.104:8809/${avatar.value}`
 })
 const ok1 = ref(false)
 </script>

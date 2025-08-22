@@ -42,7 +42,7 @@ const toggleRead = () => {
 }
 
 const picture = computed(() => {
-  return `http://118.195.143.104/${props.mes.mname}`
+  return `http://118.195.143.104:8809/${props.mes.mname}`
 })
 
 watch(
