@@ -2,7 +2,11 @@
 import router from './router'
 </script>
 <template>
-  <router-view></router-view>
+  <div>
+    <router-view></router-view>
+  </div>
 </template>
 
-<style scoped lang="scss"></style>
+<style lang="scss">
+@use 'style/index.scss';
+</style>
