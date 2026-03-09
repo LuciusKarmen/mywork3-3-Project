@@ -1,0 +1,14 @@
+package org.example.student_manager.mapper;
+
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Mapper;
+import org.example.student_manager.dao.StudentCourse;
+
+@Mapper
+public interface StudentCourseMapper {
+
+    @Insert("insert into student_course(id, no, student_id, course_id) values(#{id},#{no}, #{studentId}, #{courseId})")
+    int add(StudentCourse studentCourse);
+
+
+}
