@@ -36,7 +36,7 @@
   position: relative;
   height: 110vh;
   width: 100%;
-  background-image: url('../assets/R-C.jpg');
+  background-image: url('../assets/ys.png');
   background-size: cover;
   background-position: center;
   display: flex;

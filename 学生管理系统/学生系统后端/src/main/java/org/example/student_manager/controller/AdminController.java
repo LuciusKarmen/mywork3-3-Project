@@ -1,6 +1,8 @@
 package org.example.student_manager.controller;
 
 import org.example.student_manager.dao.Admin;
+import org.example.student_manager.dao.Student;
+import org.example.student_manager.dao.Teacher;
 import org.example.student_manager.service.AdminService;
 import org.example.student_manager.utils.Result;
 
@@ -29,5 +31,17 @@ public class AdminController {
             return Result.error(401, "用户名或密码错误"); // 登录失败
         }
 
+    }
+    @RequestMapping("/addTeacher")
+    public Result<Integer> addTeacher(Teacher teacher) {
+        return Result.ok(adminService.addTeacher(teacher));
+    }
+    @RequestMapping("/addStudent")
+    public Result<Integer> addStudent(Student student) {
+        return Result.ok(adminService.addStudent(student));
+    }
+    @RequestMapping("/agreeCourse")
+    public Result<Integer> agreeCourse(@RequestParam String courseId) {
+        return Result.ok(adminService.agreeCourse(courseId));
     }
 }

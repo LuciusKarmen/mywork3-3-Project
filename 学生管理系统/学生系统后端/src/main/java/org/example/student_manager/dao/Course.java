@@ -11,4 +11,5 @@ public class Course {
     private String time;
     private Integer num;
     private String teacher_id;
+
 }

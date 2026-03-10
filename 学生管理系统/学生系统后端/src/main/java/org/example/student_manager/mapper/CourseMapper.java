@@ -2,13 +2,46 @@ package org.example.student_manager.mapper;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 import org.example.student_manager.dao.Course;
+import org.example.student_manager.dao.Student;
+
+import java.util.List;
 
 @Mapper
 public interface CourseMapper {
 
-  @Insert("INSERT INTO student (id, name, no, describe, time, num, teacher_id) VALUES (#{id},#{name}, #{no}, #{describe}, #{time}, #{num}, #{teacherId})")
+
+  @Insert("INSERT INTO Course (id, name, no, describe, time, num, teacher_id) VALUES (#{id},#{name}, #{no}, #{describe}, #{time}, #{num}, #{teacherId})")
   int add(Course course);
+
+  //  查询所有课程
+  @Select("SELECT * FROM course")
+  List<Course> findAll();
+
+  // 根据教师 ID 查询课程
+  @Select("SELECT * FROM course WHERE teacher_id = #{teacherId}")
+  List<Course> findByTeacherId(String teacherId);
+
+  //根据课程Id得出课表
+  @Select("SELECT * FROM course WHERE id = #{Id}")
+  List<Course> findByCourseId(String Id);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }

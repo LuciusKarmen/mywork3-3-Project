@@ -6,8 +6,10 @@ import lombok.Data;
 public class Student {
     private String  id;
     private String name;
+    private String password;
     private String sex;
     private String phone;
-    private String age;
+    private Integer age;
     private String email;
+
 }

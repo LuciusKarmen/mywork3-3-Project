@@ -11,10 +11,7 @@ public class StudentService {
     @Autowired
     private StudentMapper studentMapper;
 
-    public int queryStudentById(Student student) {
-        return studentMapper.add(student);
 
-    }
     public Student studentLogin( String name, String password){
         return  studentMapper.login(name,password);
     }

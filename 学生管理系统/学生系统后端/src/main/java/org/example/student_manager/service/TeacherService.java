@@ -10,7 +10,6 @@ public class TeacherService {
     public TeacherService(TeacherMapper teacherMapper) {
         this.teacherMapper = teacherMapper;
     }
-
     public Teacher login(String name, String password) {
         return teacherMapper.login(name, password);
     }
