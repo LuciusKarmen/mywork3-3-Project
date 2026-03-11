@@ -27,7 +27,7 @@ public class AdminService {
         return adminMapper.addStudent(student);
     }
     //更新课程
-    public int agreeCourse(@Param("courseId") String courseId) {
-        return adminMapper.agreeCourse(courseId);
+    public int agreeCourse(@Param("id") String id) {
+        return adminMapper.agreeCourse(id);
     }
 }

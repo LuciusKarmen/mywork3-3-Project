@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/teacher")
 public class TeacherController {
@@ -27,5 +29,9 @@ public class TeacherController {
             return Result.error(401, "用户名或密码错误");
         }
 
+    }
+    @RequestMapping("/queryteacherAll")
+    public Result<List<Teacher>> queryAll() {
+        return Result.ok(teacherService.queryAllTeacher());
     }
 }

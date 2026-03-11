@@ -1,10 +1,9 @@
 <template>
   <div class="main">
     <div class="centre">
-      <!-- 表格容器放在这里 -->
+      <!-- 表格容器 -->
       <div class="table-container">
         <el-table :data="pagedData" style="width: 100%" border>
-          <el-table-column prop="id" label="编号" width="80" />
           <el-table-column prop="name" label="姓名" width="100" />
           <el-table-column prop="sex" label="性别" width="80" />
           <el-table-column prop="age" label="年龄" width="80" />
@@ -15,7 +14,7 @@
         <el-pagination
           v-model:current-page="currentPage"
           v-model:page-size="pageSize"
-          :total="tableData.length"
+          :total="studentList.length"
           layout="total, sizes, prev, pager, next, jumper"
           :page-sizes="[5, 10, 20]"
           @size-change="handleSizeChange"
@@ -28,31 +27,18 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
+import { getStudentList } from '../../api/admin'
+import type { Student } from '../../type/Student'
 
-// 注意：你的数据里没有 `id` 字段！需要补上
-const tableData = [
-  { id: 1, name: 'Tom', sex: '男', age: '18', phone: '12345678901', email: '<EMAIL>' },
-  { id: 2, name: 'Jerry', sex: '男', age: '19', phone: '12345678902', email: '<EMAIL>' },
-  { id: 3, name: 'Alice', sex: '女', age: '20', phone: '12345678903', email: '<EMAIL>' },
-  { id: 4, name: 'Bob', sex: '男', age: '21', phone: '12345678904', email: '<EMAIL>' },
-  { id: 5, name: 'Eva', sex: '女', age: '22', phone: '12345678905', email: '<EMAIL>' },
-  { id: 6, name: 'Tom', sex: '男', age: '18', phone: '12345678901', email: '<EMAIL>' },
-  { id: 7, name: 'Tom', sex: '男', age: '18', phone: '12345678901', email: '<EMAIL>' },
-  { id: 8, name: 'Tom', sex: '男', age: '18', phone: '12345678901', email: '<EMAIL>' },
-  { id: 9, name: 'Tom', sex: '男', age: '18', phone: '12345678901', email: '<EMAIL>' },
-  { id: 10, name: 'Tom', sex: '男', age: '18', phone: '12345678901', email: '<EMAIL>' },
-  { id: 11, name: 'Tom', sex: '男', age: '18', phone: '12345678901', email: '<EMAIL>' },
-  { id: 12, name: 'Tom', sex: '男', age: '18', phone: '12345678901', email: '<EMAIL>' },
-]
+const studentList = ref<Student[]>([])
 
 const currentPage = ref(1)
 const pageSize = ref(10)
 
 const pagedData = computed(() => {
   const start = (currentPage.value - 1) * pageSize.value
-  const end = start + pageSize.value
-  return tableData.slice(start, end)
+  return studentList.value.slice(start, start + pageSize.value)
 })
 
 const handleSizeChange = (val: number) => {
@@ -63,6 +49,17 @@ const handleSizeChange = (val: number) => {
 const handleCurrentChange = (val: number) => {
   currentPage.value = val
 }
+
+onMounted(() => {
+  getStudentList()
+    .then((res) => {
+      studentList.value = Array.isArray(res) ? res : []
+    })
+    .catch((err) => {
+      console.error('获取学生列表失败:', err)
+      studentList.value = []
+    })
+})
 </script>
 
 <style scoped lang="scss">

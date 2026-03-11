@@ -5,11 +5,11 @@
       <div class="login-form">
         <div class="login-input">
           <label>用户名：</label>
-          <el-input type="text" placeholder="用户名" size="large" />
+          <el-input v-model="name" type="text" placeholder="用户名" size="large" />
         </div>
         <div class="login-input">
           <label>密&nbsp;&nbsp;&nbsp;码：</label>
-          <el-input type="password" placeholder="密码" size="large" />
+          <el-input v-model="password" type="password" placeholder="密码" size="large" />
         </div>
       </div>
       <div class="login-button">
@@ -23,15 +23,41 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { loginAdmin, loginStudent, loginTeacher } from '../api/login'
 const router = useRouter()
+const name = ref('')
+const password = ref('')
+
 const stu = () => {
-  router.push('/student')
+  loginStudent(name.value, password.value).then((res) => {
+    if (res) {
+      localStorage.setItem('user', JSON.stringify(res))
+      router.push('/student')
+    } else {
+      alert('登录失败')
+    }
+  })
 }
 const tea = () => {
-  router.push('/teacher')
+  loginTeacher(name.value, password.value).then((res) => {
+    if (res) {
+      localStorage.setItem('user', JSON.stringify(res))
+      router.push('/teacher')
+    } else {
+      alert('登录失败')
+    }
+  })
 }
+
 const adm = () => {
-  router.push('/admin')
+  loginAdmin(name.value, password.value).then((res) => {
+    if (res) {
+      localStorage.setItem('user', JSON.stringify(res))
+      router.push('/admin')
+    } else {
+      alert('登录失败')
+    }
+  })
 }
 </script>
 <style lang="scss" scoped>

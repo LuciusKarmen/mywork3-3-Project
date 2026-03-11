@@ -12,11 +12,14 @@
         label-width="auto"
         class="demo-ruleForm"
       >
-        <el-form-item label="学生姓名" prop="name">
+        <el-form-item label="教师姓名" prop="name">
           <el-input v-model="ruleForm.name" autocomplete="off" />
         </el-form-item>
-        <el-form-item label="年龄" prop="age">
-          <el-input v-model.number="ruleForm.age" />
+        <el-form-item label="职位" prop="position">
+          <el-input v-model="ruleForm.position" autocomplete="off" />
+        </el-form-item>
+        <el-form-item label="院系" prop="department">
+          <el-input v-model="ruleForm.department" autocomplete="off" />
         </el-form-item>
         <el-form-item label="性别" prop="sex">
           <el-radio-group v-model="ruleForm.sex">
@@ -42,14 +45,19 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
 import type { FormInstance, FormRules } from 'element-plus'
+import type { Teacher } from '../../type/Teacher'
+import { addTeacher } from '../../api/admin'
 
 const ruleFormRef = ref<FormInstance>()
-const ruleForm = reactive({
+const ruleForm = reactive<Teacher>({
+  id: '',
   name: '',
-  age: '',
-  sex: '男', // 默认值为男
+  sex: '男',
   phone: '',
   email: '',
+  password: '',
+  department: '',
+  position: '',
 })
 
 // 在提交时自动生成password
@@ -58,27 +66,35 @@ function generatePassword(phone: string) {
 }
 
 const rules = reactive<FormRules>({
-  name: [{ required: true, message: '请输入学生姓名', trigger: 'blur' }],
-  age: [
-    { required: true, message: '请输入年龄', trigger: 'blur' },
-    { type: 'number', message: '年龄必须是数字' },
-  ],
+  name: [{ required: true, message: '请输入教师姓名', trigger: 'blur' }],
+  position: [{ required: true, message: '请输入职位', trigger: 'blur' }],
+  department: [{ required: true, message: '请输入院系', trigger: 'blur' }],
   phone: [{ required: true, message: '请输入电话号码', trigger: 'blur' }],
+  email: [{ required: true, message: '请输入邮箱', trigger: 'blur' }],
 })
 
-function submitForm(formEl: FormInstance | undefined) {
+async function submitForm(formEl: FormInstance | undefined) {
   if (!formEl) return
-  formEl.validate((valid) => {
-    if (valid) {
-      const password = generatePassword(ruleForm.phone)
-      console.log('表单数据:', { ...ruleForm, password })
-    } else {
-      console.log('error submit!')
-      return false
-    }
-  })
-}
 
+  const valid = await formEl.validate()
+  if (valid) {
+    // 构造完整的 Student 对象（含 password）
+    const teacherData: Teacher = {
+      ...ruleForm,
+      password: generatePassword(ruleForm.phone),
+      id: '',
+    }
+
+    try {
+      await addTeacher(teacherData)
+      alert('教师添加成功！')
+      resetForm(formEl)
+    } catch (error) {
+      alert('添加失败，请重试')
+      console.error('添加教师失败:', error)
+    }
+  }
+}
 function resetForm(formEl: FormInstance | undefined) {
   if (!formEl) return
   formEl.resetFields()

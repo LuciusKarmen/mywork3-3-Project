@@ -26,7 +26,7 @@ public interface AdminMapper {
     int addStudent(Student student);
 
     //同意课程
-    @Update("update course set no = 1 where id = #{courseId}")
-    int agreeCourse(@Param("courseId") String courseId);
+    @Update("UPDATE course SET no = '1' WHERE id = #{id}")
+    int agreeCourse(@Param("id") String id);
 
 }

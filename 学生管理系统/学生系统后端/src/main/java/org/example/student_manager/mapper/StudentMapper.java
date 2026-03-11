@@ -6,6 +6,8 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.example.student_manager.dao.Student;
 
+import java.util.List;
+
 @Mapper
 public interface StudentMapper {
     @Select("select * from student where id = #{id}")
@@ -13,6 +15,9 @@ public interface StudentMapper {
 
     @Select("select * from student where name = #{name}")
     Student findByName(String name);
+
+    @Select("select * from student")
+    List<Student> findAll();
 
     @Insert("insert into student(id, name, password, sex, phone, age, email) values(#{id}, #{name}, #{password}, #{sex}, #{phone}, #{age}, #{email})")
     int add(Student student);

@@ -32,18 +32,32 @@ import { ref, computed } from 'vue'
 
 // 注意：你的数据里没有 `id` 字段！需要补上
 const tableData = [
-  { id: 1, name: 'Tom', sex: '男', age: '18', phone: '12345678901', email: '<EMAIL>' },
-  { id: 2, name: 'Jerry', sex: '男', age: '19', phone: '12345678902', email: '<EMAIL>' },
-  { id: 3, name: 'Alice', sex: '女', age: '20', phone: '12345678903', email: '<EMAIL>' },
-  { id: 4, name: 'Bob', sex: '男', age: '21', phone: '12345678904', email: '<EMAIL>' },
-  { id: 5, name: 'Eva', sex: '女', age: '22', phone: '12345678905', email: '<EMAIL>' },
-  { id: 6, name: 'Tom', sex: '男', age: '18', phone: '12345678901', email: '<EMAIL>' },
-  { id: 7, name: 'Tom', sex: '男', age: '18', phone: '12345678901', email: '<EMAIL>' },
-  { id: 8, name: 'Tom', sex: '男', age: '18', phone: '12345678901', email: '<EMAIL>' },
-  { id: 9, name: 'Tom', sex: '男', age: '18', phone: '12345678901', email: '<EMAIL>' },
-  { id: 10, name: 'Tom', sex: '男', age: '18', phone: '12345678901', email: '<EMAIL>' },
-  { id: 11, name: 'Tom', sex: '男', age: '18', phone: '12345678901', email: '<EMAIL>' },
-  { id: 12, name: 'Tom', sex: '男', age: '18', phone: '12345678901', email: '<EMAIL>' },
+  { id: 1, name: 'Tom', sex: '男', age: '18', phone: '12345678901', email: '124921387@gmail.com' },
+  {
+    id: 2,
+    name: 'Jerry',
+    sex: '男',
+    age: '19',
+    phone: '12345678902',
+    email: '124921387@gmail.com',
+  },
+  {
+    id: 3,
+    name: 'Alice',
+    sex: '女',
+    age: '20',
+    phone: '12345678903',
+    email: '124921387@gmail.com',
+  },
+  { id: 4, name: 'Bob', sex: '男', age: '21', phone: '12345678904', email: '124921387@gmail.com' },
+  { id: 5, name: 'Eva', sex: '女', age: '22', phone: '12345678905', email: '124921387@gmail.com' },
+  { id: 6, name: 'Tom', sex: '男', age: '18', phone: '12345678901', email: '124921387@gmail.com' },
+  { id: 7, name: 'Tom', sex: '男', age: '18', phone: '12345678901', email: '124921387@gmail.com' },
+  { id: 8, name: 'Tom', sex: '男', age: '18', phone: '12345678901', email: '124921387@gmail.com' },
+  { id: 9, name: 'Tom', sex: '男', age: '18', phone: '12345678901', email: '124921387@gmail.com' },
+  { id: 10, name: 'Tom', sex: '男', age: '18', phone: '12345678901', email: '124921387@gmail.com' },
+  { id: 11, name: 'Tom', sex: '男', age: '18', phone: '12345678901', email: '124921387@gmail.com' },
+  { id: 12, name: 'Tom', sex: '男', age: '18', phone: '12345678901', email: '124921387@gmail.com' },
 ]
 
 const currentPage = ref(1)

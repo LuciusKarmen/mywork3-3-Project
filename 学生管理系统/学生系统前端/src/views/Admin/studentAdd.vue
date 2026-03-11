@@ -42,14 +42,18 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
 import type { FormInstance, FormRules } from 'element-plus'
+import { addStudent } from '../../api/admin'
+import type { Student } from '../../type/Student'
 
 const ruleFormRef = ref<FormInstance>()
-const ruleForm = reactive({
+const ruleForm = reactive<Student>({
+  id: '',
   name: '',
-  age: '',
-  sex: '男', // 默认值为男
+  age: 0,
+  sex: '男',
   phone: '',
   email: '',
+  password: '',
 })
 
 // 在提交时自动生成password
@@ -66,17 +70,27 @@ const rules = reactive<FormRules>({
   phone: [{ required: true, message: '请输入电话号码', trigger: 'blur' }],
 })
 
-function submitForm(formEl: FormInstance | undefined) {
+async function submitForm(formEl: FormInstance | undefined) {
   if (!formEl) return
-  formEl.validate((valid) => {
-    if (valid) {
-      const password = generatePassword(ruleForm.phone)
-      console.log('表单数据:', { ...ruleForm, password })
-    } else {
-      console.log('error submit!')
-      return false
+
+  const valid = await formEl.validate()
+  if (valid) {
+    // 构造完整的 Student 对象（含 password）
+    const studentData: Student = {
+      ...ruleForm,
+      password: generatePassword(ruleForm.phone),
+      id: '',
     }
-  })
+
+    try {
+      await addStudent(studentData)
+      alert('学生添加成功！')
+      resetForm(formEl)
+    } catch (error) {
+      alert('添加失败，请重试')
+      console.error('添加学生失败:', error)
+    }
+  }
 }
 
 function resetForm(formEl: FormInstance | undefined) {
