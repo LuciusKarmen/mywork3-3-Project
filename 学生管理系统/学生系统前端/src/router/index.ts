@@ -2,11 +2,16 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
+
   routes: [
     {
       path: '/',
-      name: 'index',
-      component: () => import('../pages/index.vue'),
+      redirect: '/face',
+    },
+    {
+      path: '/face',
+      name: 'face',
+      component: () => import('../pages/face.vue'),
     },
     {
       path: '/our',
@@ -116,5 +121,4 @@ const router = createRouter({
     },
   ],
 })
-
 export default router

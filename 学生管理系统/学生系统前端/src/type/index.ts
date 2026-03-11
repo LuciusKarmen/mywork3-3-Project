@@ -1,0 +1,6 @@
+export type { Student } from './Student'
+export type { Teacher } from './Teacher'
+export type { Course } from './Course'
+export type { Score } from './Score'
+export type { StudentCourse } from './StudentCourse'
+export type { Admin } from './Admin'

@@ -27,10 +27,10 @@
                 <span>选课管理</span>
               </template>
               <el-menu-item-group>
-                <el-menu-item index="1-1" @click="router.push('/student/c_list')"
+                <el-menu-item index="1-1" @click="router.push('/student/scList')"
                   >课程列表</el-menu-item
                 >
-                <el-menu-item index="1-2" @click="router.push('/student/c_add')"
+                <el-menu-item index="1-2" @click="router.push('/student/scadd')"
                   >添加课程</el-menu-item
                 >
               </el-menu-item-group>
@@ -41,8 +41,13 @@
                 <span>学业管理</span>
               </template>
               <el-menu-item-group>
-                <el-menu-item index="2-1" @click="router.push('/student/c_list')"
+                <el-menu-item index="2-1" @click="router.push('/student/scList')"
                   >课程列表</el-menu-item
+                >
+              </el-menu-item-group>
+              <el-menu-item-group>
+                <el-menu-item index="2-2" @click="router.push('/student/rule')"
+                  >学生准则</el-menu-item
                 >
               </el-menu-item-group>
             </el-sub-menu>
@@ -81,35 +86,43 @@ const close = () => {
 </script>
 <style lang="scss" scoped>
 .main {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   background-color: #ffffff;
+  position: absolute;
+  top: 0;
+  left: 0;
 
   .top {
+    position: relative;
     width: 100%;
     height: 8vh;
     background-color: #494949;
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    padding-right: 16px;
+
     .logo {
       height: 6vh;
+      cursor: pointer;
       img {
         width: 100%;
         height: 100%;
+        object-fit: contain;
       }
     }
   }
 
   .left {
     width: 18vw;
-    height: 92vh;
+    height: calc(100% - 8vh);
     background-color: #545c64;
     position: absolute;
     top: 8vh;
     left: 0;
 
-    .el-menu {
+    :deep(.el-menu) {
       height: 100%;
       border-right: none;
     }
@@ -119,10 +132,9 @@ const close = () => {
     position: absolute;
     left: 18vw;
     top: 8vh;
-    width: calc(100vw - 18vw);
-    height: 92vh;
-    padding: 20px;
-    box-sizing: border-box;
+    width: calc(82vw - 1px);
+    height: calc(100% - 8vh);
+    overflow: auto;
   }
 }
 </style>

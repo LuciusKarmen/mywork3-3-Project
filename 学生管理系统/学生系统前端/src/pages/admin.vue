@@ -27,10 +27,10 @@
                 <span>学生管理</span>
               </template>
               <el-menu-item-group>
-                <el-menu-item index="1-1" @click="router.push('/admin/s_list')"
+                <el-menu-item index="1-1" @click="router.push('/admin/studentList')"
                   >学生列表</el-menu-item
                 >
-                <el-menu-item index="1-2" @click="router.push('/admin/s_add')"
+                <el-menu-item index="1-2" @click="router.push('/admin/studentAdd')"
                   >添加学生</el-menu-item
                 >
               </el-menu-item-group>
@@ -41,10 +41,10 @@
                 <span>教师管理</span>
               </template>
               <el-menu-item-group>
-                <el-menu-item index="2-1" @click="router.push('/admin/t_list')"
+                <el-menu-item index="2-1" @click="router.push('/admin/teacherList')"
                   >教师列表</el-menu-item
                 >
-                <el-menu-item index="2-2" @click="router.push('/admin/t_add')"
+                <el-menu-item index="2-2" @click="router.push('/admin/teacherAdd')"
                   >添加老师</el-menu-item
                 >
               </el-menu-item-group>
@@ -55,10 +55,10 @@
                 <span>课程管理</span>
               </template>
               <el-menu-item-group>
-                <el-menu-item index="1-1" @click="router.push('/admin/c_list')"
+                <el-menu-item index="3-1" @click="router.push('/admin/courseList')"
                   >课程列表</el-menu-item
                 >
-                <el-menu-item index="2-1" @click="router.push('/admin/c_agree')"
+                <el-menu-item index="3-2" @click="router.push('/admin/agree')"
                   >申请列表</el-menu-item
                 >
               </el-menu-item-group>
@@ -69,7 +69,7 @@
                 <span>系统信息</span>
               </template>
 
-              <el-menu-item index="2-1" @click="router.push('/our')">关于我们</el-menu-item>
+              <el-menu-item index="4-1" @click="router.push('/our')">关于我们</el-menu-item>
             </el-sub-menu>
           </el-menu>
         </el-col>
