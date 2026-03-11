@@ -6,7 +6,7 @@
   </section>
 </template>
 
-<script setup lang="ts" name="face">
+<script setup lang="ts" name="index">
 import r from '../router/index'
 const a = () => {
   r.push('/login')
