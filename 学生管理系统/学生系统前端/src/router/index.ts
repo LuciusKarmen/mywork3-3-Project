@@ -22,16 +22,97 @@ const router = createRouter({
       path: '/student',
       name: 'student',
       component: () => import('../pages/student.vue'),
+      children: [
+        {
+          path: '',
+          name: 'index',
+          component: () => import('../views/Admin/index.vue'),
+        },
+        {
+          path: 'rule',
+          name: 'rule',
+          component: () => import('../views/Student/rule.vue'),
+        },
+        {
+          path: 'scadd',
+          name: 'scadd',
+          component: () => import('../views/Student/scAdd.vue'),
+        },
+        {
+          path: 'scList',
+          name: 'scList',
+          component: () => import('../views/Student/scList.vue'),
+        },
+      ],
     },
     {
       path: '/teacher',
       name: 'teacher',
       component: () => import('../pages/teacher.vue'),
+      children: [
+        {
+          path: '',
+          name: 'index',
+          component: () => import('../views/Admin/index.vue'),
+        },
+        {
+          path: 'courseList',
+          name: 'courseList',
+          component: () => import('../views/Teacher/courseList.vue'),
+        },
+        {
+          path: 'courseAdd',
+          name: 'courseAdd',
+          component: () => import('../views/Teacher/courseAdd.vue'),
+        },
+        {
+          path: 'score',
+          name: 'score',
+          component: () => import('../views/Teacher/score.vue'),
+        },
+      ],
     },
     {
       path: '/admin',
       name: 'admin',
       component: () => import('../pages/admin.vue'),
+      children: [
+        {
+          path: '',
+          name: 'index',
+          component: () => import('../views/Admin/index.vue'),
+        },
+        {
+          path: 'agree',
+          name: 'agree',
+          component: () => import('../views/Admin/agree.vue'),
+        },
+        {
+          path: 'courseList',
+          name: 'courseList',
+          component: () => import('../views/Admin/courseList.vue'),
+        },
+        {
+          path: 'studentAdd',
+          name: 'studentAdd',
+          component: () => import('../views/Admin/studentAdd.vue'),
+        },
+        {
+          path: 'studentList',
+          name: 'studentList',
+          component: () => import('../views/Admin/studentList.vue'),
+        },
+        {
+          path: 'teacherAdd',
+          name: 'teacherAdd',
+          component: () => import('../views/Admin/teacherAdd.vue'),
+        },
+        {
+          path: 'teacherList',
+          name: 'teacherList',
+          component: () => import('../views/Admin/teacherList.vue'),
+        },
+      ],
     },
   ],
 })

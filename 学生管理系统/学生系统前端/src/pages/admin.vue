@@ -101,9 +101,13 @@ const close = () => {
   width: 100vw;
   height: 100vh;
   background-color: #ffffff;
+  position: absolute;
 
   .top {
+    position: relative;
     width: 100%;
+    top: 0;
+    left: 0;
     height: 8vh;
     background-color: #494949;
     display: flex;
@@ -122,7 +126,7 @@ const close = () => {
     width: 18vw;
     height: 92vh;
     background-color: #545c64;
-    position: absolute;
+    position: relative;
     top: 8vh;
     left: 0;
 
@@ -133,12 +137,11 @@ const close = () => {
   }
 
   .right {
-    position: absolute;
+    position: relative;
     left: 18vw;
     top: 8vh;
-    width: calc(100vw - 18vw);
+    width: 82vw;
     height: 92vh;
-    padding: 20px;
     box-sizing: border-box;
   }
 }
