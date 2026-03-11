@@ -97,52 +97,62 @@ const close = () => {
 }
 </script>
 <style lang="scss" scoped>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .main {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   background-color: #ffffff;
   position: absolute;
+  top: 0;
+  left: 0;
 
   .top {
     position: relative;
     width: 100%;
-    top: 0;
-    left: 0;
     height: 8vh;
     background-color: #494949;
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    padding-right: 16px;
+
     .logo {
       height: 6vh;
+      cursor: pointer;
       img {
         width: 100%;
         height: 100%;
+        object-fit: contain;
       }
     }
   }
 
   .left {
     width: 18vw;
-    height: 92vh;
+    height: calc(100% - 8vh);
     background-color: #545c64;
-    position: relative;
+    position: absolute;
     top: 8vh;
     left: 0;
 
-    .el-menu {
+    :deep(.el-menu) {
       height: 100%;
       border-right: none;
     }
   }
 
   .right {
-    position: relative;
+    position: absolute;
     left: 18vw;
     top: 8vh;
-    width: 82vw;
-    height: 92vh;
-    box-sizing: border-box;
+    width: calc(82vw - 1px);
+    height: calc(100% - 8vh);
+    overflow: auto;
   }
 }
 </style>
