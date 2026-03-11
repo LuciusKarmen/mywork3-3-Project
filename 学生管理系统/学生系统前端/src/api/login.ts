@@ -12,6 +12,8 @@ export const loginStudent = (name: string, password: string) =>
   }).then((res) => {
     if (res) {
       localStorage.setItem('student', JSON.stringify(res))
+      localStorage.setItem('studentId', res.id)
+      console.log(res)
     }
     return res
   })
@@ -23,7 +25,10 @@ export const loginTeacher = (name: string, password: string) =>
     params: { name, password },
   }).then((res) => {
     if (res) {
+      //储存id
       localStorage.setItem('teacher', JSON.stringify(res))
+      localStorage.setItem('teacherId', res.id)
+      console.log(res)
     }
     return res
   })
@@ -36,6 +41,8 @@ export const loginAdmin = (name: string, password: string) =>
   }).then((res) => {
     if (res) {
       localStorage.setItem('admin', JSON.stringify(res))
+      localStorage.setItem('adminId', res.id)
+      console.log(res)
     }
     return res
   })

@@ -38,10 +38,10 @@
                 <span>课程管理</span>
               </template>
               <el-menu-item-group>
-                <el-menu-item index="2-1" @click="router.push('/teacher/c_list')"
+                <el-menu-item index="2-1" @click="router.push('/teacher/courseList')"
                   >课程列表</el-menu-item
                 >
-                <el-menu-item index="2-2" @click="router.push('/teacher/c_add')"
+                <el-menu-item index="2-2" @click="router.push('/teacher/courseAdd')"
                   >添加课程</el-menu-item
                 >
               </el-menu-item-group>
@@ -89,6 +89,12 @@ const close = () => {
 }
 </script>
 <style lang="scss" scoped>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .main {
   width: 100%;
   height: 100%;

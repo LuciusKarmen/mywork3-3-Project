@@ -7,9 +7,9 @@ public class Course {
     private String id;
     private String name;
     private String no;
-    private String describe;
+    private String ddd;
     private String time;
     private Integer num;
-    private String teacher_id;
+    private String teacherId;
 
 }

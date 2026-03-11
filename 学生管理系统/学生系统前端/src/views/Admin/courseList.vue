@@ -15,7 +15,7 @@
           <el-table-column prop="describe" label="课程描述" />
           <el-table-column prop="time" label="上课时间" width="150" />
           <el-table-column prop="num" label="选课人数" width="100" />
-          <el-table-column prop="teacher_id" label="教师ID" width="120" />
+          <el-table-column prop="teacherId" label="教师ID" width="120" />
         </el-table>
 
         <el-pagination

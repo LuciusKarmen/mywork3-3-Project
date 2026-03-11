@@ -5,5 +5,5 @@ export interface Course {
   describe: string
   time: string
   num: number
-  teacher_id: string // 保持下划线
+  teacherId: string // 保持下划线
 }

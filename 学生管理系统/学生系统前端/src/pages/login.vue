@@ -18,6 +18,9 @@
         <el-button type="warning" @click="adm">我是管理</el-button>
       </div>
     </div>
+    <footer>
+      <div>Copyright © 2026.3.12 鸣谢李晨曦，张翔的设计灵感，感谢他们</div>
+    </footer>
   </div>
 </template>
 <script lang="ts" setup>
@@ -110,5 +113,13 @@ const adm = () => {
       }
     }
   }
+}
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 12px;
+  color: #585858;
 }
 </style>

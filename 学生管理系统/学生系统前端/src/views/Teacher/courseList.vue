@@ -1,21 +1,27 @@
 <template>
   <div class="main">
     <div class="centre">
-      <!-- 表格容器放在这里 -->
       <div class="table-container">
         <el-table :data="pagedData" style="width: 100%" border>
-          <el-table-column prop="id" label="编号" width="80" />
-          <el-table-column prop="name" label="姓名" width="100" />
-          <el-table-column prop="sex" label="性别" width="80" />
-          <el-table-column prop="age" label="年龄" width="80" />
-          <el-table-column prop="phone" label="电话" width="120" />
-          <el-table-column prop="email" label="邮箱" />
+          <el-table-column prop="id" label="课程ID" width="120" />
+          <el-table-column prop="name" label="课程名称" width="150" />
+          <el-table-column prop="no" label="审核状态" width="100">
+            <template #default="{ row }">
+              <el-tag :type="row.no === '1' ? 'success' : 'warning'">
+                {{ row.no === '1' ? '已通过' : '未审核' }}
+              </el-tag>
+            </template>
+          </el-table-column>
+          <el-table-column prop="describe" label="课程描述" />
+          <el-table-column prop="time" label="上课时间" width="150" />
+          <el-table-column prop="num" label="选课人数" width="100" />
+          <el-table-column prop="teacherId" label="教师ID" width="120" />
         </el-table>
 
         <el-pagination
           v-model:current-page="currentPage"
           v-model:page-size="pageSize"
-          :total="tableData.length"
+          :total="courseList.length"
           layout="total, sizes, prev, pager, next, jumper"
           :page-sizes="[5, 10, 20]"
           @size-change="handleSizeChange"
@@ -28,31 +34,18 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
+import { getCourseList } from '../../api/admin'
+import type { Course } from '../../type/Course'
 
-// 注意：你的数据里没有 `id` 字段！需要补上
-const tableData = [
-  { id: 1, name: 'Tom', sex: '男', age: '18', phone: '12345678901', email: '<EMAIL>' },
-  { id: 2, name: 'Jerry', sex: '男', age: '19', phone: '12345678902', email: '<EMAIL>' },
-  { id: 3, name: 'Alice', sex: '女', age: '20', phone: '12345678903', email: '<EMAIL>' },
-  { id: 4, name: 'Bob', sex: '男', age: '21', phone: '12345678904', email: '<EMAIL>' },
-  { id: 5, name: 'Eva', sex: '女', age: '22', phone: '12345678905', email: '<EMAIL>' },
-  { id: 6, name: 'Tom', sex: '男', age: '18', phone: '12345678901', email: '<EMAIL>' },
-  { id: 7, name: 'Tom', sex: '男', age: '18', phone: '12345678901', email: '<EMAIL>' },
-  { id: 8, name: 'Tom', sex: '男', age: '18', phone: '12345678901', email: '<EMAIL>' },
-  { id: 9, name: 'Tom', sex: '男', age: '18', phone: '12345678901', email: '<EMAIL>' },
-  { id: 10, name: 'Tom', sex: '男', age: '18', phone: '12345678901', email: '<EMAIL>' },
-  { id: 11, name: 'Tom', sex: '男', age: '18', phone: '12345678901', email: '<EMAIL>' },
-  { id: 12, name: 'Tom', sex: '男', age: '18', phone: '12345678901', email: '<EMAIL>' },
-]
+const courseList = ref<Course[]>([])
 
 const currentPage = ref(1)
 const pageSize = ref(10)
 
 const pagedData = computed(() => {
   const start = (currentPage.value - 1) * pageSize.value
-  const end = start + pageSize.value
-  return tableData.slice(start, end)
+  return courseList.value.slice(start, start + pageSize.value)
 })
 
 const handleSizeChange = (val: number) => {
@@ -63,6 +56,17 @@ const handleSizeChange = (val: number) => {
 const handleCurrentChange = (val: number) => {
   currentPage.value = val
 }
+
+onMounted(() => {
+  getCourseList()
+    .then((res) => {
+      courseList.value = Array.isArray(res) ? res : []
+    })
+    .catch((err) => {
+      console.error('获取课程列表失败:', err)
+      courseList.value = []
+    })
+})
 </script>
 
 <style scoped lang="scss">
@@ -95,7 +99,7 @@ const handleCurrentChange = (val: number) => {
   height: 90%;
   display: flex;
   flex-direction: column;
-  background-color: rgb(255, 255, 255); /* 改为白色更适配表格 */
+  background-color: #ffffff;
   justify-content: center;
   align-items: center;
   border-radius: 12px;
@@ -118,6 +122,7 @@ const handleCurrentChange = (val: number) => {
   .pagination {
     display: flex;
     justify-content: flex-end;
+    margin-top: 16px;
   }
 }
 </style>

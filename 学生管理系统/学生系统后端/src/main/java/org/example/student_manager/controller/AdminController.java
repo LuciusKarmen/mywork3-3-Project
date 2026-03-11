@@ -20,14 +20,14 @@ public class AdminController {
     }
 
     @RequestMapping("/login")
-    public Result<String> login(@RequestParam String name,
+    public Result<Admin> login(@RequestParam String name,
                                @RequestParam String password)
     {
 
         Admin admin = adminService.login(name, password);
 
         if (admin != null) {
-            return Result.ok(); // 登录成功
+            return Result.ok(admin); // 登录成功
         } else {
             return Result.error(401, "用户名或密码错误"); // 登录失败
         }

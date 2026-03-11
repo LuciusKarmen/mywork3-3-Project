@@ -3,6 +3,7 @@ package org.example.student_manager.controller;
 import org.example.student_manager.dao.Course;
 import org.example.student_manager.service.CourseService;
 import org.example.student_manager.utils.Result;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,7 +28,7 @@ public class CourseController {
 
     //添加课程
     @RequestMapping("/addCourse")
-    public Result<Integer> addCourse(Course course) {
+    public Result<Integer> addCourse(@RequestBody Course course) {
         return Result.ok(courseService.add(course));
     }
 

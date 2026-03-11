@@ -24,10 +24,10 @@
             <el-radio label="女">女</el-radio>
           </el-radio-group>
         </el-form-item>
-        <el-form-item label="电话" prop="phone">
+        <el-form-item label="代号" prop="phone">
           <el-input v-model="ruleForm.phone" autocomplete="off" />
         </el-form-item>
-        <el-form-item label="邮箱" prop="email">
+        <el-form-item label="势力" prop="email">
           <el-input v-model="ruleForm.email" autocomplete="off" />
         </el-form-item>
         <el-form-item>

@@ -30,7 +30,7 @@ const router = createRouter({
       children: [
         {
           path: '',
-          name: 'index',
+          name: 's',
           component: () => import('../views/Admin/index.vue'),
         },
         {
@@ -57,17 +57,17 @@ const router = createRouter({
       children: [
         {
           path: '',
-          name: 'index',
+          name: 't',
           component: () => import('../views/Admin/index.vue'),
         },
         {
           path: 'courseList',
-          name: 'courseList',
+          name: 't_courseList',
           component: () => import('../views/Teacher/courseList.vue'),
         },
         {
           path: 'courseAdd',
-          name: 'courseAdd',
+          name: 't_courseAdd',
           component: () => import('../views/Teacher/courseAdd.vue'),
         },
         {
@@ -84,7 +84,7 @@ const router = createRouter({
       children: [
         {
           path: '',
-          name: 'index',
+          name: 'a',
           component: () => import('../views/Admin/index.vue'),
         },
         {
