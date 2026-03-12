@@ -6,7 +6,7 @@ import type { Course } from '../type/Course'
 // 获取可选课程（建议后端只返回未选且已审核的课程）
 export const getAvailableCourses = () =>
   request<Course[]>({
-    url: '/course/available',
+    url: '/course/add',
     method: 'GET',
   })
 

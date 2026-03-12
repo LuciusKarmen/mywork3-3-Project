@@ -85,6 +85,12 @@ const close = () => {
 }
 </script>
 <style lang="scss" scoped>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .main {
   width: 100%;
   height: 100%;
