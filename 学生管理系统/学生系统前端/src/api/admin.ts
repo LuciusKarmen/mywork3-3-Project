@@ -2,6 +2,7 @@ import request from './request'
 import type { Student } from '../type/Student'
 import type { Teacher } from '../type/Teacher'
 import type { Course } from '../type/Course'
+import type { Admin } from '@/type'
 
 export const getStudentList = () => {
   return request<Student[]>({
@@ -23,6 +24,16 @@ export const getTeacherList = () => {
   })
 }
 
+export const getAdminList = () => {
+  return request<Admin[]>({
+    url: '/admin/queryAdminAll',
+    method: 'GET',
+  }).then((res) => {
+    console.log(res)
+    return res
+  })
+}
+
 export const getCourseList = () => {
   return request<Course[]>({
     url: '/course/queryCourseAll',
@@ -36,6 +47,15 @@ export const getCourseList = () => {
 export const addStudent = (data: Student) => {
   return request({
     url: '/admin/addStudent',
+    method: 'POST',
+    data,
+  }).then((res) => console.log(res))
+}
+
+//添加管理员
+export const addAdmin = (data: Admin) => {
+  return request({
+    url: '/admin/addAdmin',
     method: 'POST',
     data,
   }).then((res) => console.log(res))

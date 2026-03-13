@@ -65,11 +65,25 @@
             </el-sub-menu>
             <el-sub-menu index="4">
               <template #title>
+                <el-icon><Avatar /></el-icon>
+                <span>学生管理</span>
+              </template>
+              <el-menu-item-group>
+                <el-menu-item index="4-1" @click="router.push('/admin/adminList')"
+                  >学生列表</el-menu-item
+                >
+                <el-menu-item index="4-2" @click="router.push('/admin/adminAdd')"
+                  >添加学生</el-menu-item
+                >
+              </el-menu-item-group>
+            </el-sub-menu>
+            <el-sub-menu index="5">
+              <template #title>
                 <el-icon><Setting /></el-icon>
                 <span>系统信息</span>
               </template>
 
-              <el-menu-item index="4-1" @click="router.push('/our')">关于我们</el-menu-item>
+              <el-menu-item index="5-1" @click="router.push('/our')">关于我们</el-menu-item>
             </el-sub-menu>
           </el-menu>
         </el-col>

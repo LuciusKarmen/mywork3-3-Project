@@ -28,7 +28,7 @@
               </template>
               <el-menu-item-group>
                 <el-menu-item index="1-1" @click="router.push('/teacher/score')"
-                  >学生成绩录入</el-menu-item
+                  >学生查询</el-menu-item
                 >
               </el-menu-item-group>
             </el-sub-menu>

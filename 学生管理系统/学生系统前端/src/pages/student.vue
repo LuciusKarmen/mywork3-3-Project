@@ -28,7 +28,7 @@
               </template>
               <el-menu-item-group>
                 <el-menu-item index="1-1" @click="router.push('/student/scList')"
-                  >课程列表</el-menu-item
+                  >学校课程列表</el-menu-item
                 >
                 <el-menu-item index="1-2" @click="router.push('/student/scadd')"
                   >添加课程</el-menu-item

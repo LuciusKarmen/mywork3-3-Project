@@ -2,6 +2,7 @@ package org.example.student_manager.mapper;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.example.student_manager.dao.Course;
 import org.example.student_manager.dao.Student;
@@ -24,8 +25,8 @@ public interface CourseMapper {
   List<Course> findByTeacherId(String teacherId);
 
   //根据课程Id得出课表
-  @Select("SELECT * FROM course WHERE id = #{Id}")
-  List<Course> findByCourseId(String Id);
+  @Select("SELECT * FROM course WHERE id = #{courseId}")
+  Course findByCourseId(@Param("courseId") String courseId);
 
 
 

@@ -13,7 +13,7 @@
               </el-tag>
             </template>
           </el-table-column>
-          <el-table-column prop="describe" label="课程描述" />
+          <el-table-column prop="ddd" label="课程描述" />
           <el-table-column prop="time" label="上课时间" width="150" />
           <el-table-column prop="num" label="选课人数" width="100" />
           <el-table-column prop="teacherId" label="教师ID" width="120" />
@@ -41,7 +41,7 @@
 import { ref, computed, onMounted } from 'vue'
 import { ElMessage } from 'element-plus'
 import { useRouter } from 'vue-router'
-import { queryByStudentId } from '../../api/student'
+import { querytable } from '../../api/student'
 import type { Course } from '../../type/Course'
 
 const router = useRouter()
@@ -79,9 +79,19 @@ const fetchMyCourses = async () => {
 
   loading.value = true
   try {
-    // 调用 GET /sc/queryByStudentId?studentId=xxx
-    const res = await queryByStudentId(studentId)
-    myCourses.value = Array.isArray(res) ? res : []
+    const res = await querytable(studentId)
+    let courses = Array.isArray(res) ? res : []
+
+    // 去重逻辑：假设每门课程都有唯一的id
+    const uniqueCoursesMap = new Map<string, Course>()
+    courses.forEach((course) => {
+      if (!uniqueCoursesMap.has(course.id)) {
+        uniqueCoursesMap.set(course.id, course)
+      }
+    })
+
+    // 将去重后的结果转换为数组
+    myCourses.value = Array.from(uniqueCoursesMap.values())
   } catch (err: any) {
     console.error('获取我的课程失败:', err)
     ElMessage.error('加载课程失败，请重试')
@@ -90,7 +100,6 @@ const fetchMyCourses = async () => {
     loading.value = false
   }
 }
-
 onMounted(() => {
   fetchMyCourses()
 })

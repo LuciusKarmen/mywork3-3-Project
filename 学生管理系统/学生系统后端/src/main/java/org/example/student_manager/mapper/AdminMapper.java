@@ -25,6 +25,14 @@ public interface AdminMapper {
     @Insert("insert into student(id, name, password, sex, phone, age, email) values(#{id}, #{name}, #{password}, #{sex}, #{phone}, #{age}, #{email})")
     int addStudent(Student student);
 
+    //添加管理员
+    @Insert("insert into admin(id, name, position,password) values(#{id}, #{name}, #{position},#{password})")
+    int addAdmin(Admin admin);
+
+    //查询所有管理员
+    @Select("select * from admin")
+    List<Admin> findAll();
+
     //同意课程
     @Update("UPDATE course SET no = '1' WHERE id = #{id}")
     int agreeCourse(@Param("id") String id);

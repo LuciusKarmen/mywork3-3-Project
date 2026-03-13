@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/admin")
 public class AdminController {
@@ -41,8 +43,20 @@ public class AdminController {
     public Result<Integer> addStudent(@RequestBody Student student) {
         return Result.ok(adminService.addStudent(student));
     }
+
+    //添加管理员
+    @RequestMapping("/addAdmin")
+    public Result<Integer> addAdmin(@RequestBody Admin admin) {
+        return Result.ok(adminService.addAdmin(admin));
+    }
+    //查询管理员列表
+    @RequestMapping("/queryAllAdmin")
+    public Result<List<Admin>> queryAllAdmin() {
+        return Result.ok(adminService.queryAllAdmin());
+    }
     @RequestMapping("/agreeCourse")
     public Result<Integer> agreeCourse(@RequestParam String id) {
         return Result.ok(adminService.agreeCourse(id));
     }
+
 }

@@ -7,6 +7,8 @@ import org.example.student_manager.dao.Teacher;
 import org.example.student_manager.mapper.AdminMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AdminService {
     private final AdminMapper adminMapper;
@@ -25,6 +27,17 @@ public class AdminService {
         //UUID
         student.setId(java.util.UUID.randomUUID().toString());
         return adminMapper.addStudent(student);
+    }
+
+    //添加管理员
+    public int addAdmin(Admin admin) {
+        //UUID
+        admin.setId(java.util.UUID.randomUUID().toString());
+        return adminMapper.addAdmin(admin);
+    }
+    //查询所有管理员
+    public List<Admin> queryAllAdmin() {
+        return adminMapper.findAll() ;
     }
     //更新课程
     public int agreeCourse(@Param("id") String id) {

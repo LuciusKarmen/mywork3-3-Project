@@ -4,15 +4,22 @@
       <h2 class="title">可选课程列表</h2>
       <div class="table-container">
         <el-table :data="pagedData" style="width: 100%" border v-loading="loading">
-          <el-table-column prop="id" label="课程ID" width="120" />
+          <el-table-column prop="id" label="课程ID" width="180" show-overflow-tooltip />
           <el-table-column prop="name" label="课程名称" width="150" />
-          <el-table-column prop="describe" label="课程描述" />
-          <el-table-column prop="time" label="上课时间" width="150" />
-          <el-table-column prop="num" label="当前人数" width="100" />
+          <el-table-column label="课程描述" width="200">
+            <template #default="{ row }">
+              {{ row.ddd || '暂无描述' }}
+            </template>
+          </el-table-column>
+          <el-table-column prop="time" label="上课时间" width="200" />
+          <el-table-column label="当前人数" width="100">
+            <template #default="{ row }">
+              {{ row.num ?? 0 }}
+            </template>
+          </el-table-column>
           <el-table-column prop="teacherId" label="教师ID" width="120" />
           <el-table-column label="操作" width="120" fixed="right">
             <template #default="{ row }">
-              <!-- 只有审核通过（no === '1'）才显示可点击按钮 -->
               <el-button size="small" type="primary" @click="handleSelect(row.id)">
                 选课
               </el-button>
@@ -40,24 +47,18 @@
 import { ref, computed, onMounted } from 'vue'
 import { ElMessage } from 'element-plus'
 import { useRouter } from 'vue-router'
-import { selectCourse } from '../../api/student'
-import type { Course } from '../../type/Course'
-import type { StudentCourse } from '../../type/StudentCourse'
+import { selectCourse, queryno } from '@/api/student'
+import type { Course } from '@/type/Course'
 
 const router = useRouter()
 const availableCourseList = ref<Course[]>([])
 const loading = ref(false)
-
 const currentPage = ref(1)
 const pageSize = ref(10)
 
-const filteredCourses = computed(() => {
-  return availableCourseList.value.filter((course) => course.no === '1')
-})
-
 const pagedData = computed(() => {
   const start = (currentPage.value - 1) * pageSize.value
-  return filteredCourses.value.slice(start, start + pageSize.value)
+  return availableCourseList.value.slice(start, start + pageSize.value)
 })
 
 const handleSizeChange = (val: number) => {
@@ -69,63 +70,52 @@ const handleCurrentChange = (val: number) => {
   currentPage.value = val
 }
 
-const getStudentId = (): string | null => {
-  return localStorage.getItem('studentId')
-}
-
-// 不再需要 studentCourseData
+const getStudentId = () => localStorage.getItem('studentId')
 
 const handleSelect = async (courseId: string) => {
   const studentId = getStudentId()
   if (!studentId) {
-    ElMessage.error('未检测到学生身份，请重新登录')
+    ElMessage.error('请先登录')
     router.push('/login')
     return
   }
 
-  const newSelection: StudentCourse = {
-    id: '', // 后端若自动生成，可为空
-    no: '1',
-    studentId,
-    courseId,
-  }
-
   try {
-    await selectCourse(newSelection)
-    ElMessage.success('选课成功！')
-    fetchAvailableCourses() // 刷新列表（比如人数变化）
-  } catch (err: any) {
-    ElMessage.error(err.message || '选课失败，请稍后重试')
+    await selectCourse({ id: '', no: '1', studentId, courseId })
+    ElMessage.success('选课成功')
+    fetchAvailableCourses()
+  } catch {
+    ElMessage.error('选课失败')
   }
 }
 
 const fetchAvailableCourses = async () => {
+  const studentId = getStudentId()
+  if (!studentId) {
+    router.push('/login')
+    return
+  }
+
   loading.value = true
   try {
-    const res = await getAvailableCourses()
+    const res = await queryno(studentId)
+    // 确保是数组
     availableCourseList.value = Array.isArray(res) ? res : []
   } catch (err) {
-    console.error('获取可选课程失败:', err)
-    availableCourseList.value = []
+    console.error('加载失败:', err)
     ElMessage.error('加载课程失败')
+    availableCourseList.value = []
   } finally {
     loading.value = false
   }
 }
 
 onMounted(() => {
-  const studentId = getStudentId()
-  if (!studentId) {
-    ElMessage.warning('请先登录')
-    router.push('/login')
-    return
-  }
   fetchAvailableCourses()
 })
 </script>
 
 <style scoped lang="scss">
-/* 样式保持不变，复用你原有的渐变风格 */
 .main {
   width: 100%;
   height: 100%;
@@ -151,11 +141,12 @@ onMounted(() => {
 }
 
 .centre {
-  width: 90%;
+  width: 95%;
+  max-width: 1200px;
   height: 90%;
   display: flex;
   flex-direction: column;
-  background-color: #ffffff;
+  background-color: #fff;
   justify-content: flex-start;
   align-items: center;
   border-radius: 12px;
