@@ -40,8 +40,9 @@
 import { ref, computed, onMounted } from 'vue'
 import { ElMessage } from 'element-plus'
 import { useRouter } from 'vue-router'
-import { getAvailableCourses, selectCourse } from '../../api/student'
+import { selectCourse } from '../../api/student'
 import type { Course } from '../../type/Course'
+import type { StudentCourse } from '../../type/StudentCourse'
 
 const router = useRouter()
 const availableCourseList = ref<Course[]>([])
@@ -50,7 +51,6 @@ const loading = ref(false)
 const currentPage = ref(1)
 const pageSize = ref(10)
 
-// 仅显示已审核课程（no === '1'）
 const filteredCourses = computed(() => {
   return availableCourseList.value.filter((course) => course.no === '1')
 })
@@ -73,6 +73,8 @@ const getStudentId = (): string | null => {
   return localStorage.getItem('studentId')
 }
 
+// 不再需要 studentCourseData
+
 const handleSelect = async (courseId: string) => {
   const studentId = getStudentId()
   if (!studentId) {
@@ -81,11 +83,17 @@ const handleSelect = async (courseId: string) => {
     return
   }
 
+  const newSelection: StudentCourse = {
+    id: '', // 后端若自动生成，可为空
+    no: '1',
+    studentId,
+    courseId,
+  }
+
   try {
-    await selectCourse({ studentId, courseId })
+    await selectCourse(newSelection)
     ElMessage.success('选课成功！')
-    // 可选：刷新列表（或减少人数等）
-    fetchAvailableCourses()
+    fetchAvailableCourses() // 刷新列表（比如人数变化）
   } catch (err: any) {
     ElMessage.error(err.message || '选课失败，请稍后重试')
   }

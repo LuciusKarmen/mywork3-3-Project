@@ -41,7 +41,7 @@
 import { ref, computed, onMounted } from 'vue'
 import { ElMessage } from 'element-plus'
 import { useRouter } from 'vue-router'
-import { getMyCourses } from '../../api/student'
+import { queryByStudentId } from '../../api/student'
 import type { Course } from '../../type/Course'
 
 const router = useRouter()
@@ -80,7 +80,7 @@ const fetchMyCourses = async () => {
   loading.value = true
   try {
     // 调用 GET /sc/queryByStudentId?studentId=xxx
-    const res = await getMyCourses(studentId)
+    const res = await queryByStudentId(studentId)
     myCourses.value = Array.isArray(res) ? res : []
   } catch (err: any) {
     console.error('获取我的课程失败:', err)

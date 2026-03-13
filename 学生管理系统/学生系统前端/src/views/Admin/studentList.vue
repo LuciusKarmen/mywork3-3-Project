@@ -7,8 +7,8 @@
           <el-table-column prop="name" label="姓名" width="100" />
           <el-table-column prop="sex" label="性别" width="80" />
           <el-table-column prop="age" label="年龄" width="80" />
-          <el-table-column prop="phone" label="代号" width="120" />
-          <el-table-column prop="email" label="势力" />
+          <el-table-column prop="phone" label="手机号" width="120" />
+          <el-table-column prop="email" label="邮箱" width="120" />
         </el-table>
 
         <el-pagination
