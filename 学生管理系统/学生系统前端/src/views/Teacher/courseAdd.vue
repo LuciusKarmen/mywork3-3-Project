@@ -15,8 +15,8 @@
           <el-input v-model="ruleForm.name" autocomplete="off" />
         </el-form-item>
 
-        <el-form-item label="课程描述" prop="describe">
-          <el-input type="textarea" v-model="ruleForm.describe" />
+        <el-form-item label="课程描述" prop="ddd">
+          <el-input type="textarea" v-model="ruleForm.ddd" />
         </el-form-item>
 
         <!-- 学年学期 -->
@@ -115,7 +115,7 @@ const ruleForm = reactive<Omit<Course, 'time'> & { time?: string }>({
   id: '',
   name: '',
   no: '0',
-  describe: '',
+  ddd: '',
   num: 1,
   teacherId: teacherId,
 })
@@ -143,7 +143,7 @@ watch(
 // 表单验证规则（time 不再直接验证，由子字段保证）
 const rules = reactive<FormRules>({
   name: [{ required: true, message: '请输入课程名称', trigger: 'blur' }],
-  describe: [{ required: true, message: '请输入课程描述', trigger: 'blur' }],
+  ddd: [{ required: true, message: '请输入课程描述', trigger: 'blur' }],
   num: [
     { required: true, message: '请输入最大人数', trigger: 'change' },
     { type: 'number', min: 1, max: 100, message: '人数必须在1到100之间' },

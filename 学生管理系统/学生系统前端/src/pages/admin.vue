@@ -66,14 +66,14 @@
             <el-sub-menu index="4">
               <template #title>
                 <el-icon><Avatar /></el-icon>
-                <span>学生管理</span>
+                <span>管理员管理</span>
               </template>
               <el-menu-item-group>
                 <el-menu-item index="4-1" @click="router.push('/admin/adminList')"
-                  >学生列表</el-menu-item
+                  >管理员列表</el-menu-item
                 >
                 <el-menu-item index="4-2" @click="router.push('/admin/adminAdd')"
-                  >添加学生</el-menu-item
+                  >添加管理员</el-menu-item
                 >
               </el-menu-item-group>
             </el-sub-menu>

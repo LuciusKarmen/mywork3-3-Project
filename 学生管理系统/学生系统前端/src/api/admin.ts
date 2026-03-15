@@ -26,7 +26,7 @@ export const getTeacherList = () => {
 
 export const getAdminList = () => {
   return request<Admin[]>({
-    url: '/admin/queryAdminAll',
+    url: '/admin/queryAllAdmin',
     method: 'GET',
   }).then((res) => {
     console.log(res)
