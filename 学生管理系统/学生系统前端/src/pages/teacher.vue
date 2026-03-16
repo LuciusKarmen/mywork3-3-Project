@@ -28,7 +28,7 @@
               </template>
               <el-menu-item-group>
                 <el-menu-item index="1-1" @click="router.push('/teacher/score')"
-                  >学生查询</el-menu-item
+                  >课程打分</el-menu-item
                 >
               </el-menu-item-group>
             </el-sub-menu>
@@ -52,7 +52,7 @@
                 <span>教师助手</span>
               </template>
               <el-menu-item-group>
-                <el-menu-item index="3-1">工资查询</el-menu-item>
+                <el-menu-item index="3-1">信息查询</el-menu-item>
               </el-menu-item-group>
             </el-sub-menu>
             <el-sub-menu index="4">

@@ -1,9 +1,6 @@
 package org.example.student_manager.mapper;
 
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.example.student_manager.dao.Course;
 import org.example.student_manager.dao.Student;
 
@@ -13,7 +10,7 @@ import java.util.List;
 public interface CourseMapper {
 
 
-  @Insert("INSERT INTO Course (id, name, no, ddd, time, num, teacherId) VALUES (#{id},#{name}, #{no}, #{ddd}, #{time}, #{num}, #{teacherId})")
+  @Insert("INSERT INTO course (id, name, no, ddd, time, num, teacherId) VALUES (#{id},#{name}, #{no}, #{ddd}, #{time}, #{num}, #{teacherId})")
   int add(Course course);
 
   //  查询所有课程
@@ -27,6 +24,14 @@ public interface CourseMapper {
   //根据课程Id得出课表
   @Select("SELECT * FROM course WHERE id = #{courseId}")
   Course findByCourseId(@Param("courseId") String courseId);
+
+  //删除
+  @Delete("DELETE FROM course WHERE id = #{courseId}")
+  int delete(@Param("courseId") String courseId);
+
+  //根据老师ID删除课程
+  @Delete("DELETE FROM course WHERE teacherId = #{teacherId}")
+  void deleteByTeacherId(@Param("teacherId") String teacherId);
 
 
 

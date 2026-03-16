@@ -34,4 +34,10 @@ public class TeacherController {
     public Result<List<Teacher>> queryAll() {
         return Result.ok(teacherService.queryAllTeacher());
     }
+
+    //删除
+    @RequestMapping("/deleteTeacher")
+    public Result<Integer> deleteTeacher(@RequestParam String id) {
+        return Result.ok(teacherService.deleteTeacher(id));
+    }
 }

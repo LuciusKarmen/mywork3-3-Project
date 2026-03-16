@@ -77,3 +77,37 @@ export const agreeCourse = (id: string) => {
     params: { id: id },
   })
 }
+
+//删除学生
+export const deleteStudent = (id: string) => {
+  return request({
+    url: '/student/deleteStudent',
+    method: 'POST',
+    params: { id: id },
+  })
+}
+//删除老师
+export const deleteTeacher = (id: string) => {
+  return request({
+    url: '/teacher/deleteTeacher',
+    method: 'POST',
+    params: { id: id },
+  })
+}
+//删除课程
+// api/admin.ts
+export const deleteCourse = (id: string) => {
+  return request({
+    url: '/course/deleteCourse',
+    method: 'POST',
+    params: { courseId: id }, // ✅ 参数名与后端 @RequestParam 一致
+  })
+}
+//删除管理员
+export const deleteAdmin = (id: string) => {
+  return request({
+    url: '/admin/deleteAdmin',
+    method: 'POST',
+    params: { id: id },
+  })
+}

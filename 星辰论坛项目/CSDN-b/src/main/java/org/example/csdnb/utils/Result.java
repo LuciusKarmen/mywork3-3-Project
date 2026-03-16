@@ -28,7 +28,7 @@ public class Result<T> implements Serializable {
     }
 
 
-//      错误,没有的时候
+
 
     public static <T> Result<T> error(int code, String message) {
         return new Result<>(code, message, null);

@@ -16,6 +16,15 @@
           <el-table-column prop="time" label="上课时间" width="150" />
           <el-table-column prop="num" label="选课人数" width="100" />
           <el-table-column prop="teacherId" label="教师ID" width="120" />
+
+          <!-- 操作列 -->
+          <el-table-column label="操作" width="120" fixed="right">
+            <template #default="scope">
+              <el-button size="small" type="danger" @click="handleDelete(scope.row.id)">
+                删除
+              </el-button>
+            </template>
+          </el-table-column>
         </el-table>
 
         <el-pagination
@@ -35,11 +44,10 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
-import { getCourseList } from '../../api/admin'
+import { getCourseList, deleteCourse } from '../../api/admin'
 import type { Course } from '../../type/Course'
 
 const courseList = ref<Course[]>([])
-
 const currentPage = ref(1)
 const pageSize = ref(10)
 
@@ -57,15 +65,34 @@ const handleCurrentChange = (val: number) => {
   currentPage.value = val
 }
 
-onMounted(() => {
+const fetchCourseList = () => {
   getCourseList()
-    .then((res) => {
-      courseList.value = Array.isArray(res) ? res : []
+    .then((data) => {
+      courseList.value = data
     })
     .catch((err) => {
-      console.error('获取课程列表失败:', err)
+      alert(err.message || '获取课程列表失败')
       courseList.value = []
     })
+}
+
+// ✅ 和学生/教师页面完全一致的删除逻辑
+const handleDelete = (id: string) => {
+  const isConfirmed = window.confirm('确定要删除该课程吗？此操作不可恢复！')
+  if (!isConfirmed) return
+
+  deleteCourse(id)
+    .then((affectedRows) => {
+      alert(`删除成功（已删除 ${affectedRows} 条记录）`)
+      fetchCourseList() // 刷新整个列表
+    })
+    .catch((err: any) => {
+      alert(err.message || '删除失败，请确保该课程未被学生选修')
+    })
+}
+
+onMounted(() => {
+  fetchCourseList()
 })
 </script>
 

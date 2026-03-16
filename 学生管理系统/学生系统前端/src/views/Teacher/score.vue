@@ -1,120 +1,156 @@
 <template>
-  <div class="main">
-    <div class="centre">
-      <!-- 表格容器 -->
-      <div class="table-container">
-        <el-table :data="pagedData" style="width: 100%" border>
-          <el-table-column prop="name" label="姓名" width="100" />
-          <el-table-column prop="sex" label="性别" width="80" />
-          <el-table-column prop="age" label="年龄" width="80" />
-          <el-table-column prop="phone" label="手机号" width="120" />
-          <el-table-column prop="email" label="邮箱" width="120" />
-        </el-table>
+  <div class="evaluation-page">
+    <el-card class="form-card">
+      <template #header>
+        <h2 class="title">学生综合表现评分</h2>
+      </template>
 
-        <el-pagination
-          v-model:current-page="currentPage"
-          v-model:page-size="pageSize"
-          :total="studentList.length"
-          layout="total, sizes, prev, pager, next, jumper"
-          :page-sizes="[5, 10, 20]"
-          @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
-          class="pagination"
+      <!-- 学生信息 -->
+      <div class="student-info">
+        <el-descriptions :column="1" size="small" border>
+          <el-descriptions-item label="学号">{{ student.id }}</el-descriptions-item>
+          <el-descriptions-item label="姓名">{{ student.name }}</el-descriptions-item>
+          <el-descriptions-item label="班级">{{ student.className }}</el-descriptions-item>
+          <el-descriptions-item label="课程">{{ student.courseName }}</el-descriptions-item>
+        </el-descriptions>
+      </div>
+
+      <!-- 评分区域 -->
+      <div class="score-section">
+        <label class="label">综合表现评分（0 ~ 100 分）：</label>
+        <div class="score-display">
+          <span class="score-value">{{ score }} 分</span>
+        </div>
+        <el-slider
+          v-model="score"
+          :min="0"
+          :max="100"
+          :step="1"
+          show-input
+          show-input-controls
+          style="margin-top: 12px"
         />
       </div>
-    </div>
+
+      <!-- 评语 -->
+      <div class="comment-section">
+        <label class="label">综合评语（可选）：</label>
+        <el-input
+          v-model="comment"
+          type="textarea"
+          :rows="4"
+          placeholder="请对学生的课堂参与、作业完成、学习态度等方面进行简要评价（最多300字）"
+          maxlength="300"
+          show-word-limit
+          clearable
+        />
+      </div>
+
+      <!-- 提交按钮 -->
+      <div class="submit-section">
+        <el-button type="primary" size="large" @click="handleSubmit" :loading="loading">
+          提交评分
+        </el-button>
+      </div>
+    </el-card>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
-import { getStudentList } from '../../api/admin'
-import type { Student } from '../../type/Student'
+import { ref } from 'vue'
+import { ElMessage } from 'element-plus'
 
-const studentList = ref<Student[]>([])
-
-const currentPage = ref(1)
-const pageSize = ref(10)
-
-const pagedData = computed(() => {
-  const start = (currentPage.value - 1) * pageSize.value
-  return studentList.value.slice(start, start + pageSize.value)
-})
-
-const handleSizeChange = (val: number) => {
-  pageSize.value = val
-  currentPage.value = 1
+// 模拟学生数据（实际项目中通过路由参数或 API 获取）
+const student = {
+  id: '20231001',
+  name: '李明',
+  className: '计算机科学与技术 2301 班',
+  courseName: 'Web前端开发技术',
 }
 
-const handleCurrentChange = (val: number) => {
-  currentPage.value = val
-}
+const score = ref<number>(85) // 默认 85 分
+const comment = ref<string>('')
+const loading = ref<boolean>(false)
 
-onMounted(() => {
-  getStudentList()
-    .then((res) => {
-      studentList.value = Array.isArray(res) ? res : []
+const handleSubmit = () => {
+  if (score.value < 0 || score.value > 100) {
+    ElMessage.warning('评分必须在 0 ~ 100 之间')
+    return
+  }
+
+  loading.value = true
+
+  // 模拟提交
+  setTimeout(() => {
+    ElMessage.success(`已成功为【${student.name}】提交综合评分：${score.value} 分`)
+    console.log('提交数据:', {
+      studentId: student.id,
+      score: score.value,
+      comment: comment.value.trim() || '无',
     })
-    .catch((err) => {
-      console.error('获取学生列表失败:', err)
-      studentList.value = []
-    })
-})
+    loading.value = false
+    // 真实场景：await api.submitStudentEvaluation(...)
+  }, 600)
+}
 </script>
 
 <style scoped lang="scss">
-.main {
-  width: 100%;
-  height: 100%;
+.evaluation-page {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, rgb(224, 249, 255), rgb(241, 241, 241));
-  background-size: 400% 400%;
-  animation: gradientBG 15s ease infinite;
-  overflow: hidden;
-}
-
-@keyframes gradientBG {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-.centre {
-  width: 90%;
-  height: 90%;
-  display: flex;
-  flex-direction: column;
-  background-color: rgb(255, 255, 255); /* 改为白色更适配表格 */
-  justify-content: center;
-  align-items: center;
-  border-radius: 12px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f9f7fe 0%, #eef5ff 100%);
   padding: 20px;
   box-sizing: border-box;
 }
 
-.table-container {
+.form-card {
   width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
+  max-width: 650px;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 
-  .el-table {
-    flex: 1;
-    width: 100%;
+  .title {
+    margin: 0;
+    font-size: 22px;
+    color: #2c3e8f;
+    text-align: center;
+    font-weight: 600;
   }
+}
 
-  .pagination {
-    display: flex;
-    justify-content: flex-end;
+.student-info {
+  margin: 24px 0;
+}
+
+.label {
+  display: block;
+  margin: 20px 0 10px;
+  font-weight: bold;
+  color: #2d3748;
+  font-size: 15px;
+}
+
+.score-section {
+  .score-display {
+    text-align: center;
+    margin-top: 8px;
+
+    .score-value {
+      font-size: 28px;
+      font-weight: bold;
+      color: #409eff;
+    }
   }
+}
+
+.comment-section {
+  margin: 24px 0;
+}
+
+.submit-section {
+  text-align: center;
+  margin-top: 16px;
 }
 </style>

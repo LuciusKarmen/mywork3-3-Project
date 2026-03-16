@@ -1,7 +1,6 @@
 <template>
   <div class="main">
     <div class="centre">
-      <!-- 表格容器 -->
       <div class="table-container">
         <el-table :data="pagedData" style="width: 100%" border>
           <el-table-column prop="name" label="姓名" width="100" />
@@ -9,6 +8,15 @@
           <el-table-column prop="age" label="年龄" width="80" />
           <el-table-column prop="phone" label="手机号" width="120" />
           <el-table-column prop="email" label="邮箱" width="120" />
+
+          <!-- 操作列 -->
+          <el-table-column label="操作" width="120" fixed="right">
+            <template #default="scope">
+              <el-button size="small" type="danger" @click="handleDelete(scope.row.id)">
+                删除
+              </el-button>
+            </template>
+          </el-table-column>
         </el-table>
 
         <el-pagination
@@ -28,11 +36,10 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
-import { getStudentList } from '../../api/admin'
+import { getStudentList, deleteStudent } from '../../api/admin'
 import type { Student } from '../../type/Student'
 
 const studentList = ref<Student[]>([])
-
 const currentPage = ref(1)
 const pageSize = ref(10)
 
@@ -50,15 +57,34 @@ const handleCurrentChange = (val: number) => {
   currentPage.value = val
 }
 
-onMounted(() => {
+const fetchStudentList = () => {
   getStudentList()
-    .then((res) => {
-      studentList.value = Array.isArray(res) ? res : []
+    .then((data) => {
+      studentList.value = data
     })
     .catch((err) => {
-      console.error('获取学生列表失败:', err)
+      alert(err.message || '获取学生列表失败')
       studentList.value = []
     })
+}
+
+// ✅ 使用系统默认弹窗（confirm + alert）
+const handleDelete = (id: string) => {
+  const isConfirmed = window.confirm('确定要删除该学生吗？此操作不可恢复！')
+  if (!isConfirmed) return // 用户点击“取消”
+
+  deleteStudent(id)
+    .then((affectedRows) => {
+      alert(`删除成功（已删除 ${affectedRows} 条记录）`)
+      fetchStudentList() // 刷新列表
+    })
+    .catch((err: any) => {
+      alert(err.message || '删除失败')
+    })
+}
+
+onMounted(() => {
+  fetchStudentList()
 })
 </script>
 
@@ -92,7 +118,7 @@ onMounted(() => {
   height: 90%;
   display: flex;
   flex-direction: column;
-  background-color: rgb(255, 255, 255); /* 改为白色更适配表格 */
+  background-color: #ffffff;
   justify-content: center;
   align-items: center;
   border-radius: 12px;
@@ -115,6 +141,7 @@ onMounted(() => {
   .pagination {
     display: flex;
     justify-content: flex-end;
+    margin-top: 16px;
   }
 }
 </style>

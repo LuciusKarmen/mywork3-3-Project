@@ -43,4 +43,9 @@ public class AdminService {
     public int agreeCourse(@Param("id") String id) {
         return adminMapper.agreeCourse(id);
     }
+
+    //删除
+    public int deleteAdmin(@Param("id") String id) {
+        return adminMapper.deleteAdmin(id);
+    }
 }

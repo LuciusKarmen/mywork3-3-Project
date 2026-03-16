@@ -1,10 +1,13 @@
 package org.example.student_manager.service;
 
 import org.example.student_manager.dao.Student;
+import org.example.student_manager.mapper.ScoreMapper;
+import org.example.student_manager.mapper.StudentCourseMapper;
 import org.example.student_manager.mapper.StudentMapper;
 import org.example.student_manager.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -21,6 +24,21 @@ public class StudentService {
 //    查询所有学生
     public List<Student> queryAllStudent(){
         return studentMapper.findAll();
+    }
+    //删除
+
+    @Autowired
+    private ScoreMapper scoreMapper;
+    @Autowired
+    private StudentCourseMapper studentCourseMapper;
+
+    @Transactional(rollbackFor = Exception.class)
+    public int deleteStudent(String id) {
+        // 先删成绩
+        scoreMapper.deleteByStudentId(id);
+        studentCourseMapper.deleteByStudentId(id);
+        // 再删学生
+        return studentMapper.deleteStudent(id);
     }
 
 

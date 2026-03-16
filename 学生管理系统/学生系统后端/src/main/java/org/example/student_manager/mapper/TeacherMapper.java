@@ -1,5 +1,6 @@
 package org.example.student_manager.mapper;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.example.student_manager.dao.Teacher;
@@ -14,5 +15,9 @@ public interface TeacherMapper {
 
     @Select("select * from teacher")
     List<Teacher> findAll();
+
+    //删除
+    @Delete("delete from teacher where id = #{id}")
+    int delete(String id);
 
 }

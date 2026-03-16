@@ -59,4 +59,10 @@ public class AdminController {
         return Result.ok(adminService.agreeCourse(id));
     }
 
+    //删除
+    @RequestMapping("/deleteAdmin")
+    public Result<Integer> deleteAdmin(@RequestParam String id) {
+        return Result.ok(adminService.deleteAdmin(id));
+    }
+
 }

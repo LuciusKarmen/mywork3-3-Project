@@ -25,4 +25,10 @@ public class CourseService {
         course.setId(java.util.UUID.randomUUID().toString());
         return courseMapper.add(course);
     }
+
+    //删除
+
+    public int delete(String courseId) {
+        return courseMapper.delete(courseId);
+    }
 }

@@ -37,4 +37,10 @@ public class StudentConntroller {
     public Result<List<Student>> querystudentAll() {
         return Result.ok(studentService.queryAllStudent());
     }
+    //删除 学生
+    @RequestMapping("/deleteStudent")
+    public Result<Integer> deleteStudent(@RequestParam String id) {
+        return Result.ok(studentService.deleteStudent(id));
+    }
+
 }

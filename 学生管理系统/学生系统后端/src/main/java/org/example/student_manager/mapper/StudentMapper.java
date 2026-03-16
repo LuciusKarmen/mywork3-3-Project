@@ -28,5 +28,9 @@ public interface StudentMapper {
    //登录验证
     @Select("select * from student where name = #{name} and password = #{password}")
     Student login(String name, String password);
+    //删除学生
+    @Update("delete from student where id = #{id}")
+    int deleteStudent(String id);
+
 
 }
