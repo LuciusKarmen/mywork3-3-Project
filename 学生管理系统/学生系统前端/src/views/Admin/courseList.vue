@@ -16,15 +16,6 @@
           <el-table-column prop="time" label="上课时间" width="150" />
           <el-table-column prop="num" label="选课人数" width="100" />
           <el-table-column prop="teacherId" label="教师ID" width="120" />
-
-          <!-- 操作列 -->
-          <el-table-column label="操作" width="120" fixed="right">
-            <template #default="scope">
-              <el-button size="small" type="danger" @click="handleDelete(scope.row.id)">
-                删除
-              </el-button>
-            </template>
-          </el-table-column>
         </el-table>
 
         <el-pagination
@@ -73,21 +64,6 @@ const fetchCourseList = () => {
     .catch((err) => {
       alert(err.message || '获取课程列表失败')
       courseList.value = []
-    })
-}
-
-// ✅ 和学生/教师页面完全一致的删除逻辑
-const handleDelete = (id: string) => {
-  const isConfirmed = window.confirm('确定要删除该课程吗？此操作不可恢复！')
-  if (!isConfirmed) return
-
-  deleteCourse(id)
-    .then((affectedRows) => {
-      alert(`删除成功（已删除 ${affectedRows} 条记录）`)
-      fetchCourseList() // 刷新整个列表
-    })
-    .catch((err: any) => {
-      alert(err.message || '删除失败，请确保该课程未被学生选修')
     })
 }
 

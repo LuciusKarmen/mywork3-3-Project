@@ -34,17 +34,7 @@ public class CourseController {
     public Result<Integer> addCourse(@RequestBody Course course) {
         return Result.ok(courseService.add(course));
     }
-    //删除 课程
-    @Autowired
-    private ScoreMapper scoreMapper;
-    @Autowired
-    private StudentCourseMapper studentCourseMapper;
-    @RequestMapping("/deleteCourse")
-     public Result<Integer> deleteCourse(@RequestParam String courseId) {
-        scoreMapper.deleteByCourseId(courseId);
-        studentCourseMapper.deleteByCourseId(courseId);
-        return Result.ok(courseService.delete(courseId));
-    }
+
 
 
 
