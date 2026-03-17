@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>修改学生信息</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      }
+
+      body {
+        background: linear-gradient(135deg, #e0f9ff, #f1f1f1);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
+
+      .centre {
+        width: 90%;
+        max-width: 600px;
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+        padding: 30px;
+      }
+
+      h2 {
+        text-align: center;
+        margin-bottom: 24px;
+        color: #333;
+      }
+
+      .form-group {
+        margin-bottom: 18px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 6px;
+        font-weight: 600;
+        color: #555;
+      }
+
+      input,
+      select {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 14px;
+        transition: border-color 0.3s;
+      }
+
+      input:focus,
+      select:focus {
+        outline: none;
+        border-color: #409eff;
+        box-shadow: 0 0 0 2px rgba(64, 158, 255, 0.2);
+      }
+
+      .btn-container {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 24px;
+      }
+
+      button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 6px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+
+      .btn-cancel {
+        background-color: #f5f5f5;
+        color: #666;
+      }
+
+      .btn-cancel:hover {
+        background-color: #e0e0e0;
+      }
+
+      .btn-submit {
+        background-color: #409eff;
+        color: white;
+      }
+
+      .btn-submit:hover {
+        background-color: #337ecc;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="centre">
+      <h2>修改学生信息</h2>
+      <form id="studentForm">
+        <!-- 隐藏 ID 字段 -->
+        <input type="hidden" id="id" value="da866767-68e0-470d-bb78-983969c11d78" />
+
+        <div class="form-group">
+          <label for="name">姓名</label>
+          <input type="text" id="name" placeholder="请输入姓名" required />
+        </div>
+
+        <div class="form-group">
+          <label for="sex">性别</label>
+          <select id="sex" required>
+            <option value="">请选择</option>
+            <option value="男">男</option>
+            <option value="女">女</option>
+            <option value="其他">其他</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="age">年龄</label>
+          <input type="number" id="age" min="1" max="150" placeholder="请输入年龄" required />
+        </div>
+
+        <div class="form-group">
+          <label for="phone">手机号</label>
+          <input type="tel" id="phone" placeholder="请输入手机号" required />
+        </div>
+
+        <div class="form-group">
+          <label for="email">邮箱</label>
+          <input type="email" id="email" placeholder="请输入邮箱" required />
+        </div>
+
+        <div class="btn-container">
+          <button type="button" class="btn-cancel" onclick="history.back()">取消</button>
+          <button type="submit" class="btn-submit">保存修改</button>
+        </div>
+      </form>
+    </div>
+
+    <script>
+      // 示例：页面加载时填充数据（模拟从 API 获取）
+      document.addEventListener('DOMContentLoaded', () => {
+        // 模拟已有学生数据
+        const mockData = {
+          id: 'da866767-68e0-470d-bb78-983969c11d78',
+          name: '张三',
+          sex: '男',
+          age: 20,
+          phone: '13800138000',
+          email: 'zhangsan@example.com',
+        }
+
+        document.getElementById('id').value = mockData.id
+        document.getElementById('name').value = mockData.name
+        document.getElementById('sex').value = mockData.sex
+        document.getElementById('age').value = mockData.age
+        document.getElementById('phone').value = mockData.phone
+        document.getElementById('email').value = mockData.email
+      })
+
+      // 表单提交处理
+      document.getElementById('studentForm').addEventListener('submit', function (e) {
+        e.preventDefault()
+        alert('表单数据已提交（此处可对接后端 API）')
+        // 实际项目中可在此处调用 fetch 发送 PUT/PATCH 请求
+      })
+    </script>
+  </body>
+</html>

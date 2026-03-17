@@ -1,0 +1,199 @@
+好的！以下是基于你提供的 Teacher 接口，制作的一个 纯 HTML 文件（edit-teacher.html），用于
+修改教师信息。
+风格与你之前的“修改学生”表单保持一致：简洁、居中、圆角卡片、柔和阴影、响应式布局，使用原生 HTML +
+CSS + JS，无需任何框架。 ✅ edit-teacher.html html
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>修改教师信息</title>
+    <style>
+      {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      }
+
+      body {
+      background: linear-gradient(135deg, #e0f9ff, #f1f1f1);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      }
+
+      .centre {
+      width: 90%;
+      max-width: 600px;
+      background-color: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+      padding: 30px;
+      }
+
+      h2 {
+      text-align: center;
+      margin-bottom: 24px;
+      color: #333;
+      }
+
+      .form-group {
+      margin-bottom: 18px;
+      }
+
+      label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+      color: #555;
+      }
+
+      input,
+      select {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+      transition: border-color 0.3s;
+      }
+
+      input:focus,
+      select:focus {
+      outline: none;
+      border-color: #409eff;
+      box-shadow: 0 0 0 2px rgba(64, 158, 255, 0.2);
+      }
+
+      .btn-container {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 24px;
+      }
+
+      button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      }
+
+      .btn-cancel {
+      background-color: #f5f5f5;
+      color: #666;
+      }
+
+      .btn-cancel:hover {
+      background-color: #e0e0e0;
+      }
+
+      .btn-submit {
+      background-color: #409eff;
+      color: white;
+      }
+
+      .btn-submit:hover {
+      background-color: #337ecc;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="centre">
+      <h2>修改教师信息</h2>
+      <form id="teacherForm">
+        <!-- 隐藏 ID 字段 -->
+        <input type="hidden" id="id" value="t-001" />
+
+        <div class="form-group">
+          <label for="name">姓名</label>
+          <input type="text" id="name" placeholder="请输入姓名" required />
+        </div>
+
+        <div class="form-group">
+          <label for="sex">性别</label>
+          <select id="sex" required>
+            <option value="">请选择</option>
+            <option value="男">男</option>
+            <option value="女">女</option>
+            <option value="其他">其他</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">手机号</label>
+          <input type="tel" id="phone" placeholder="请输入手机号" required />
+        </div>
+
+        <div class="form-group">
+          <label for="email">邮箱</label>
+          <input type="email" id="email" placeholder="请输入邮箱" required />
+        </div>
+
+        <div class="form-group">
+          <label for="position">职称</label>
+          <input type="text" id="position" placeholder="如：教授、副教授、讲师等" required />
+        </div>
+
+        <div class="form-group">
+          <label for="department">院系</label>
+          <input type="text" id="department" placeholder="如：计算机科学与技术学院" required />
+        </div>
+
+        <div class="btn-container">
+          <button type="button" class="btn-cancel" onclick="history.back()">取消</button>
+          <button type="submit" class="btn-submit">保存修改</button>
+        </div>
+      </form>
+    </div>
+
+    <script>
+      // 页面加载时填充示例数据（模拟从后端获取）
+      document.addEventListener('DOMContentLoaded', () => {
+      const mockData = {
+      id: 't-001',
+      name: '李教授',
+      sex: '男',
+      phone: '13900001111',
+      email: 'li.prof@university.edu.cn',
+      position: '教授',
+      department: '计算机科学与技术学院'
+      };
+
+      document.getElementById('id').value = mockData.id;
+      document.getElementById('name').value = mockData.name;
+      document.getElementById('sex').value = mockData.sex;
+      document.getElementById('phone').value = mockData.phone;
+      document.getElementById('email').value = mockData.email;
+      document.getElementById('position').value = mockData.position;
+      document.getElementById('department').value = mockData.department;
+      });
+
+      // 表单提交处理
+      document.getElementById('teacherForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      alert('教师信息已提交（可在此对接后端 API）');
+      // 实际项目中可使用 fetch 发送 PUT/PATCH 请求
+
+      fetch('/api/teachers/' + document.getElementById('id').value, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+      name: document.getElementById('name').value,
+      sex: document.getElementById('sex').value,
+      phone: document.getElementById('phone').value,
+      email: document.getElementById('email').value,
+      position: document.getElementById('position').value,
+      department: document.getElementById('department').value
+      })
+      });
+      */
+      });
+    </script>
+  </body>
+</html>
